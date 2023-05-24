@@ -1,7 +1,10 @@
 package fr.umontpellier.iut.rails.vues;
 
+import fr.umontpellier.iut.rails.IDestination;
 import fr.umontpellier.iut.rails.IJeu;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -19,17 +22,37 @@ public class VueDuJeu extends VBox {
 
     private final IJeu jeu;
     private VuePlateau plateau;
+    @FXML
+    private Button passerBtn;
 
     public VueDuJeu(IJeu jeu) {
         this.jeu = jeu;
+        /*
         plateau = new VuePlateau();
         getChildren().add(plateau);
+         */
     }
 
     public void creerBindings() {
-        plateau.prefWidthProperty().bind(getScene().widthProperty());
-        plateau.prefHeightProperty().bind(getScene().heightProperty());
+//        plateau.prefWidthProperty().bind(getScene().widthProperty());
+//        plateau.prefHeightProperty().bind(getScene().heightProperty());
 //        plateau.creerBindings();
+        jeu.destinationsInitialesProperty().addListener(new ListChangeListener<IDestination>() {
+            @Override
+            public void onChanged(Change<? extends IDestination> change) {
+                while(change.next()){
+                    if(change.wasAdded()){
+                        for(IDestination destination : change.getAddedSubList()){
+                            System.out.println(destination.getVilles().toString());
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    public void passer(){
+        jeu.passerAEteChoisi();
     }
 
     public IJeu getJeu() {

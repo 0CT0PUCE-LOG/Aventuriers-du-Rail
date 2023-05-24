@@ -7,12 +7,15 @@ import javafx.collections.ListChangeListener;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Cette classe correspond à la fenêtre principale de l'application.
@@ -29,6 +32,11 @@ public class VueDuJeu extends VBox {
     private VuePlateau plateau;
     @FXML
     private Button passerBtn;
+    @FXML
+    private Label instructionLabel;
+
+    @FXML
+    private VBox choixDestinationVBox;
 
     public VueDuJeu(IJeu jeu) {
         this.jeu = jeu;
@@ -56,15 +64,32 @@ public class VueDuJeu extends VBox {
                 while(change.next()){
                     if(change.wasAdded()){
                         for(IDestination destination : change.getAddedSubList()){
-                            System.out.println(destination.getVilles().toString());
+                            choixDestinationVBox.getChildren().add(new Label(destination.getVilles().toString()));
+                        }
+                    }
+                    else if(change.wasRemoved()){
+                        for(IDestination destination : change.getRemoved()){
+                            choixDestinationVBox.getChildren().remove(trouvelabelDestination(destination));
                         }
                     }
                 }
             }
         });
+
+        instructionLabel.textProperty().bind(jeu.instructionProperty());
     }
 
-    public void passer(){
+    private Label trouvelabelDestination(IDestination destination){
+        for(Node l : choixDestinationVBox.getChildren()){
+            if(((Label)l).getText().equals(destination)){
+                return ((Label)l);
+            }
+        }
+        return null;
+    }
+
+    public void passerClicked(){
+        System.out.println("Vous passez votre tour");
         jeu.passerAEteChoisi();
     }
 

@@ -4,8 +4,8 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<VBox xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.umontpellier.iut.rails.vues.VueDuJeu">
+<fx:root type="VBox" fx:id="vueDuJeu" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Button fx:id="passerBtn" mnemonicParsing="false" onAction="#passer" text="Passer" />
    </children>
-</VBox>
+</fx:root>

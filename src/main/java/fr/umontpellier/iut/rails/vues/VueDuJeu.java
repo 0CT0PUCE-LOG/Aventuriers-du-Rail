@@ -52,6 +52,7 @@ public class VueDuJeu extends VBox {
         plateau = new VuePlateau();
         getChildren().add(plateau);
          */
+
     }
 
     public void creerBindings() {
@@ -64,12 +65,12 @@ public class VueDuJeu extends VBox {
                 while(change.next()){
                     if(change.wasAdded()){
                         for(IDestination destination : change.getAddedSubList()){
-                            choixDestinationVBox.getChildren().add(new Label(destination.getVilles().toString()));
+                            choixDestinationVBox.getChildren().add(new VueDestination(destination));
                         }
                     }
                     else if(change.wasRemoved()){
                         for(IDestination destination : change.getRemoved()){
-                            choixDestinationVBox.getChildren().remove(trouvelabelDestination(destination));
+                            choixDestinationVBox.getChildren().remove(trouveVueDestination(destination));
                         }
                     }
                 }
@@ -79,10 +80,10 @@ public class VueDuJeu extends VBox {
         instructionLabel.textProperty().bind(jeu.instructionProperty());
     }
 
-    private Label trouvelabelDestination(IDestination destination){
-        for(Node l : choixDestinationVBox.getChildren()){
-            if(((Label)l).getText().equals(destination)){
-                return ((Label)l);
+    private VueDestination trouveVueDestination(IDestination destination){
+        for(Node b : choixDestinationVBox.getChildren()){
+            if(((VueDestination)b).getText().equals(destination.getVilles().toString())){
+                return ((VueDestination)b);
             }
         }
         return null;

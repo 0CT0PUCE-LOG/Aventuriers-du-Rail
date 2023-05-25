@@ -30,6 +30,9 @@ public class VueDuJeu extends VBox {
     @FXML
     private Button passerBtn;
 
+    @FXML
+    private VueJoueurCourant vueJoueurCourant;
+
     public VueDuJeu(IJeu jeu) {
         this.jeu = jeu;
         try {

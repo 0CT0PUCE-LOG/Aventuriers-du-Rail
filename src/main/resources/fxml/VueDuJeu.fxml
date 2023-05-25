@@ -2,15 +2,13 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.VBox?>
-
-
 <?import fr.umontpellier.iut.rails.vues.VueJoueurCourant?>
+<?import javafx.scene.control.Label?>
 <fx:root type="VBox" fx:id="vueDuJeu" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label fx:id="instructionLabel" />
       <Button fx:id="passerBtn" mnemonicParsing="false" onAction="#passerClicked" text="Passer" />
       <VBox fx:id="choixDestinationVBox" prefHeight="200.0" prefWidth="100.0" />
-      <Button fx:id="passerBtn" mnemonicParsing="false" text="Passer" />
       <VueJoueurCourant fx:id="vueJoueurCourant" />
    </children>
 </fx:root>

@@ -1,26 +1,30 @@
 package fr.umontpellier.iut.rails.vues;
 
 import fr.umontpellier.iut.rails.ICarteTransport;
-import javafx.scene.control.Label;
+import javafx.event.ActionEvent;
+import javafx.event.EventType;
+import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
+
+import java.security.KeyStore;
 
 /**
  * Cette classe représente la vue d'une carte Transport.
  *
  * On y définit le listener à exécuter lorsque cette carte a été choisie par l'utilisateur
  */
-public class VueCarteTransport extends Label {
+public class VueCarteTransport extends Button {
 
     private final ICarteTransport carteTransport;
 
     public VueCarteTransport(ICarteTransport carteTransport, int nbCartes) {
         this.carteTransport = carteTransport;
         setGraphic(new ImageView(getFichierCarteTransport()));
+        setOnAction(actionEvent -> {((VueDuJeu) getScene().getRoot()).getJeu().uneCarteTransportAEteChoisie(carteTransport);});
     }
 
     private String getFichierCarteTransport(){
-        String file = "cartesWagons/carte-";
+        String file = "images/cartesWagons/carte-";
 
         if(carteTransport.estBateau()){
             if(carteTransport.estDouble()){

@@ -1,12 +1,16 @@
 package fr.umontpellier.iut.rails.vues;
 
+import fr.umontpellier.iut.rails.ICarteTransport;
 import fr.umontpellier.iut.rails.IJeu;
 import fr.umontpellier.iut.rails.IJoueur;
+import fr.umontpellier.iut.rails.mecanique.Joueur;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
@@ -19,6 +23,11 @@ public class VueJoueurCourant extends VBox {
     @FXML
     private Label nomJoueur;
 
+    private IJoueur joueurCourant;
+
+    @FXML
+    private HBox CartetransportJoueurHBox;
+
     public VueJoueurCourant() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/VueJoueurCourant.fxml"));
@@ -30,11 +39,21 @@ public class VueJoueurCourant extends VBox {
         }
     }
 
-    public void creeBindings() {
+    public void creerBindings() {
         ((VueDuJeu) getScene().getRoot()).getJeu().joueurCourantProperty().addListener(new ChangeListener<IJoueur>() {
             @Override
             public void changed(ObservableValue<? extends IJoueur> observableValue, IJoueur iJoueur, IJoueur t1) {
-                nomJoueur.setText(t1.getNom());
+                joueurCourant = t1;
+                nomJoueur.setText(joueurCourant.getNom());
+            }
+        });
+
+        joueurCourant.cartesTransportProperty().addListener(new ListChangeListener<ICarteTransport>() {
+            @Override
+            public void onChanged(Change<? extends ICarteTransport> change) {
+                while(!change.next()){
+                    //a completer
+                }
             }
         });
     }

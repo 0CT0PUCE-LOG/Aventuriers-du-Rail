@@ -11,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
@@ -55,7 +56,6 @@ public class VueDuJeu extends VBox {
         plateau = new VuePlateau();
         getChildren().add(plateau);
          */
-
     }
 
     public void creerBindings() {
@@ -79,7 +79,9 @@ public class VueDuJeu extends VBox {
                 }
             }
         });
+        //jeu.cartesTransportVisiblesProperty().addListener();
 
+        vueJoueurCourant.creerBindings();
         instructionLabel.textProperty().bind(jeu.instructionProperty());
     }
 

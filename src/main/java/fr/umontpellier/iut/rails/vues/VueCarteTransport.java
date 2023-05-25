@@ -44,7 +44,7 @@ public class VueCarteTransport extends Button {
         file+= carteTransport.getStringCouleur();
 
         if(carteTransport.getAncre()){
-            file+="A";
+            file+="-A";
         }
 
         file+=".png";

@@ -91,3 +91,7 @@ FlowPane{
 #carteTransportJoueurFlowPane{
     -fx-background-color: "transparent";
 }
+
+#cartesTransportVisibleFlowPane{
+    -fx-background-color: "transparent";
+}

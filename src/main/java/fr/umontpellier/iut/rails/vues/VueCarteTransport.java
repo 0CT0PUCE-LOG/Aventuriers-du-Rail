@@ -1,11 +1,17 @@
 package fr.umontpellier.iut.rails.vues;
 
 import fr.umontpellier.iut.rails.ICarteTransport;
+import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventType;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
+import javafx.util.Duration;
+import javafx.fxml.FXMLLoader;
 
+import java.io.IOException;
 import java.security.KeyStore;
 
 /**
@@ -23,7 +29,28 @@ public class VueCarteTransport extends Button {
         image.setFitHeight(50);
         image.setFitWidth(75);
         setGraphic(image);
-        setOnAction(actionEvent -> {((VueDuJeu) getScene().getRoot()).getJeu().uneCarteTransportAEteChoisie(carteTransport);});
+
+
+
+        TranslateTransition transition = new TranslateTransition(Duration.seconds(1), this);
+
+        // Get the target element's layout coordinates
+        double targetX = -200;
+        double targetY = -750;
+
+        // Set the target coordinates for the transition
+        transition.setToX(targetX);
+        transition.setToY(targetY);
+
+        transition.setOnFinished(actionEvent -> {
+            ((VueDuJeu) getScene().getRoot()).getJeu().uneCarteTransportAEteChoisie(this.carteTransport);
+        });
+
+        setOnAction(actionEvent -> {
+            // Start the animation
+            transition.play();
+            //((VueDuJeu) getScene().getRoot()).getJeu().uneCarteTransportAEteChoisie(this.carteTransport);
+        });
     }
 
     private String getFichierCarteTransport(){

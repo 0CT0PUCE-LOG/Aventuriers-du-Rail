@@ -7,7 +7,7 @@ Circle {
 Circle:hover {
     -fx-fill: "white";
     -fx-opacity: 0.4;
-    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
+    -fx-effect: dropshadow( one-pass-box , rgba(255,255,255,1) , 20,20,0,0 );
 }
 
 Rectangle {
@@ -17,7 +17,7 @@ Rectangle {
 Rectangle:hover {
     -fx-fill: "white";
     -fx-opacity: 0.4;
-    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
+    -fx-effect: dropshadow( one-pass-box , rgba(255,255,255,1) , 5,5,0,0 );
 }
 
 #vueDuJeu{

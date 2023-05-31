@@ -7,6 +7,7 @@
 <?import fr.umontpellier.iut.rails.vues.VueJoueurCourant?>
 <?import fr.umontpellier.iut.rails.vues.VuePlateau?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.FlowPane?>
 <fx:root type="BorderPane" fx:id="vueDuJeu" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <left>
         <VBox fx:id="vboxJoueurs">
@@ -15,14 +16,15 @@
         </VBox>
     </left>
     <right>
-        <HBox fx:id="botVBox">
-            <Button fx:id="passerBtn" mnemonicParsing="false" onAction="#passerClicked" text="Passer"/>
-        </HBox>
+        <FlowPane fx:id="flowPaneCartes" prefHeight="200.0" prefWidth="100.0"/>
     </right>
     <center>
         <VuePlateau fx:id="plateau"/>
     </center>
     <bottom>
-        <HBox fx:id="choixDestinationHBox" prefHeight="200.0" prefWidth="100.0"/>
+        <HBox fx:id="botVBox">
+            <HBox fx:id="choixDestinationHBox" prefHeight="200.0" prefWidth="100.0"/>
+            <Button fx:id="passerBtn" mnemonicParsing="false" onAction="#passerClicked" text="Passer"/>
+        </HBox>
     </bottom>
 </fx:root>

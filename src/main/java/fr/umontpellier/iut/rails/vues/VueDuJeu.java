@@ -59,6 +59,8 @@ public class VueDuJeu extends BorderPane {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        passerBtn.setOnAction(actionEvent -> {passerClicked();});
     }
 
     public void creerBindings() {

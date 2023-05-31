@@ -30,7 +30,7 @@
     <bottom>
         <VBox>
             <HBox fx:id="botVBox">
-                <Button fx:id="passerBtn" mnemonicParsing="false" onAction="#passerClicked" text="Passer"/>
+                <Button fx:id="passerBtn" mnemonicParsing="false" text="Passer"/>
             </HBox>
         </VBox>
     </bottom>

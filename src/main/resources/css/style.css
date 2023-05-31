@@ -11,13 +11,22 @@ Rectangle {
 }
 
 Button{
-    -fx-background-color: red;
-    -fx-text-fill: white;
+    -fx-background-color: "brown";
+    -fx-font-size: 1.1em;
+    -fx-font-family: "IM Fell English SC";
+    -fx-text-fill: "white";
+    -fx-border-color: "beige";
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-text-shadow: 1px 1px 1px black;
+}
+
+Label{
     -fx-font-size: 1.1em;
     -fx-font-family: "IM Fell English SC";
 }
 
-Label{
+TextField{
     -fx-font-size: 1.1em;
     -fx-font-family: "IM Fell English SC";
 }

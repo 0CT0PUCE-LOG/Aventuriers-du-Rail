@@ -10,7 +10,6 @@ Rectangle {
     -fx-stroke: "white";
 }
 
-//put image in backgroud
 #vueDuJeu{
     -fx-background-image: url("https://legendes-ozarm.com/wp-content/uploads/2020/01/Background-parchemin-accueil-1.jpg");
     -fx-background-size: cover;

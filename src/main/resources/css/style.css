@@ -1,13 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap');
 
 Circle {
-    -fx-fill: "dodgerblue";
-    -fx-stroke: "blue";
+    -fx-fill: "transparent";
+    -fx-stroke: "white";
 }
 
 Rectangle {
-    -fx-fill: "dodgerblue";/*transparent*/
-    -fx-stroke: "blue";
+    -fx-fill: "transparent";
+    -fx-stroke: "white";
+}
+
+//put image in backgroud
+#vueDuJeu{
+    -fx-background-image: url("https://legendes-ozarm.com/wp-content/uploads/2020/01/Background-parchemin-accueil-1.jpg");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
 }
 
 .root{
@@ -33,7 +41,6 @@ Button{
     -fx-border-color: "beige";
     -fx-border-width: 2px;
     -fx-border-radius: 5px;
-    transition: 1s;
 }
 
 .button:hover{
@@ -43,6 +50,7 @@ Button{
     -fx-border-radius: 5px;
     -fx-scale-x: 1.1;
     -fx-scale-y: 1.1;
+    transition: 1s ease;
 }
 
 Label{

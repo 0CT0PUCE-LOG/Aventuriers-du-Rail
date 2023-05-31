@@ -47,6 +47,7 @@ public class VueJoueurCourant extends VBox {
                 nomJoueur.setText(joueurCourant.getNom());
             }
         });
+        /*
 
         joueurCourant.cartesTransportProperty().addListener(new ListChangeListener<ICarteTransport>() {
             @Override
@@ -56,5 +57,7 @@ public class VueJoueurCourant extends VBox {
                 }
             }
         });
+
+         */
     }
 }

@@ -76,3 +76,14 @@ TextField{
     -fx-max-width: 300px;
 }
 
+#vueJoueurCourant{
+    -fx-fill: "transparent";
+}
+
+ScrollPane{
+    -fx-background-color: "transparent";
+}
+
+FlowPane{
+    -fx-background-color: "transparent";
+}

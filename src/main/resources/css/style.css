@@ -10,6 +10,10 @@ Rectangle {
     -fx-stroke: "blue";
 }
 
+.root{
+    -fx-background-color: "beige";
+}
+
 Button{
     -fx-background-color: "brown";
     -fx-font-size: 1.1em;

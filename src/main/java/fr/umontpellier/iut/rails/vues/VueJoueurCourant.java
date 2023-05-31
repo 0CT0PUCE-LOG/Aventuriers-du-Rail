@@ -28,7 +28,7 @@ public class VueJoueurCourant extends VBox {
     private IJoueur joueurCourant;
 
     @FXML
-    private HBox carteTransportJoueurHBox;
+    private VBox carteTransportJoueurVBox;
 
     public VueJoueurCourant() {
         try {
@@ -54,14 +54,14 @@ public class VueJoueurCourant extends VBox {
 
 
     public void chargerCarteJoueurCourant(){
-        carteTransportJoueurHBox.getChildren().clear();
+        carteTransportJoueurVBox.getChildren().clear();
         for(ICarteTransport carte : joueurCourant.getCartesTransport()){
-            carteTransportJoueurHBox.getChildren().add(new VueCarteTransport(carte, 1));
+            carteTransportJoueurVBox.getChildren().add(new VueCarteTransport(carte, 1));
         }
     }
 
     private VueCarteTransport trouveVueCarteTransport(ICarteTransport carteTransport){
-        for(Node c : carteTransportJoueurHBox.getChildren()) {
+        for(Node c : carteTransportJoueurVBox.getChildren()) {
             c = (VueCarteTransport) c;
             if (((VueCarteTransport) c).getCarteTransport().equals(carteTransport)) {
                 return ((VueCarteTransport) c);

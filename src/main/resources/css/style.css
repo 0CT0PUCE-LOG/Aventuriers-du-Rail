@@ -9,3 +9,15 @@ Rectangle {
     -fx-fill: "dodgerblue";/*transparent*/
     -fx-stroke: "blue";
 }
+
+Button{
+    -fx-background-color: red;
+    -fx-text-fill: white;
+    -fx-font-size: 1.1em;
+    -fx-font-family: "IM Fell English SC";
+}
+
+Label{
+    -fx-font-size: 1.1em;
+    -fx-font-family: "IM Fell English SC";
+}

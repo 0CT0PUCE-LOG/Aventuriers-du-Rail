@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.BorderPane?>
-<?import fr.umontpellier.iut.rails.vues.VueJoueurCourant?>
-<?import fr.umontpellier.iut.rails.vues.VuePlateau?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.FlowPane?>
-<fx:root type="BorderPane" fx:id="vueDuJeu" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<?import fr.umontpellier.iut.rails.vues.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root fx:id="vueDuJeu" type="BorderPane" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
     <top>
-        <Label fx:id="instructionLabel"/>
+        <Label fx:id="instructionLabel" alignment="CENTER"/>
     </top>
     <left>
         <VBox fx:id="vboxJoueurs">
-            <VueJoueurCourant fx:id="vueJoueurCourant"/>
+            <VueJoueurCourant fx:id="vueJoueurCourant" />
         </VBox>
     </left>
     <right>
@@ -22,16 +18,16 @@
     </right>
     <center>
         <VBox>
-            <VuePlateau fx:id="plateau"/>
-            <HBox fx:id="choixDestinationHBox"/>
-            <FlowPane fx:id="cartesTransportVisible" prefHeight="200.0" prefWidth="100.0"/>
+            <VuePlateau fx:id="plateau" />
+            <HBox fx:id="choixDestinationHBox" />
+            <FlowPane fx:id="cartesTransportVisible" prefHeight="200.0" prefWidth="100.0" />
         </VBox>
     </center>
     <bottom>
-        <VBox>
-            <HBox fx:id="botVBox">
-                <Button fx:id="passerBtn" mnemonicParsing="false" text="Passer"/>
-            </HBox>
-        </VBox>
+        <HBox>
+            <HBox fx:id="botVBox" />
+            <Pane HBox.hgrow="ALWAYS" />
+            <Button fx:id="passerBtn" mnemonicParsing="false" text="Passer" />
+        </HBox>
     </bottom>
 </fx:root>

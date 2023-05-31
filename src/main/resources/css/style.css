@@ -16,7 +16,7 @@ Rectangle {
 
 Button{
     -fx-background-color: "brown";
-    -fx-font-size: 1.1em;
+    -fx-font-size: 1.5em;
     -fx-font-family: "IM Fell English SC";
     -fx-text-fill: "white";
     -fx-border-color: "beige";
@@ -27,7 +27,7 @@ Button{
 
 .button{
     -fx-background-color: "brown";
-    -fx-font-size: 1.1em;
+    -fx-font-size: 1.2em;
     -fx-font-family: "IM Fell English SC";
     -fx-text-fill: "white";
     -fx-border-color: "beige";
@@ -46,12 +46,12 @@ Button{
 }
 
 Label{
-    -fx-font-size: 1.1em;
+    -fx-font-size: 1.2em;
     -fx-font-family: "IM Fell English SC";
 }
 
 TextField{
-    -fx-font-size: 1.1em;
+    -fx-font-size: 1.2em;
     -fx-font-family: "IM Fell English SC";
 }
 

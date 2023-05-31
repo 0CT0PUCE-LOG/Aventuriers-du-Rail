@@ -14,9 +14,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.util.List;
@@ -47,6 +46,9 @@ public class VueDuJeu extends BorderPane {
     @FXML
     private VueJoueurCourant vueJoueurCourant;
 
+    @FXML
+    private FlowPane cartesTransportVisible;
+
     public VueDuJeu(IJeu jeu) {
         this.jeu = jeu;
         try {
@@ -57,11 +59,6 @@ public class VueDuJeu extends BorderPane {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        /*
-        plateau = new VuePlateau();
-        getChildren().add(plateau);
-
-         */
     }
 
     public void creerBindings() {
@@ -85,7 +82,14 @@ public class VueDuJeu extends BorderPane {
                 }
             }
         });
-        //jeu.cartesTransportVisiblesProperty().addListener();
+        jeu.cartesTransportVisiblesProperty().addListener(new ListChangeListener<ICarteTransport>() {
+            @Override
+            public void onChanged(Change<? extends ICarteTransport> change) {
+                chargerCartesTransportVisible();
+            }
+        });
+
+
 
         vueJoueurCourant.creerBindings();
         for(IJoueur j : jeu.getJoueurs()){
@@ -111,6 +115,13 @@ public class VueDuJeu extends BorderPane {
     public void passerClicked(){
         System.out.println("Vous passez votre tour");
         jeu.passerAEteChoisi();
+    }
+
+    public void chargerCartesTransportVisible(){
+        cartesTransportVisible.getChildren().clear();
+        for(ICarteTransport carte : jeu.cartesTransportVisiblesProperty()){
+            cartesTransportVisible.getChildren().add(new VueCarteTransport(carte, 1));
+        }
     }
 
     public IJeu getJeu() {

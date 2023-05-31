@@ -1,19 +1,14 @@
 package fr.umontpellier.iut.rails.vues;
 
 import fr.umontpellier.iut.rails.ICarteTransport;
-import fr.umontpellier.iut.rails.IDestination;
-import fr.umontpellier.iut.rails.IJeu;
 import fr.umontpellier.iut.rails.IJoueur;
-import fr.umontpellier.iut.rails.mecanique.Joueur;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 
 /**
@@ -28,7 +23,7 @@ public class VueJoueurCourant extends VBox {
     private IJoueur joueurCourant;
 
     @FXML
-    private VBox carteTransportJoueurVBox;
+    private FlowPane carteTransportJoueurFlowPane;
 
     public VueJoueurCourant() {
         try {
@@ -54,14 +49,14 @@ public class VueJoueurCourant extends VBox {
 
 
     public void chargerCarteJoueurCourant(){
-        carteTransportJoueurVBox.getChildren().clear();
+        carteTransportJoueurFlowPane.getChildren().clear();
         for(ICarteTransport carte : joueurCourant.getCartesTransport()){
-            carteTransportJoueurVBox.getChildren().add(new VueCarteTransport(carte, 1));
+            carteTransportJoueurFlowPane.getChildren().add(new VueCarteTransport(carte, 1));
         }
     }
 
     private VueCarteTransport trouveVueCarteTransport(ICarteTransport carteTransport){
-        for(Node c : carteTransportJoueurVBox.getChildren()) {
+        for(Node c : carteTransportJoueurFlowPane.getChildren()) {
             c = (VueCarteTransport) c;
             if (((VueCarteTransport) c).getCarteTransport().equals(carteTransport)) {
                 return ((VueCarteTransport) c);

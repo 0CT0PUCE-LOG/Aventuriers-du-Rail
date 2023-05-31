@@ -2,12 +2,22 @@
 
 Circle {
     -fx-fill: "transparent";
-    -fx-stroke: "white";
+}
+
+Circle:hover {
+    -fx-fill: "white";
+    -fx-opacity: 0.4;
+    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
 }
 
 Rectangle {
     -fx-fill: "transparent";
-    -fx-stroke: "white";
+}
+
+Rectangle:hover {
+    -fx-fill: "white";
+    -fx-opacity: 0.4;
+    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
 }
 
 #vueDuJeu{

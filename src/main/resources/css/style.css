@@ -77,7 +77,7 @@ TextField{
 }
 
 #vueJoueurCourant{
-    -fx-fill: "transparent";
+    -fx-background-color: "transparent";
 }
 
 ScrollPane{
@@ -85,5 +85,9 @@ ScrollPane{
 }
 
 FlowPane{
+    -fx-background-color: "transparent";
+}
+
+#carteTransportJoueurFlowPane{
     -fx-background-color: "transparent";
 }

@@ -21,6 +21,8 @@
             <VuePlateau fx:id="plateau" />
             <HBox fx:id="choixDestinationHBox" />
             <FlowPane fx:id="cartesTransportVisible" prefHeight="200.0" prefWidth="100.0" />
+
+
         </VBox>
     </center>
     <bottom>

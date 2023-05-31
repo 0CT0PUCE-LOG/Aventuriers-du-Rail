@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 
@@ -24,6 +25,18 @@ public class VueJoueurCourant extends VBox {
 
     @FXML
     private FlowPane carteTransportJoueurFlowPane;
+
+    @FXML
+    private Label spriteJoueur;
+
+    @FXML
+    private Label scoreJoueur;
+
+    @FXML
+    private Label nbPionsBateauJoueur;
+
+    @FXML
+    private Label nbPionsWagonJoueur;
 
     public VueJoueurCourant() {
         try {
@@ -42,7 +55,11 @@ public class VueJoueurCourant extends VBox {
             public void changed(ObservableValue<? extends IJoueur> observableValue, IJoueur iJoueur, IJoueur t1) {
                 joueurCourant = t1;
                 nomJoueur.setText(joueurCourant.getNom());
+                scoreJoueur.setText(String.valueOf(joueurCourant.getScore()));
+                nbPionsWagonJoueur.setText(String.valueOf(joueurCourant.getNbPionsWagon()));
+                nbPionsBateauJoueur.setText(String.valueOf(joueurCourant.getNbPionsBateau()));
                 chargerCarteJoueurCourant();
+                chargerSpriteJoueur();
             }
         });
     }
@@ -53,6 +70,13 @@ public class VueJoueurCourant extends VBox {
         for(ICarteTransport carte : joueurCourant.getCartesTransport()){
             carteTransportJoueurFlowPane.getChildren().add(new VueCarteTransport(carte, 1));
         }
+    }
+
+    public void chargerSpriteJoueur(){
+        ImageView image = new ImageView("images/cartesWagons/avatar-" + joueurCourant.getCouleur() + ".png");
+        image.setPreserveRatio(true);
+        image.setFitHeight(200);
+        spriteJoueur.setGraphic(image);
     }
 
     private VueCarteTransport trouveVueCarteTransport(ICarteTransport carteTransport){

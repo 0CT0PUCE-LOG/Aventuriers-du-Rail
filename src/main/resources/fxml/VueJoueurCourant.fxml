@@ -3,11 +3,25 @@
 <?import javafx.scene.control.Label?>
 
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.control.ScrollPane?>
 <fx:root fx:id="VueJoueurCourant" alignment="TOP_CENTER" type="VBox" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
+      <Label fx:id="spriteJoueur" />
       <Label fx:id="nomJoueur" text="nomJoueur" />
+      <HBox>
+         <Label text="Score : "/>
+         <Label fx:id="scoreJoueur" />
+      </HBox>
+      <HBox>
+         <Label text="Pions Bateau : "/>
+         <Label fx:id="nbPionsBateauJoueur" />
+      </HBox>
+      <HBox>
+         <Label text="Pions Wagon : "/>
+         <Label fx:id="nbPionsWagonJoueur" />
+      </HBox>
       <ScrollPane>
          <FlowPane fx:id="carteTransportJoueurFlowPane" prefHeight="200.0" prefWidth="400.0" />
       </ScrollPane>

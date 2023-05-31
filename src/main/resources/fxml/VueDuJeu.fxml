@@ -9,22 +9,29 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.FlowPane?>
 <fx:root type="BorderPane" fx:id="vueDuJeu" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+    <top>
+        <Label fx:id="instructionLabel"/>
+    </top>
     <left>
         <VBox fx:id="vboxJoueurs">
-            <Label fx:id="instructionLabel"/>
             <VueJoueurCourant fx:id="vueJoueurCourant"/>
         </VBox>
     </left>
     <right>
-        <FlowPane fx:id="cartesTransportVisible" prefHeight="200.0" prefWidth="100.0"/>
+
     </right>
     <center>
-        <VuePlateau fx:id="plateau"/>
+        <VBox>
+            <VuePlateau fx:id="plateau"/>
+            <HBox fx:id="choixDestinationHBox"/>
+            <FlowPane fx:id="cartesTransportVisible" prefHeight="200.0" prefWidth="100.0"/>
+        </VBox>
     </center>
     <bottom>
-        <HBox fx:id="botVBox">
-            <HBox fx:id="choixDestinationHBox"/>
-            <Button fx:id="passerBtn" mnemonicParsing="false" onAction="#passerClicked" text="Passer"/>
-        </HBox>
+        <VBox>
+            <HBox fx:id="botVBox">
+                <Button fx:id="passerBtn" mnemonicParsing="false" onAction="#passerClicked" text="Passer"/>
+            </HBox>
+        </VBox>
     </bottom>
 </fx:root>

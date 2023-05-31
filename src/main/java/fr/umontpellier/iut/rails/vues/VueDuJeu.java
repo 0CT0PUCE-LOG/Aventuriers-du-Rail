@@ -1,7 +1,9 @@
 package fr.umontpellier.iut.rails.vues;
 
+import fr.umontpellier.iut.rails.ICarteTransport;
 import fr.umontpellier.iut.rails.IDestination;
 import fr.umontpellier.iut.rails.IJeu;
+import fr.umontpellier.iut.rails.IJoueur;
 import fr.umontpellier.iut.rails.mecanique.data.Destination;
 import javafx.collections.ListChangeListener;
 import javafx.event.EventHandler;
@@ -86,6 +88,14 @@ public class VueDuJeu extends BorderPane {
         //jeu.cartesTransportVisiblesProperty().addListener();
 
         vueJoueurCourant.creerBindings();
+        for(IJoueur j : jeu.getJoueurs()){
+            j.cartesTransportProperty().addListener(new ListChangeListener<ICarteTransport>() {
+                @Override
+                public void onChanged(Change<? extends ICarteTransport> change) {
+                    vueJoueurCourant.chargerCarteJoueurCourant();
+                }
+            });
+        }
         instructionLabel.textProperty().bind(jeu.instructionProperty());
     }
 

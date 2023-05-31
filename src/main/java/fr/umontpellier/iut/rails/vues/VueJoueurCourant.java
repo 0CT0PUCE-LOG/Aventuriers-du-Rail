@@ -1,6 +1,7 @@
 package fr.umontpellier.iut.rails.vues;
 
 import fr.umontpellier.iut.rails.ICarteTransport;
+import fr.umontpellier.iut.rails.IDestination;
 import fr.umontpellier.iut.rails.IJeu;
 import fr.umontpellier.iut.rails.IJoueur;
 import fr.umontpellier.iut.rails.mecanique.Joueur;
@@ -9,6 +10,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -26,7 +28,7 @@ public class VueJoueurCourant extends VBox {
     private IJoueur joueurCourant;
 
     @FXML
-    private HBox CartetransportJoueurHBox;
+    private HBox carteTransportJoueurHBox;
 
     public VueJoueurCourant() {
         try {
@@ -45,19 +47,26 @@ public class VueJoueurCourant extends VBox {
             public void changed(ObservableValue<? extends IJoueur> observableValue, IJoueur iJoueur, IJoueur t1) {
                 joueurCourant = t1;
                 nomJoueur.setText(joueurCourant.getNom());
+                chargerCarteJoueurCourant();
             }
         });
-        /*
+    }
 
-        joueurCourant.cartesTransportProperty().addListener(new ListChangeListener<ICarteTransport>() {
-            @Override
-            public void onChanged(Change<? extends ICarteTransport> change) {
-                while(!change.next()){
-                    //a completer
-                }
+
+    public void chargerCarteJoueurCourant(){
+        carteTransportJoueurHBox.getChildren().clear();
+        for(ICarteTransport carte : joueurCourant.getCartesTransport()){
+            carteTransportJoueurHBox.getChildren().add(new VueCarteTransport(carte, 1));
+        }
+    }
+
+    private VueCarteTransport trouveVueCarteTransport(ICarteTransport carteTransport){
+        for(Node c : carteTransportJoueurHBox.getChildren()) {
+            c = (VueCarteTransport) c;
+            if (((VueCarteTransport) c).getCarteTransport().equals(carteTransport)) {
+                return ((VueCarteTransport) c);
             }
-        });
-
-         */
+        }
+        return null;
     }
 }

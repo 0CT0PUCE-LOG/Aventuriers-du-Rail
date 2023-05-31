@@ -19,7 +19,10 @@ public class VueCarteTransport extends Button {
 
     public VueCarteTransport(ICarteTransport carteTransport, int nbCartes) {
         this.carteTransport = carteTransport;
-        setGraphic(new ImageView(getFichierCarteTransport()));
+        ImageView image = new ImageView(getFichierCarteTransport());
+        image.setFitHeight(100);
+        image.setFitWidth(150);
+        setGraphic(image);
         setOnAction(actionEvent -> {((VueDuJeu) getScene().getRoot()).getJeu().uneCarteTransportAEteChoisie(carteTransport);});
     }
 

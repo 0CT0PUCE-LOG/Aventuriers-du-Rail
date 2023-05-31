@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
 <fx:root fx:id="VueJoueurCourant" alignment="TOP_CENTER" type="VBox" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox fx:id="CartetransportJoueurHBox" prefHeight="100.0" prefWidth="200.0">
-         <children>
-            <Label fx:id="nomJoueur" text="nomJoueur" />
-         </children></HBox>
+      <Label fx:id="nomJoueur" text="nomJoueur" />
+      <HBox fx:id="carteTransportJoueurHBox" prefHeight="100.0" prefWidth="200.0" />
    </children>
 </fx:root>

@@ -21,6 +21,11 @@
             <VuePlateau fx:id="plateau" />
             <HBox fx:id="choixDestinationHBox" />
             <FlowPane fx:id="cartesTransportVisible" prefHeight="200.0" prefWidth="100.0" />
+            <StackPane fx:id="piocheWagon"/>
+                <children>
+                    <Label />
+                    <Label />
+                </children>
         </VBox>
     </center>
     <bottom>

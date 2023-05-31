@@ -18,7 +18,7 @@ Button{
     -fx-border-color: "beige";
     -fx-border-width: 2px;
     -fx-border-radius: 5px;
-    -fx-text-shadow: 1px 1px 1px black;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.5) , 0,0,0,1 );
 }
 
 .button{
@@ -29,7 +29,6 @@ Button{
     -fx-border-color: "beige";
     -fx-border-width: 2px;
     -fx-border-radius: 5px;
-    -fx-text-shadow: 1px 1px 1px black;
 }
 
 .button:hover{
@@ -37,7 +36,6 @@ Button{
     -fx-border-color: "beige";
     -fx-border-width: 2px;
     -fx-border-radius: 5px;
-    -fx-text-shadow: 1px 1px 1px black;
 }
 
 Label{
@@ -49,3 +47,8 @@ TextField{
     -fx-font-size: 1.1em;
     -fx-font-family: "IM Fell English SC";
 }
+
+#vuePlateauBis{
+    -fx-max-width: 300px;
+}
+

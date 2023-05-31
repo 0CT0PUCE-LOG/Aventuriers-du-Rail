@@ -11,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -27,9 +28,11 @@ import java.util.List;
  * (le joueur courant, les cartes Transport visibles, les destinations lors de l'étape d'initialisation de la partie, ...)
  * ainsi que les listeners à exécuter lorsque ces éléments changent
  */
-public class VueDuJeu extends VBox {
+public class VueDuJeu extends BorderPane {
 
     private final IJeu jeu;
+
+    @FXML
     private VuePlateau plateau;
     @FXML
     private Button passerBtn;
@@ -37,7 +40,7 @@ public class VueDuJeu extends VBox {
     private Label instructionLabel;
 
     @FXML
-    private VBox choixDestinationVBox;
+    private HBox choixDestinationHBox;
 
     @FXML
     private VueJoueurCourant vueJoueurCourant;
@@ -55,25 +58,26 @@ public class VueDuJeu extends VBox {
         /*
         plateau = new VuePlateau();
         getChildren().add(plateau);
+
          */
     }
 
     public void creerBindings() {
-//        plateau.prefWidthProperty().bind(getScene().widthProperty());
-//        plateau.prefHeightProperty().bind(getScene().heightProperty());
-//        plateau.creerBindings();
+        plateau.prefWidthProperty().bind(getScene().widthProperty());
+        plateau.prefHeightProperty().bind(getScene().heightProperty());
+        plateau.creerBindings();
         jeu.destinationsInitialesProperty().addListener(new ListChangeListener<IDestination>() {
             @Override
             public void onChanged(Change<? extends IDestination> change) {
                 while(change.next()){
                     if(change.wasAdded()){
                         for(IDestination destination : change.getAddedSubList()){
-                            choixDestinationVBox.getChildren().add(new VueDestination(destination));
+                            choixDestinationHBox.getChildren().add(new VueDestination(destination));
                         }
                     }
                     else if(change.wasRemoved()){
                         for(IDestination destination : change.getRemoved()){
-                            choixDestinationVBox.getChildren().remove(trouveVueDestination(destination));
+                            choixDestinationHBox.getChildren().remove(trouveVueDestination(destination));
                         }
                     }
                 }
@@ -86,7 +90,7 @@ public class VueDuJeu extends VBox {
     }
 
     private VueDestination trouveVueDestination(IDestination destination){
-        for(Node b : choixDestinationVBox.getChildren()){
+        for(Node b : choixDestinationHBox.getChildren()){
             if(((VueDestination)b).getText().equals(destination.getVilles().toString())){
                 return ((VueDestination)b);
             }

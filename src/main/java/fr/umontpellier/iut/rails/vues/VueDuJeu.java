@@ -12,13 +12,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
-
 import java.io.IOException;
-import java.util.List;
+
 
 /**
  * Cette classe correspond à la fenêtre principale de l'application.
@@ -52,6 +52,12 @@ public class VueDuJeu extends BorderPane {
     @FXML
     private VueAutresJoueurs vueAutreJoueur;
 
+    @FXML
+    private Label spritePiocheWagon;
+
+    @FXML
+    private Label spritePiocheBateau;
+
     public VueDuJeu(IJeu jeu) {
         this.jeu = jeu;
         try {
@@ -62,14 +68,29 @@ public class VueDuJeu extends BorderPane {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        passerBtn.setOnAction(actionEvent -> {passerClicked();});
+        chargerTextures();
     }
 
     public void creerBindings() {
         plateau.prefWidthProperty().bind(getScene().widthProperty());
         plateau.prefHeightProperty().bind(getScene().heightProperty());
         plateau.creerBindings();
+
+        passerBtn.setOnAction(actionEvent -> {passerClicked();});
+        spritePiocheWagon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                jeu.uneCarteWagonAEtePiochee();
+            }
+        });
+
+        spritePiocheBateau.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                jeu.uneCarteBateauAEtePiochee();
+            }
+        });
+
         jeu.destinationsInitialesProperty().addListener(new ListChangeListener<IDestination>() {
             @Override
             public void onChanged(Change<? extends IDestination> change) {
@@ -135,6 +156,18 @@ public class VueDuJeu extends BorderPane {
         for(ICarteTransport carte : jeu.cartesTransportVisiblesProperty()){
             cartesTransportVisible.getChildren().add(new VueCarteTransport(carte, 1));
         }
+    }
+
+    public void chargerTextures(){
+        ImageView image = new ImageView("images/cartesWagons/dos-WAGON.png");
+        image.setPreserveRatio(true);
+        image.setFitHeight(100);
+        spritePiocheWagon.setGraphic(image);
+
+        image = new ImageView("images/cartesWagons/dos-Bateau.png");
+        image.setPreserveRatio(true);
+        image.setFitHeight(100);
+        spritePiocheBateau.setGraphic(image);
     }
 
     public IJeu getJeu() {

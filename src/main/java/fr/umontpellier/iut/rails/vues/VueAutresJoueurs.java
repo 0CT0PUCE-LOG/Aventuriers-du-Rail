@@ -47,7 +47,7 @@ public class VueAutresJoueurs extends VBox {
     }
 
     public void chargerJoueurs(){
-        for(int i=1; i<jeu.getJoueurs().size(); i++){
+        for(int i=0; i<jeu.getJoueurs().size(); i++){
             getChildren().add(new VueJoueur(jeu.getJoueurs().get(i)));
         }
     }

@@ -1,6 +1,7 @@
 package fr.umontpellier.iut.rails.vues;
 
 import fr.umontpellier.iut.rails.ICarteTransport;
+import fr.umontpellier.iut.rails.IDestination;
 import fr.umontpellier.iut.rails.IJoueur;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -27,6 +28,9 @@ public class VueJoueurCourant extends VBox {
     private FlowPane carteTransportJoueurFlowPane;
 
     @FXML
+    private FlowPane carteTransportPoseesJoueurFlowPane;
+
+    @FXML
     private Label spriteJoueur;
 
     @FXML
@@ -37,6 +41,9 @@ public class VueJoueurCourant extends VBox {
 
     @FXML
     private Label nbPionsWagonJoueur;
+
+    @FXML
+    private VBox destinationsJoueurCourant;
 
     public VueJoueurCourant() {
         try {
@@ -60,6 +67,8 @@ public class VueJoueurCourant extends VBox {
                 nbPionsBateauJoueur.setText(String.valueOf(joueurCourant.getNbPionsBateau()));
                 chargerCarteJoueurCourant();
                 chargerSpriteJoueur();
+                chargerDestinationJoueur();
+                chargerCartePoseesJoueurCourant();
             }
         });
     }
@@ -72,11 +81,25 @@ public class VueJoueurCourant extends VBox {
         }
     }
 
-    public void chargerSpriteJoueur(){
+    public void chargerCartePoseesJoueurCourant() {
+        carteTransportPoseesJoueurFlowPane.getChildren().clear();
+        for (ICarteTransport carte : joueurCourant.getCartesTransport()) {
+            carteTransportPoseesJoueurFlowPane.getChildren().add(new VueCarteTransport(carte, 1));
+        }
+    }
+
+        public void chargerSpriteJoueur(){
         ImageView image = new ImageView("images/cartesWagons/avatar-" + joueurCourant.getCouleur() + ".png");
         image.setPreserveRatio(true);
         image.setFitHeight(200);
         spriteJoueur.setGraphic(image);
+    }
+
+    public void chargerDestinationJoueur(){
+        destinationsJoueurCourant.getChildren().clear();
+        for(IDestination d : joueurCourant.getDestinations()){
+            destinationsJoueurCourant.getChildren().add(new Label(d.getVilles().toString()));
+        }
     }
 
     private VueCarteTransport trouveVueCarteTransport(ICarteTransport carteTransport){

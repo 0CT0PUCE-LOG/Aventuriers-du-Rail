@@ -14,7 +14,7 @@
         </VBox>
     </left>
     <right>
-
+        <VueAutresJoueurs fx:id="vueAutreJoueur"/>
     </right>
     <center>
         <VBox>

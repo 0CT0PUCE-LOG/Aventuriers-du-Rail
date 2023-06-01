@@ -67,6 +67,19 @@ Label{
     -fx-font-family: "IM Fell English SC";
 }
 
+FlowPane{
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
+
+ScrollPane{
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-border-color: darkred;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+
 TextField{
     -fx-font-size: 1.2em;
     -fx-font-family: "IM Fell English SC";

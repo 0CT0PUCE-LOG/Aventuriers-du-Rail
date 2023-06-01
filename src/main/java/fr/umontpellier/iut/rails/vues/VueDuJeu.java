@@ -49,6 +49,9 @@ public class VueDuJeu extends BorderPane {
     @FXML
     private FlowPane cartesTransportVisible;
 
+    @FXML
+    private VueAutresJoueurs vueAutreJoueur;
+
     public VueDuJeu(IJeu jeu) {
         this.jeu = jeu;
         try {
@@ -70,6 +73,7 @@ public class VueDuJeu extends BorderPane {
         jeu.destinationsInitialesProperty().addListener(new ListChangeListener<IDestination>() {
             @Override
             public void onChanged(Change<? extends IDestination> change) {
+                vueJoueurCourant.chargerDestinationJoueur();
                 while(change.next()){
                     if(change.wasAdded()){
                         for(IDestination destination : change.getAddedSubList()){
@@ -101,6 +105,13 @@ public class VueDuJeu extends BorderPane {
                     vueJoueurCourant.chargerCarteJoueurCourant();
                 }
             });
+
+            j.cartesTransportPoseesProperty().addListener(new ListChangeListener<ICarteTransport>() {
+                @Override
+                public void onChanged(Change<? extends ICarteTransport> change) {
+                    vueJoueurCourant.chargerCartePoseesJoueurCourant();
+                }
+            });
         }
         instructionLabel.textProperty().bind(jeu.instructionProperty());
     }
@@ -129,6 +140,8 @@ public class VueDuJeu extends BorderPane {
     public IJeu getJeu() {
         return jeu;
     }
+
+    public VueJoueurCourant getVueJoueurCourant(){return vueJoueurCourant;};
 
     EventHandler<? super MouseEvent> actionPasserParDefaut = (mouseEvent -> getJeu().passerAEteChoisi());
 

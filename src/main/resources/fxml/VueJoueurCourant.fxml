@@ -1,29 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.control.ScrollPane?>
-<fx:root fx:id="VueJoueurCourant" alignment="TOP_CENTER" type="VBox" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="VueJoueurCourant" alignment="TOP_CENTER" type="VBox" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label fx:id="spriteJoueur" />
       <Label fx:id="nomJoueur" text="nomJoueur" />
       <HBox>
-         <Label text="Score : "/>
+         <Label text="Score : " />
          <Label fx:id="scoreJoueur" />
       </HBox>
       <HBox>
-         <Label text="Pions Bateau : "/>
+         <Label text="Pions Bateau : " />
          <Label fx:id="nbPionsBateauJoueur" />
       </HBox>
       <HBox>
-         <Label text="Pions Wagon : "/>
+         <Label text="Pions Wagon : " />
          <Label fx:id="nbPionsWagonJoueur" />
       </HBox>
-      <ScrollPane>
+      <VBox fx:id="destinationsJoueurCourant" />
+      <Label text="Cartes Transports : ">
+         <padding>
+            <Insets top="10.0" />
+         </padding></Label>
+      <ScrollPane hbarPolicy="NEVER">
          <FlowPane fx:id="carteTransportJoueurFlowPane" prefHeight="200.0" prefWidth="400.0" />
+      </ScrollPane>
+      <Label text="Cartes Transports Posees: ">
+         <padding>
+            <Insets top="10.0" />
+         </padding></Label>
+      <ScrollPane hbarPolicy="NEVER">
+         <FlowPane fx:id="carteTransportPoseesJoueurFlowPane" prefHeight="200.0" prefWidth="400.0" />
       </ScrollPane>
    </children>
 </fx:root>

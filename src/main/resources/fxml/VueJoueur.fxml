@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root fx:id="vueDuJeu" type="HBox" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Label fx:id="spriteJoueur" />
+        <VBox>
+            <HBox>
+                <Label text="Score :" />
+                <Label fx:id="scoreJoueur" />
+            </HBox>
+            <HBox>
+                <Label text="Pions Wagon :" />
+                <Label fx:id="nbPionsWagon" />
+            </HBox>
+            <HBox>
+                <Label text="Pions Bateau :" />
+                <Label fx:id="nbPionsBateau" />
+            </HBox>
+        </VBox>
+    </children>
+</fx:root>

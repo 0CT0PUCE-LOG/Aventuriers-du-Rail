@@ -95,8 +95,6 @@ public class VueDuJeu extends BorderPane {
             }
         });
 
-
-
         vueJoueurCourant.creerBindings();
         for(IJoueur j : jeu.getJoueurs()){
             j.cartesTransportProperty().addListener(new ListChangeListener<ICarteTransport>() {
@@ -114,6 +112,8 @@ public class VueDuJeu extends BorderPane {
             });
         }
         instructionLabel.textProperty().bind(jeu.instructionProperty());
+
+        vueAutreJoueur.creerBindings();
     }
 
     private VueDestination trouveVueDestination(IDestination destination){

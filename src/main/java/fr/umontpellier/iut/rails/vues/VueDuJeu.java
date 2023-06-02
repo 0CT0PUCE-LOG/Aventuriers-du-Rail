@@ -164,7 +164,7 @@ public class VueDuJeu extends BorderPane {
         image.setFitHeight(100);
         spritePiocheWagon.setGraphic(image);
 
-        image = new ImageView("images/cartesWagons/dos-Bateau.png");
+        image = new ImageView("images/cartesWagons/dos-BATEAU.png");
         image.setPreserveRatio(true);
         image.setFitHeight(100);
         spritePiocheBateau.setGraphic(image);

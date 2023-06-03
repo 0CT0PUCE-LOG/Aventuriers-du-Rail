@@ -86,7 +86,8 @@ TextField{
 }
 
 #vueJoueurCourant{
-    -fx-background-color: "transparent";
+    -fx-background-color: "black";
+    -fx-background: "black";
 }
 
 #instructionHBox{
@@ -97,6 +98,11 @@ TextField{
     -fx-background-radius: 5px;
     -fx-max-width: 350px;
     -fx-font-size: 1.3em;
+}
+
+#vboxJoueur{
+    -fx-background-color: "black";
+    -fx-background: "black";
 }
 
 ScrollPane{

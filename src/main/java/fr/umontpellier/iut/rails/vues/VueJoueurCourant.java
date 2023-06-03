@@ -34,6 +34,9 @@ public class VueJoueurCourant extends VBox {
     private Label spriteJoueur;
 
     @FXML
+    private ImageView spriteOrnament;
+
+    @FXML
     private Label scoreJoueur;
 
     @FXML
@@ -67,6 +70,7 @@ public class VueJoueurCourant extends VBox {
                 nbPionsBateauJoueur.setText(String.valueOf(joueurCourant.getNbPionsBateau()));
                 chargerCarteJoueurCourant();
                 chargerSpriteJoueur();
+                chargerSpriteOrnament();
                 chargerDestinationJoueur();
                 chargerCartePoseesJoueurCourant();
             }
@@ -93,6 +97,13 @@ public class VueJoueurCourant extends VBox {
         image.setPreserveRatio(true);
         image.setFitHeight(200);
         spriteJoueur.setGraphic(image);
+    }
+
+    public void chargerSpriteOrnament(){
+        ImageView image = new ImageView("images/ornament.png");
+        image.setPreserveRatio(true);
+        image.setFitHeight(10);
+        spriteOrnament.setImage(image.getImage());
     }
 
     public void chargerDestinationJoueur(){

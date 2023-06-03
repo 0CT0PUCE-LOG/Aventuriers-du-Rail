@@ -9,9 +9,12 @@
          xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <StackPane>
-            //a custom image that will be behind the text
-            <ImageView fx:id="spriteOrnament"/>
+            <VBox>
+                <ImageView fx:id="ornTop"/>
+                <ImageView fx:id="ornBot"/>
+            </VBox>
             <Label fx:id="spriteJoueur"/>
+            
         </StackPane>
         <Label fx:id="nomJoueur" text="nomJoueur"/>
         <HBox>

@@ -51,7 +51,7 @@ ButtonTemp{
     -fx-border-radius: 5px;
     -fx-background-radius: 7px;
     -fx-padding: 5px;
-    -fx-margin: 5px;
+    -fx-margin-left: 15px;
 }
 
 .button:hover{
@@ -85,9 +85,15 @@ TextField{
     -fx-max-width: 300px;
 }
 
-#vueJoueurCourant{
-    -fx-background-color: "black";
-    -fx-background: "black";
+#JoueurCourantPane{
+    -fx-background-color: "beige";
+    -fx-background: "beige";
+    -fx-border-color: "darkred";
+    -fx-border-width: 4px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-max-width: 350px;
+    -fx-font-size: 1.3em;
 }
 
 #instructionHBox{
@@ -101,8 +107,14 @@ TextField{
 }
 
 #vboxJoueur{
-    -fx-background-color: "black";
-    -fx-background: "black";
+    -fx-background-color: "beige";
+    -fx-background: "beige";
+    -fx-border-color: "darkred";
+    -fx-border-width: 4px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-max-width: 350px;
+    -fx-font-size: 1.3em;
 }
 
 ScrollPane{

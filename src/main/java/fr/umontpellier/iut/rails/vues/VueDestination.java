@@ -15,7 +15,7 @@ import java.io.IOException;
  *
  * On y définit le listener à exécuter lorsque cette carte a été choisie par l'utilisateur
  */
-public class VueDestination extends Button {
+public class VueDestination extends AnimatedButton {
 
     private final IDestination destination;
 

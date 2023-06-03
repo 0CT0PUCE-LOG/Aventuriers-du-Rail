@@ -31,7 +31,7 @@ Rectangle:hover {
     -fx-background-color: "beige";
 }
 
-Button{
+ButtonTemp{
     -fx-background-color: "brown";
     -fx-font-size: 1.5em;
     -fx-font-family: "IM Fell English SC";
@@ -39,7 +39,6 @@ Button{
     -fx-border-color: "beige";
     -fx-border-width: 2px;
     -fx-border-radius: 5px;
-    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.5) , 0,0,0,1 );
 }
 
 .button{
@@ -48,18 +47,15 @@ Button{
     -fx-font-family: "IM Fell English SC";
     -fx-text-fill: "white";
     -fx-border-color: "beige";
-    -fx-border-width: 2px;
+    -fx-border-width: 4px;
     -fx-border-radius: 5px;
+    -fx-background-radius: 7px;
+    -fx-padding: 5px;
+    -fx-margin: 5px;
 }
 
 .button:hover{
     -fx-background-color: "darkred";
-    -fx-border-color: "beige";
-    -fx-border-width: 2px;
-    -fx-border-radius: 5px;
-    -fx-scale-x: 1.1;
-    -fx-scale-y: 1.1;
-    transition: 1s ease;
 }
 
 Label{
@@ -76,7 +72,7 @@ ScrollPane{
     -fx-background-color: transparent;
     -fx-background: transparent;
     -fx-border-color: darkred;
-    -fx-border-width: 2px;
+    -fx-border-width: 4px;
     -fx-border-radius: 5px;
 }
 
@@ -91,6 +87,16 @@ TextField{
 
 #vueJoueurCourant{
     -fx-background-color: "transparent";
+}
+
+#instructionHBox{
+    -fx-background-color: "beige";
+    -fx-border-color: "darkred";
+    -fx-border-width: 4px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-max-width: 350px;
+    -fx-font-size: 1.3em;
 }
 
 ScrollPane{
@@ -111,6 +117,7 @@ FlowPane{
 
 VueJoueur {
     -fx-border-color: black;
-    -fx-border-width: 2px;
+    -fx-border-width: 4px;
     -fx-border-radius: 5px;
+    -fx-background-color: "beige";
 }

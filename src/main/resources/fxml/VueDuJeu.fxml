@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import fr.umontpellier.iut.rails.vues.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <fx:root fx:id="vueDuJeu" type="BorderPane" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
     <top>
-        <Label fx:id="instructionLabel" alignment="CENTER"/>
+        <HBox fx:id="instructionHBox" alignment="CENTER">
+            <Label fx:id="instructionLabel" alignment="CENTER" contentDisplay="CENTER">
+                <font>
+                    <Font size="20.0" />
+                </font>
+            </Label>
+            <padding>
+                <Insets bottom="5.0" top="5.0" />
+            </padding>
+        </HBox>
     </top>
     <left>
         <VBox fx:id="vboxJoueurs">
@@ -14,19 +25,19 @@
         </VBox>
     </left>
     <right>
-        <VueAutresJoueurs fx:id="vueAutreJoueur"/>
+        <VueAutresJoueurs fx:id="vueAutreJoueur" />
     </right>
     <center>
         <VBox alignment="TOP_CENTER">
             <VuePlateau fx:id="plateau" />
             <HBox fx:id="choixDestinationHBox" />
             <FlowPane fx:id="cartesTransportVisible" prefHeight="200.0" prefWidth="100.0" />
-            <HBox spacing="20" alignment="CENTER">
+            <HBox alignment="CENTER" spacing="20">
                 <StackPane>
-                    <Label fx:id="spritePiocheWagon"/>
+                    <Label fx:id="spritePiocheWagon" />
                 </StackPane>
                 <StackPane>
-                    <Label fx:id="spritePiocheBateau"/>
+                    <Label fx:id="spritePiocheBateau" />
                 </StackPane>
             </HBox>
         </VBox>

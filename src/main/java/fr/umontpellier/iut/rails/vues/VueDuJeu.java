@@ -9,9 +9,11 @@ import javafx.collections.ListChangeListener;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.ImageCursor;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
@@ -65,6 +67,17 @@ public class VueDuJeu extends BorderPane {
             loader.setRoot(this);
             loader.setController(this);
             loader.load();
+            //mettre un imega customisée sur le curseur de la souris pour tout la vue du jeu
+            Image image = new Image("file:src/main/resources/images/cursorbis.png");
+            this.setCursor(new ImageCursor(image));
+            //mettre l'image pointer.png lorque la souris survole n'importe quel élément clickable
+            Image image2 = new Image("file:src/main/resources/images/pointer.png");
+            this.setOnMouseEntered(mouseEvent -> {
+                this.setCursor(new ImageCursor(image2));
+            });
+            this.setOnMouseExited(mouseEvent -> {
+                this.setCursor(new ImageCursor(image));
+            });
         } catch (IOException e) {
             e.printStackTrace();
         }

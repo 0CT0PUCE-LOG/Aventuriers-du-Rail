@@ -19,7 +19,7 @@ import java.security.KeyStore;
  *
  * On y définit le listener à exécuter lorsque cette carte a été choisie par l'utilisateur
  */
-public class VueCarteTransport extends Button {
+public class VueCarteTransport extends AnimatedButton {
 
     private final ICarteTransport carteTransport;
 

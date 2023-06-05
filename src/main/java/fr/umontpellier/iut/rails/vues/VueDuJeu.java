@@ -13,8 +13,12 @@ import javafx.scene.ImageCursor;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
@@ -60,6 +64,18 @@ public class VueDuJeu extends BorderPane {
     @FXML
     private Label spritePiocheBateau;
 
+    @FXML
+    private Spinner<Integer> selecteurNombre;
+
+    @FXML
+    private Button pionsWagonBtn;
+
+    @FXML
+    private Button pionsBateauBtn;
+
+    @FXML
+    private Button confirmerNombre;
+
     public VueDuJeu(IJeu jeu) {
         this.jeu = jeu;
         try {
@@ -82,6 +98,7 @@ public class VueDuJeu extends BorderPane {
             e.printStackTrace();
         }
         chargerTextures();
+        selecteurNombre.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 25, 0));
     }
 
     public void creerBindings() {
@@ -147,6 +164,19 @@ public class VueDuJeu extends BorderPane {
         }
         instructionLabel.textProperty().bind(jeu.instructionProperty());
 
+        selecteurNombre.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent keyEvent) {
+                if(keyEvent.getCode().equals(KeyCode.ENTER)){
+                    nbPionsChoisi();
+                }
+            }
+        });
+        confirmerNombre.setOnAction(event -> {nbPionsChoisi();});
+
+        pionsWagonBtn.setOnAction(event -> {jeu.nouveauxPionsWagonsDemandes();});
+        pionsBateauBtn.setOnAction(event -> {jeu.nouveauxPionsBateauxDemandes();});
+
         vueAutreJoueur.creerBindings();
     }
 
@@ -162,6 +192,11 @@ public class VueDuJeu extends BorderPane {
     public void passerClicked(){
         System.out.println("Vous passez votre tour");
         jeu.passerAEteChoisi();
+    }
+
+    public void nbPionsChoisi(){
+        jeu.leNombreDePionsSouhaiteAEteRenseigne(String.valueOf(selecteurNombre.getValue()));
+        selecteurNombre.getValueFactory().setValue(0);
     }
 
     public void chargerCartesTransportVisible(){

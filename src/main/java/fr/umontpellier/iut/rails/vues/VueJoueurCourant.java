@@ -100,10 +100,9 @@ public class VueJoueurCourant extends VBox {
     }
 
     public void chargerSpriteOrnament(){
-        ImageView image = new ImageView("images/ornament.png");
-        image.setPreserveRatio(true);
-        image.setFitHeight(10);
-        spriteOrnament.setImage(image.getImage());
+        spriteOrnament = new ImageView("images/ornament.png");
+        spriteOrnament.setPreserveRatio(true);
+        spriteOrnament.setFitHeight(10);
     }
 
     public void chargerDestinationJoueur(){

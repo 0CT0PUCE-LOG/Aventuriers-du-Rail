@@ -151,6 +151,7 @@ public class VueDuJeu extends BorderPane {
                     System.out.println("change");
                     if(change.wasRemoved()){
                         for(ICarteTransport carte : change.getRemoved()){
+                            trouveVueCarteTransportVisible(carte).toFront();
                             TranslateTransition translation = new TranslateTransition(Duration.seconds(1), trouveVueCarteTransportVisible(carte));
                             double destinationX = trouverScrollpaneVuejoueurCourant().localToScene(0, 0).getX() - trouveVueCarteTransportVisible(carte).localToScene(0, 0).getX() + trouverScrollpaneVuejoueurCourant().prefWidth(-1)/3;
                             double destinationY = trouverScrollpaneVuejoueurCourant().localToScene(0, 0).getY() - trouveVueCarteTransportVisible(carte).localToScene(0, 0).getY() + trouverScrollpaneVuejoueurCourant().prefHeight(-1)/3;
@@ -178,6 +179,32 @@ public class VueDuJeu extends BorderPane {
             j.cartesTransportProperty().addListener(new ListChangeListener<ICarteTransport>() {
                 @Override
                 public void onChanged(Change<? extends ICarteTransport> change) {
+                    System.out.println("change"+j.getNom());
+                    /*
+                    for(VueJoueur vueJoueur : vueAutreJoueur.getVueJoueurs()){
+                        System.out.println("vueJoueur.getJoueur().getNom() : "+vueJoueur.getJoueur().getNom());
+                        if(vueJoueur.getJoueur().equals(j) || 2==2){
+                            System.out.println("Trouvé");
+                            IJoueur cj = vueJoueur.getJoueur();
+                            TranslateTransition translation = new TranslateTransition(Duration.seconds(1), vueJoueur);
+                            double destinationX = trouverScrollpaneVuejoueurCourant().localToScene(0, 0).getX() - vueJoueur.localToScene(0, 0).getX() + trouverScrollpaneVuejoueurCourant().prefWidth(-1)/3;
+                            double destinationY = trouverScrollpaneVuejoueurCourant().localToScene(0, 0).getY() - vueJoueur.localToScene(0, 0).getY() + trouverScrollpaneVuejoueurCourant().prefHeight(-1)/3;
+                            translation.setToX(destinationX);
+                            translation.setToY(destinationY);
+                            System.out.println("destinationX : "+destinationX);
+                            System.out.println("destinationY : "+destinationY);
+                            FadeTransition fade = new FadeTransition(Duration.seconds(1), vueJoueur);
+                            fade.setFromValue(1.0);
+                            fade.setToValue(0.2);
+                            ParallelTransition parallelTransition = new ParallelTransition(vueJoueur, translation, fade);
+                            parallelTransition.setOnFinished(event -> {
+                                vueJoueurCourant.chargerCarteJoueurCourant();
+                            });
+                            parallelTransition.play();
+                        }
+                    }
+
+                     */
                     vueJoueurCourant.chargerCarteJoueurCourant();
                 }
             });
@@ -266,16 +293,21 @@ public class VueDuJeu extends BorderPane {
         spritePiocheBateau.setGraphic(image);
     }
 
-    public static Paint getCouleurValue(IJoueur.CouleurJoueur couleur){
+    public static String getCouleurValue(IJoueur.CouleurJoueur couleur){
         switch(couleur){
             case JAUNE:
-                return Color.YELLOW;
+                return "#b38c00";
             case ROUGE:
-                return Color.RED;
+                return "#750004";
             case VERT:
-                return Color.GREEN;
+                return "#0a3600";
+            case ROSE:
+                return "#420075";
+            case BLEU:
+                return "#00128a";
             default:
-                return Color.BLACK;
+                System.out.println("couleur"+couleur.toString()+" non reconnue");
+                return "#000000";
         }
     }
 

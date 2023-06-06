@@ -3,17 +3,21 @@ package fr.umontpellier.iut.rails.vues;
 import fr.umontpellier.iut.rails.ICarteTransport;
 import fr.umontpellier.iut.rails.IDestination;
 import fr.umontpellier.iut.rails.IJoueur;
+import javafx.animation.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 
 /**
  * Cette classe présente les éléments appartenant au joueur courant.
@@ -39,7 +43,10 @@ public class VueJoueurCourant extends VBox {
     private ImageView spriteOrnament;
 
     @FXML
-    private Rectangle rectJoueur;
+    private ScrollPane hoverScroll;
+
+    @FXML
+    private HBox HBoxJoueurCourant;
 
     @FXML
     private Label scoreJoueur;
@@ -81,6 +88,23 @@ public class VueJoueurCourant extends VBox {
                 chargerCartePoseesJoueurCourant();
             }
         });
+
+        double originalHeight = hoverScroll.getPrefHeight();
+        double expandedHeight = 200; // Adjust the desired expanded height
+        hoverScroll.setOnMouseEntered(event -> {
+            Timeline timeline = new Timeline();
+            KeyValue heightValue = new KeyValue(hoverScroll.minViewportHeightProperty(), expandedHeight);
+            KeyFrame keyFrame = new KeyFrame(Duration.millis(500), heightValue);
+            timeline.getKeyFrames().add(keyFrame);
+            timeline.play();
+        });
+        hoverScroll.setOnMouseExited(event -> {
+            Timeline timeline = new Timeline();
+            KeyValue heightValue = new KeyValue(hoverScroll.minViewportHeightProperty(), originalHeight);
+            KeyFrame keyFrame = new KeyFrame(Duration.millis(500), heightValue);
+            timeline.getKeyFrames().add(keyFrame);
+            timeline.play();
+        });
     }
 
 
@@ -112,9 +136,7 @@ public class VueJoueurCourant extends VBox {
     }
 
     public void chargerBgJoueur(){
-        //rectJoueur = new Rectangle(100, 100, 200, 200);
-        nomJoueur.setTextFill(VueDuJeu.getCouleurValue(joueurCourant.getCouleur()));
-        //nomJoueur.setTextFill(Color.GREEN);
+        HBoxJoueurCourant.setStyle("-fx-border-color: " + VueDuJeu.getCouleurValue(joueurCourant.getCouleur()) + ";");
     }
 
     public void chargerDestinationJoueur(){

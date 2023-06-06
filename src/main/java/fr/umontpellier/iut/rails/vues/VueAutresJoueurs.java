@@ -5,6 +5,7 @@ import fr.umontpellier.iut.rails.IJoueur;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import java.io.IOException;
 
@@ -15,7 +16,7 @@ import java.io.IOException;
  *
  * On y définit les bindings sur le joueur courant, ainsi que le listener à exécuter lorsque ce joueur change
  */
-public class VueAutresJoueurs extends VBox {
+public class VueAutresJoueurs extends HBox {
     private IJeu jeu;
 
     public VueAutresJoueurs(){
@@ -50,5 +51,13 @@ public class VueAutresJoueurs extends VBox {
         for(int i=0; i<jeu.getJoueurs().size(); i++){
             getChildren().add(new VueJoueur(jeu.getJoueurs().get(i)));
         }
+    }
+
+    public VueJoueur[] getVueJoueurs() {
+        VueJoueur[] vueJoueurs = new VueJoueur[getChildren().size()];
+        for(int i=0; i<getChildren().size(); i++){
+            vueJoueurs[i] = (VueJoueur) getChildren().get(i);
+        }
+        return vueJoueurs;
     }
 }

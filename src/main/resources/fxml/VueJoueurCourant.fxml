@@ -8,7 +8,7 @@
 
 <fx:root fx:id="VueJoueurCourant" prefWidth="400" alignment="TOP_CENTER" type="VBox" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <HBox spacing="40" alignment="CENTER">
+        <HBox fx:id="HBoxJoueurCourant" spacing="40" alignment="CENTER">
             <VBox alignment="CENTER">
                 <Label fx:id="nomJoueur" text="nomJoueur" />
                 <HBox>
@@ -40,7 +40,7 @@
                 <Insets top="10.0" />
             </padding>
         </Label>
-        <ScrollPane hbarPolicy="NEVER" maxWidth="Infinity" maxHeight="50">
+        <ScrollPane fx:id="hoverScroll" hbarPolicy="NEVER" maxWidth="Infinity" maxHeight="50">
             <FlowPane fx:id="carteTransportJoueurFlowPane" prefWidth="300"/>
         </ScrollPane>
         <Label text="Cartes Transports Posees: ">

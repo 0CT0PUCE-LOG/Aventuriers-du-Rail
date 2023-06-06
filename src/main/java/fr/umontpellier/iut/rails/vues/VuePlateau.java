@@ -79,6 +79,7 @@ public class VuePlateau extends Pane {
 
     private void ajouterCercleScore() {
         for(int i=0;i<2;i++){
+            /*
             DonneesGraphiques.DonneesScores positionScoreSurPlateau = DonneesGraphiques.scores.get(i);
             Circle cercleScore = new Circle(positionScoreSurPlateau.centreX(),positionScoreSurPlateau.centreY(),100);
             cercleScore.setFill(Color.RED);
@@ -86,6 +87,8 @@ public class VuePlateau extends Pane {
             getChildren().add(cercleScore);
             cercleScore.setOnMouseClicked(choixRoute);
             bindCercleScore(cercleScore);
+
+             */
         }
     }
 

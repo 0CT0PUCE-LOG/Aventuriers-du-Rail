@@ -12,6 +12,8 @@ import java.io.IOException;
 public class VueJoueur extends HBox {
 
     @FXML
+    private HBox vueJoueur;
+    @FXML
     private Label spriteJoueur;
     @FXML
     private Label scoreJoueur;
@@ -34,6 +36,7 @@ public class VueJoueur extends HBox {
         this.joueur = joueur;
 
         chargerSpriteJoueur();
+        chargerBgJoueur();
         scoreJoueur.setText(String.valueOf(joueur.getScore()));
         nbPionsBateau.setText(String.valueOf(joueur.getNbPionsBateau()));
         nbPionsWagon.setText(String.valueOf(joueur.getNbPionsWagon()));
@@ -46,8 +49,12 @@ public class VueJoueur extends HBox {
     public void chargerSpriteJoueur(){
         ImageView image = new ImageView("images/cartesWagons/avatar-" + joueur.getCouleur() + ".png");
         image.setPreserveRatio(true);
-        image.setFitHeight(120);
+        image.setFitHeight(70);
         spriteJoueur.setGraphic(image);
+    }
+
+    public void chargerBgJoueur(){
+        vueJoueur.setStyle("-fx-border-color: " + VueDuJeu.getCouleurValue(joueur.getCouleur()) + ";");
     }
 
 }

@@ -93,7 +93,7 @@ Spinner{
     -fx-max-width: 300px;
 }
 
-#JoueurCourantPane{
+#VueJoueurCourant{
     -fx-background-color: "beige";
     -fx-background: "beige";
     -fx-border-color: "darkred";

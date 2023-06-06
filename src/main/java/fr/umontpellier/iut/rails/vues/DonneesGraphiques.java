@@ -18,6 +18,8 @@ public final class DonneesGraphiques {
     private final static Map<String, DonneesLayout> villes;
     public final static Map<String, DonneesCerclesPorts> ports;
 
+    public final static Map<Integer, DonneesScores> scores;
+
     private final static Image map = new Image("images/map.jpg");
 
     public static final double pourcentageEcran = .8, // permet de définir une proportion de la scène par rapport à l'écran de l'utilisateur
@@ -795,6 +797,13 @@ public final class DonneesGraphiques {
         ports.put("Christchurch", new DonneesCerclesPorts(1806, 960.4000000953674));
     }
 
+    static {
+        scores = new LinkedHashMap<>();
+        scores.put(1, new DonneesScores(10, 10));
+        scores.put(2, new DonneesScores(20, 10));
+        scores.put(3, new DonneesScores(30, 10));
+    }
+
     public static class DonneesSegments {
         private final double xCentreSym;
         private final double yCentreSym;
@@ -832,6 +841,9 @@ public final class DonneesGraphiques {
     }
 
     public record DonneesCerclesPorts(double centreX, double centreY) {
+    }
+
+    public record DonneesScores(double centreX, double centreY) {
     }
 
     public record DonneesLayout(double layoutX, double layoutY) {

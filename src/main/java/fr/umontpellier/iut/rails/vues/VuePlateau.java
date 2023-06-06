@@ -61,6 +61,7 @@ public class VuePlateau extends Pane {
     public void creerBindings() {
         ajouterPorts();
         ajouterRoutes();
+        //ajouterCercleScore();
         bindRedimensionEtCentragePlateau();
     }
 
@@ -72,6 +73,18 @@ public class VuePlateau extends Pane {
             getChildren().add(cerclePort);
             bindCerclePortAuPlateau(positionPortSurPlateau, cerclePort);
             cerclePort.setOnMouseClicked(choixPort);
+        }
+    }
+
+    private void ajouterCercleScore() {
+        for(int i=0;i<2;i++){
+            DonneesGraphiques.DonneesScores positionScoreSurPlateau = DonneesGraphiques.scores.get(i);
+            Circle cercleScore = new Circle(positionScoreSurPlateau.centreX(),positionScoreSurPlateau.centreY(),100);
+            cercleScore.setFill(Color.RED);
+            cercleScore.setOpacity(0.9);
+            getChildren().add(cercleScore);
+            cercleScore.setOnMouseClicked(choixRoute);
+            bindCercleScore(cercleScore);
         }
     }
 
@@ -87,7 +100,6 @@ public class VuePlateau extends Pane {
                 getChildren().add(rectangleSegment);
                 rectangleSegment.setOnMouseClicked(choixRoute);
                 bindRectangle(rectangleSegment, unSegment.getXHautGauche(), unSegment.getYHautGauche());
-                System.out.println("Route : " + nomRoute + " " + unSegment.getXHautGauche() + " " + unSegment.getYHautGauche());
             }
         }
         //glowRoutes();
@@ -183,6 +195,36 @@ public class VuePlateau extends Pane {
             @Override
             protected double computeValue() {
                 return mapMonde.getLayoutBounds().getHeight()/ DonneesGraphiques.hauteurInitialePlateau;
+            }
+        });
+    }
+
+    private void bindCercleScore(Circle cercleScore) {
+        cercleScore.centerXProperty().bind(new DoubleBinding() {
+            {
+                super.bind(mapMonde.fitWidthProperty(), mapMonde.fitHeightProperty());
+            }
+            @Override
+            protected double computeValue() {
+                return mapMonde.getLayoutX() + 100 * mapMonde.getLayoutBounds().getWidth()/ DonneesGraphiques.largeurInitialePlateau;
+            }
+        });
+        cercleScore.centerYProperty().bind(new DoubleBinding() {
+            {
+                super.bind(mapMonde.fitWidthProperty(), mapMonde.fitHeightProperty());
+            }
+            @Override
+            protected double computeValue() {
+                return mapMonde.getLayoutY() + 100 * mapMonde.getLayoutBounds().getHeight()/ DonneesGraphiques.hauteurInitialePlateau;
+            }
+        });
+        cercleScore.radiusProperty().bind(new DoubleBinding() {
+            {
+                super.bind(mapMonde.fitWidthProperty(), mapMonde.fitHeightProperty());
+            }
+            @Override
+            protected double computeValue() {
+                return DonneesGraphiques.rayonInitial * mapMonde.getLayoutBounds().getWidth() / DonneesGraphiques.largeurInitialePlateau;
             }
         });
     }

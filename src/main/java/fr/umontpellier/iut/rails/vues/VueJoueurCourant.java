@@ -12,6 +12,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 /**
  * Cette classe présente les éléments appartenant au joueur courant.
@@ -35,6 +37,9 @@ public class VueJoueurCourant extends VBox {
 
     @FXML
     private ImageView spriteOrnament;
+
+    @FXML
+    private Rectangle rectJoueur;
 
     @FXML
     private Label scoreJoueur;
@@ -70,7 +75,8 @@ public class VueJoueurCourant extends VBox {
                 nbPionsBateauJoueur.setText(String.valueOf(joueurCourant.getNbPionsBateau()));
                 chargerCarteJoueurCourant();
                 chargerSpriteJoueur();
-                chargerSpriteOrnament();
+                chargerBgJoueur();
+                //chargerSpriteOrnament();
                 chargerDestinationJoueur();
                 chargerCartePoseesJoueurCourant();
             }
@@ -103,6 +109,12 @@ public class VueJoueurCourant extends VBox {
         spriteOrnament = new ImageView("images/ornament.png");
         spriteOrnament.setPreserveRatio(true);
         spriteOrnament.setFitHeight(10);
+    }
+
+    public void chargerBgJoueur(){
+        //rectJoueur = new Rectangle(100, 100, 200, 200);
+        nomJoueur.setTextFill(VueDuJeu.getCouleurValue(joueurCourant.getCouleur()));
+        //nomJoueur.setTextFill(Color.GREEN);
     }
 
     public void chargerDestinationJoueur(){

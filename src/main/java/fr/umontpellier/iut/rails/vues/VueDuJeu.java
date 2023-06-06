@@ -4,6 +4,7 @@ import fr.umontpellier.iut.rails.ICarteTransport;
 import fr.umontpellier.iut.rails.IDestination;
 import fr.umontpellier.iut.rails.IJeu;
 import fr.umontpellier.iut.rails.IJoueur;
+import fr.umontpellier.iut.rails.mecanique.data.Couleur;
 import fr.umontpellier.iut.rails.mecanique.data.Destination;
 import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
@@ -23,6 +24,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -258,6 +261,19 @@ public class VueDuJeu extends BorderPane {
         image.setPreserveRatio(true);
         image.setFitHeight(100);
         spritePiocheBateau.setGraphic(image);
+    }
+
+    public static Paint getCouleurValue(IJoueur.CouleurJoueur couleur){
+        switch(couleur){
+            case JAUNE:
+                return Color.YELLOW;
+            case ROUGE:
+                return Color.RED;
+            case VERT:
+                return Color.GREEN;
+            default:
+                return Color.BLACK;
+        }
     }
 
     public IJeu getJeu() {

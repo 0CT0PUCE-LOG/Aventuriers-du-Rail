@@ -208,16 +208,16 @@ public class VuePlateau extends Pane {
         for (Rectangle route : routeRectangles) {
             // Set up the initial and final keyframes for the glow effect
             KeyFrame startFrame = new KeyFrame(Duration.ZERO, new KeyValue(route.strokeProperty(), Color.TRANSPARENT));
-            KeyFrame endFrame = new KeyFrame(Duration.seconds(0.5), new KeyValue(route.strokeProperty(), Color.GOLD));
+            KeyFrame endFrame = new KeyFrame(Duration.seconds(1), new KeyValue(route.strokeProperty(), Color.GOLD));
 
             // Add the keyframes to the timeline
             timeline.getKeyFrames().addAll(startFrame, endFrame);
 
             // Add a small delay between each route
-            timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(0.5)));
+            timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(1)));
 
             // Set up the final keyframe to reset the stroke color to transparent after the glow effect
-            timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(0.5), new KeyValue(route.strokeProperty(), Color.TRANSPARENT)));
+            timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(1), new KeyValue(route.strokeProperty(), Color.TRANSPARENT)));
         }
 
         // Play the timeline to start the glow effect

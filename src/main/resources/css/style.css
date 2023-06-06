@@ -52,10 +52,12 @@ ButtonTemp{
     -fx-background-radius: 7px;
     -fx-padding: 5px;
     -fx-margin-left: 15px;
+    -fx-effect: dropshadow( one-pass-box , rgba(255,255,255,0.5) , 5,5,0,0 ); /* Add a subtle drop shadow */
 }
 
 .button:hover{
     -fx-background-color: "darkred";
+    -fx-effect: dropshadow( one-pass-box , rgba(255,255,255,0.8) , 10,10,0,0 ); /* Increase drop shadow on hover */
 }
 
 Label{

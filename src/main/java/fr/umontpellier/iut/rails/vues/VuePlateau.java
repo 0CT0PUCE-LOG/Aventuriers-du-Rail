@@ -1,6 +1,8 @@
 package fr.umontpellier.iut.rails.vues;
 
 import fr.umontpellier.iut.rails.IRoute;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.beans.binding.DoubleBinding;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -8,13 +10,22 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Screen;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 
 /**
  * Cette classe présente les routes et les villes sur le plateau.
@@ -76,8 +87,10 @@ public class VuePlateau extends Pane {
                 getChildren().add(rectangleSegment);
                 rectangleSegment.setOnMouseClicked(choixRoute);
                 bindRectangle(rectangleSegment, unSegment.getXHautGauche(), unSegment.getYHautGauche());
+                System.out.println("Route : " + nomRoute + " " + unSegment.getXHautGauche() + " " + unSegment.getYHautGauche());
             }
         }
+        //glowRoutes();
     }
 
     private void bindRedimensionEtCentragePlateau() {
@@ -173,5 +186,43 @@ public class VuePlateau extends Pane {
             }
         });
     }
+
+    public void glowRoutes() {
+        List<Rectangle> routeRectangles = new ArrayList<>();
+        for (String nomRoute : DonneesGraphiques.routes.keySet()) {
+            ArrayList<DonneesGraphiques.DonneesSegments> segmentsRoute = DonneesGraphiques.routes.get(nomRoute);
+            for (DonneesGraphiques.DonneesSegments unSegment : segmentsRoute) {
+                Rectangle rectangleSegment = new Rectangle(unSegment.getXHautGauche(), unSegment.getYHautGauche(), DonneesGraphiques.largeurRectangle, DonneesGraphiques.hauteurRectangle);
+                rectangleSegment.setId(nomRoute);
+                getChildren().add(rectangleSegment);
+                rectangleSegment.setOnMouseClicked(choixRoute);
+                bindRectangle(rectangleSegment, unSegment.getXHautGauche(), unSegment.getYHautGauche());
+                routeRectangles.add(rectangleSegment);
+                System.out.println("Route : " + nomRoute + " " + unSegment.getXHautGauche() + " " + unSegment.getYHautGauche());
+            }
+        }
+
+        // Create a timeline to animate the glow effect for each route
+        Timeline timeline = new Timeline();
+
+        for (Rectangle route : routeRectangles) {
+            // Set up the initial and final keyframes for the glow effect
+            KeyFrame startFrame = new KeyFrame(Duration.ZERO, new KeyValue(route.strokeProperty(), Color.TRANSPARENT));
+            KeyFrame endFrame = new KeyFrame(Duration.seconds(0.5), new KeyValue(route.strokeProperty(), Color.GOLD));
+
+            // Add the keyframes to the timeline
+            timeline.getKeyFrames().addAll(startFrame, endFrame);
+
+            // Add a small delay between each route
+            timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(0.5)));
+
+            // Set up the final keyframe to reset the stroke color to transparent after the glow effect
+            timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(0.5), new KeyValue(route.strokeProperty(), Color.TRANSPARENT)));
+        }
+
+        // Play the timeline to start the glow effect
+        timeline.play();
+    }
+
 
 }

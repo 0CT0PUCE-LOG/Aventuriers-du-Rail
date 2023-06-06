@@ -148,45 +148,19 @@ public class VueDuJeu extends BorderPane {
                     System.out.println("change");
                     if(change.wasRemoved()){
                         for(ICarteTransport carte : change.getRemoved()){
-                            /*
-                            TranslateTransition transition = new TranslateTransition(Duration.seconds(1), trouveVueCarteTransportVisible(carte));
-                            Node destination = trouverScrollpaneVuejoueurCourant();
-                            transition.setToX(destination.localToScene(0, 0).getX() - trouveVueCarteTransportVisible(carte).localToScene(0, 0).getX());
-                            transition.setToY(destination.localToScene(0, 0).getY() - trouveVueCarteTransportVisible(carte).localToScene(0, 0).getY());
-                            transition.setOnFinished(event -> {chargerCartesTransportVisible();});
-                            transition.play();
-
-                             */
-                            // Assuming you have the references to trouveVueCarteTransportVisible(carte) and trouverScrollpaneVuejoueurCourant()
-
-// Set up the translation animation
                             TranslateTransition translation = new TranslateTransition(Duration.seconds(1), trouveVueCarteTransportVisible(carte));
-
-// Calculate the translation distance
-                            double destinationX = trouverScrollpaneVuejoueurCourant().localToScene(0, 0).getX() - trouveVueCarteTransportVisible(carte).localToScene(0, 0).getX();
-                            double destinationY = trouverScrollpaneVuejoueurCourant().localToScene(0, 0).getY() - trouveVueCarteTransportVisible(carte).localToScene(0, 0).getY();
-
-// Set the destination coordinates
+                            double destinationX = trouverScrollpaneVuejoueurCourant().localToScene(0, 0).getX() - trouveVueCarteTransportVisible(carte).localToScene(0, 0).getX() + trouverScrollpaneVuejoueurCourant().prefWidth(-1)/3;
+                            double destinationY = trouverScrollpaneVuejoueurCourant().localToScene(0, 0).getY() - trouveVueCarteTransportVisible(carte).localToScene(0, 0).getY() + trouverScrollpaneVuejoueurCourant().prefHeight(-1)/3;
                             translation.setToX(destinationX);
                             translation.setToY(destinationY);
-
-// Set up the fade-in effect
                             FadeTransition fade = new FadeTransition(Duration.seconds(1), trouveVueCarteTransportVisible(carte));
                             fade.setFromValue(1.0);
                             fade.setToValue(0.2);
-
-// Chain the translations and fade-in effects
                             ParallelTransition parallelTransition = new ParallelTransition(trouveVueCarteTransportVisible(carte), translation, fade);
-
-// Set up the on-finished event
                             parallelTransition.setOnFinished(event -> {
-                                // Perform additional actions after the animation completes
                                 chargerCartesTransportVisible();
                             });
-
-// Play the animation
                             parallelTransition.play();
-
                         }
                     }
                     else{

@@ -26,7 +26,7 @@ public class VueCarteTransport extends MovingButton {
     public VueCarteTransport(ICarteTransport carteTransport, int nbCartes) {
         this.carteTransport = carteTransport;
         ImageView image = new ImageView(getFichierCarteTransport());
-        image.setFitHeight(50);
+        image.setPreserveRatio(true);
         image.setFitWidth(75);
         setGraphic(image);
         setOnAction(actionEvent -> {

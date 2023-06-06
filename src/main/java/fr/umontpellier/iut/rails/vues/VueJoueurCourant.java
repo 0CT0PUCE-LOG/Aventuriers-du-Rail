@@ -101,7 +101,7 @@ public class VueJoueurCourant extends VBox {
     public void chargerSpriteJoueur(){
         ImageView image = new ImageView("images/cartesWagons/avatar-" + joueurCourant.getCouleur() + ".png");
         image.setPreserveRatio(true);
-        image.setFitHeight(200);
+        image.setFitHeight(150);
         spriteJoueur.setGraphic(image);
     }
 

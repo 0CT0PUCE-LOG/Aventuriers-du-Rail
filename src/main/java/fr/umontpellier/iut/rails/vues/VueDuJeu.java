@@ -204,6 +204,9 @@ public class VueDuJeu extends BorderPane {
         pionsWagonBtn.setOnAction(event -> {jeu.nouveauxPionsWagonsDemandes();});
         pionsBateauBtn.setOnAction(event -> {jeu.nouveauxPionsBateauxDemandes();});
 
+        vueJoueurCourant.prefHeightProperty().bind(plateau.prefHeightProperty());
+        vueJoueurCourant.maxHeightProperty().bind(plateau.maxHeightProperty());
+
         vueAutreJoueur.creerBindings();
     }
 

@@ -81,6 +81,14 @@ TextField{
     -fx-font-family: "IM Fell English SC";
 }
 
+Spinner{
+    -fx-font-size: 1.2em;
+    -fx-font-family: "IM Fell English SC";
+    -fx-border-color: "darkred";
+    -fx-border-width: 4px;
+    -fx-border-radius: 5px;
+}
+
 #vuePlateauBis{
     -fx-max-width: 300px;
 }

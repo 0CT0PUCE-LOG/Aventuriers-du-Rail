@@ -105,8 +105,8 @@ public class VueDuJeu extends BorderPane {
     }
 
     public void creerBindings() {
-        plateau.prefWidthProperty().bind(getScene().widthProperty());
-        plateau.prefHeightProperty().bind(getScene().heightProperty());
+        //plateau.prefWidthProperty().bind(getScene().widthProperty());
+        //plateau.prefHeightProperty().bind(getScene().heightProperty());
         plateau.creerBindings();
 
         passerBtn.setOnAction(actionEvent -> {passerClicked();});
@@ -165,8 +165,9 @@ public class VueDuJeu extends BorderPane {
                             //System.out.println("b : " + b);
                             System.out.println("comp1 : "+b.toString());
                             System.out.println("comp2 : "+change.getRemoved().get(0));
-                            if(b == (Node)change.getRemoved().get(0)){
+                            if(b.toString().equals(change.getRemoved().get(0).toString())){
                                 //((VueCarteTransport)b).getText().equals(change.getRemoved().get(0).toString())
+                                //b == change.getRemoved().get(0)
                                 cartesTransportVisible.getChildren().remove(b);
                                 System.out.println("removedB");
                                 System.out.println(change.getRemoved().get(0).toString());

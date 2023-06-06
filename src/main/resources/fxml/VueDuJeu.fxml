@@ -6,9 +6,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<fx:root fx:id="vueDuJeu" type="BorderPane" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" prefWidth="2500">
+<fx:root fx:id="vueDuJeu" prefWidth="2500" type="BorderPane" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
     <top>
-        <HBox fx:id="instructionHBox" alignment="CENTER" BorderPane.alignment="TOP_CENTER" maxWidth="Infinity" minWidth="500">
+        <HBox fx:id="instructionHBox" alignment="CENTER" maxWidth="Infinity" minWidth="500" BorderPane.alignment="TOP_CENTER">
             <Label fx:id="instructionLabel" alignment="CENTER" contentDisplay="CENTER">
                 <font>
                     <Font size="20.0" />
@@ -23,7 +23,7 @@
         </HBox>
     </top>
     <left>
-        <Pane fx:id="JoueurCourantPane">
+        <Pane fx:id="JoueurCourantPane" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0">
             <VBox fx:id="vboxJoueurs">
                 <VueJoueurCourant fx:id="vueJoueurCourant">
                     <padding>
@@ -51,15 +51,15 @@
         </VueAutresJoueurs>
     </right>
     <center>
-        <VBox alignment="TOP_CENTER" >
-            <VuePlateau fx:id="plateau"/>
-            <HBox spacing="20" alignment="BASELINE_LEFT">
+        <VBox alignment="TOP_CENTER">
+            <VuePlateau fx:id="plateau" />
+            <HBox alignment="BASELINE_LEFT" spacing="20">
                 <HBox alignment="BASELINE_CENTER">
-                    <Spinner fx:id="selecteurNombre"/>
-                    <AnimatedButton fx:id="confirmerNombre" text="Confirmer"/>
+                    <Spinner fx:id="selecteurNombre" />
+                    <AnimatedButton fx:id="confirmerNombre" text="Confirmer" />
                 </HBox>
-                <AnimatedButton fx:id="pionsWagonBtn" text="Échanger pions Wagon"/>
-                <AnimatedButton fx:id="pionsBateauBtn" text="Échanger pions Bateau"/>
+                <AnimatedButton fx:id="pionsWagonBtn" text="Échanger pions Wagon" />
+                <AnimatedButton fx:id="pionsBateauBtn" text="Échanger pions Bateau" />
             </HBox>
             <HBox fx:id="choixDestinationHBox">
                 <padding>

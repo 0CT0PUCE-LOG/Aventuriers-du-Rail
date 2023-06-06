@@ -12,10 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.ImageCursor;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -149,7 +146,7 @@ public class VueDuJeu extends BorderPane {
                     System.out.println("change");
                     if(change.wasRemoved()){
                         for(ICarteTransport carte : change.getRemoved()){
-                            TranslateTransition transition = new TranslateTransition(Duration.seconds(5), trouveVueCarteTransportVisible(carte));
+                            TranslateTransition transition = new TranslateTransition(Duration.seconds(1), trouveVueCarteTransportVisible(carte));
                             double targetX = vueJoueurCourant.getLayoutX();
                             double targetY = vueJoueurCourant.getLayoutY();
 
@@ -157,8 +154,15 @@ public class VueDuJeu extends BorderPane {
                             System.out.println("targetY : " + targetY);
 
                             // Set the target coordinates for the transition
-                            transition.setToX(targetX);
-                            transition.setToY(targetY);
+                            //transition.setToX(targetX);
+                            //transition.setToY(targetY);
+
+                            Node destination = trouverScrollpaneVuejoueurCourant();
+
+                            transition.setToX(destination.localToScene(0, 0).getX() - trouveVueCarteTransportVisible(carte).localToScene(0, 0).getX());
+                            transition.setToY(destination.localToScene(0, 0).getY() - trouveVueCarteTransportVisible(carte).localToScene(0, 0).getY());
+
+
 
                             transition.setOnFinished(event -> {chargerCartesTransportVisible();});
 
@@ -239,6 +243,15 @@ public class VueDuJeu extends BorderPane {
         for(ICarteTransport carte : jeu.cartesTransportVisiblesProperty()){
             cartesTransportVisible.getChildren().add(new VueCarteTransport(carte, 1));
         }
+    }
+
+    public Node trouverScrollpaneVuejoueurCourant(){
+        for(Node n : vueJoueurCourant.getChildren()){
+            if(n instanceof ScrollPane){
+                return (ScrollPane)n;
+            }
+        }
+        return null;
     }
 
     public void chargerTextures(){

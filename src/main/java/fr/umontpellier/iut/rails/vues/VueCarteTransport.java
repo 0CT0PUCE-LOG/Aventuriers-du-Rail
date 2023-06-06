@@ -31,7 +31,7 @@ public class VueCarteTransport extends AnimatedButton {
         setGraphic(image);
 
 
-
+        /*
         TranslateTransition transition = new TranslateTransition(Duration.seconds(1), this);
 
         // Get the target element's layout coordinates
@@ -46,10 +46,10 @@ public class VueCarteTransport extends AnimatedButton {
             ((VueDuJeu) getScene().getRoot()).getJeu().uneCarteTransportAEteChoisie(this.carteTransport);
         });
 
+         */
+
         setOnAction(actionEvent -> {
-            // Start the animation
-            transition.play();
-            //((VueDuJeu) getScene().getRoot()).getJeu().uneCarteTransportAEteChoisie(this.carteTransport);
+            ((VueDuJeu) getScene().getRoot()).getJeu().uneCarteTransportAEteChoisie(this.carteTransport);
         });
     }
 

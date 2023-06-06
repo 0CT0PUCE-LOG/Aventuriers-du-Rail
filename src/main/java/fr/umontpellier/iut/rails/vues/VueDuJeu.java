@@ -5,6 +5,7 @@ import fr.umontpellier.iut.rails.IDestination;
 import fr.umontpellier.iut.rails.IJeu;
 import fr.umontpellier.iut.rails.IJoueur;
 import fr.umontpellier.iut.rails.mecanique.data.Destination;
+import javafx.animation.TranslateTransition;
 import javafx.collections.ListChangeListener;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -19,6 +20,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
+import javafx.util.Duration;
+
 import java.io.IOException;
 
 
@@ -71,7 +74,7 @@ public class VueDuJeu extends BorderPane {
             Image image = new Image("file:src/main/resources/images/cursorbis.png");
             this.setCursor(new ImageCursor(image));
             //mettre l'image pointer.png lorque la souris survole n'importe quel élément clickable
-            Image image2 = new Image("file:src/main/resources/images/pointer.png");
+            Image image2 = new Image("file:src/main/resources/images/cursorbis.png");
             this.setOnMouseEntered(mouseEvent -> {
                 this.setCursor(new ImageCursor(image2));
             });
@@ -125,6 +128,62 @@ public class VueDuJeu extends BorderPane {
         jeu.cartesTransportVisiblesProperty().addListener(new ListChangeListener<ICarteTransport>() {
             @Override
             public void onChanged(Change<? extends ICarteTransport> change) {
+                while(change.next()){
+                    System.out.println("change");
+                    if(change.wasRemoved()){
+                        System.out.println("removedA");
+                        System.out.println("changeeeee : "+change.getRemoved().get(0).toString());
+                        /*
+                        for(ICarteTransport carte : change.getRemoved()){
+                            for(Carte b : cartesTransportVisible.getChildren()){
+                                if(((VueCarteTransport)b).getCarte() == carte){
+                                    cartesTransportVisible.getChildren().remove(b);
+                                    break;
+                                }
+                            }
+                        }
+                         */
+                        for(Node b : cartesTransportVisible.getChildren()){
+                            //if(((VueDestination)b).getText().equals(destination.getVilles().toString())){
+                            //System.out.println("b : " + b);
+                            System.out.println("comp1 : "+b.toString());
+                            System.out.println("comp2 : "+change.getRemoved().get(0));
+                            if(b == (Node)change.getRemoved().get(0)){
+                                //((VueCarteTransport)b).getText().equals(change.getRemoved().get(0).toString())
+                                cartesTransportVisible.getChildren().remove(b);
+                                System.out.println("removedB");
+                                System.out.println(change.getRemoved().get(0).toString());
+                                TranslateTransition transition = new TranslateTransition(Duration.seconds(1), b);
+                                // Get the target element's layout coordinates
+                                double targetX = -200;
+                                double targetY = -750;
+                                //définir les coordonnées de la destination de la carte  vers la vueJoueurCourant
+                                /*
+                                for(Node c : vueJoueurCourant.getCartesTransport().getChildren()){
+                                    if(((VueDestination)c).getText().equals(change.getRemoved().get(0).toString())){
+                                        targetX = c.getLayoutX();
+                                        targetY = c.getLayoutY();
+                                        break;
+                                    }
+                                }
+
+                                 */
+                                targetX = vueJoueurCourant.getLayoutX();
+                                targetY = vueJoueurCourant.getLayoutY();
+
+                                System.out.println("targetX : " + targetX);
+                                System.out.println("targetY : " + targetY);
+
+                                // Set the target coordinates for the transition
+                                transition.setToX(targetX);
+                                transition.setToY(targetY);
+
+                                transition.play();
+                                break;
+                            }
+                        }
+                    }
+                }
                 chargerCartesTransportVisible();
             }
         });

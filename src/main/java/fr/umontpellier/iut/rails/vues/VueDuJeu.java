@@ -148,61 +148,27 @@ public class VueDuJeu extends BorderPane {
                 while(change.next()){
                     System.out.println("change");
                     if(change.wasRemoved()){
-                        System.out.println("removedA");
-                        System.out.println("changeeeee : "+change.getRemoved().get(0).toString());
-                        /*
                         for(ICarteTransport carte : change.getRemoved()){
-                            for(Carte b : cartesTransportVisible.getChildren()){
-                                if(((VueCarteTransport)b).getCarte() == carte){
-                                    cartesTransportVisible.getChildren().remove(b);
-                                    break;
-                                }
-                            }
-                        }
-                         */
-                        for(Node b : cartesTransportVisible.getChildren()){
-                            //if(((VueDestination)b).getText().equals(destination.getVilles().toString())){
-                            //System.out.println("b : " + b);
-                            System.out.println("comp1 : "+b.toString());
-                            System.out.println("comp2 : "+change.getRemoved().get(0));
-                            if(b.toString().equals(change.getRemoved().get(0).toString())){
-                                //((VueCarteTransport)b).getText().equals(change.getRemoved().get(0).toString())
-                                //b == change.getRemoved().get(0)
-                                cartesTransportVisible.getChildren().remove(b);
-                                System.out.println("removedB");
-                                System.out.println(change.getRemoved().get(0).toString());
-                                TranslateTransition transition = new TranslateTransition(Duration.seconds(1), b);
-                                // Get the target element's layout coordinates
-                                //double targetX = -200;
-                                //double targetY = -750;
-                                //définir les coordonnées de la destination de la carte  vers la vueJoueurCourant
-                                /*
-                                for(Node c : vueJoueurCourant.getCartesTransport().getChildren()){
-                                    if(((VueDestination)c).getText().equals(change.getRemoved().get(0).toString())){
-                                        targetX = c.getLayoutX();
-                                        targetY = c.getLayoutY();
-                                        break;
-                                    }
-                                }
+                            TranslateTransition transition = new TranslateTransition(Duration.seconds(5), trouveVueCarteTransportVisible(carte));
+                            double targetX = vueJoueurCourant.getLayoutX();
+                            double targetY = vueJoueurCourant.getLayoutY();
 
-                                 */
-                                double targetX = vueJoueurCourant.getLayoutX();
-                                double targetY = vueJoueurCourant.getLayoutY();
+                            System.out.println("targetX : " + targetX);
+                            System.out.println("targetY : " + targetY);
 
-                                System.out.println("targetX : " + targetX);
-                                System.out.println("targetY : " + targetY);
+                            // Set the target coordinates for the transition
+                            transition.setToX(targetX);
+                            transition.setToY(targetY);
 
-                                // Set the target coordinates for the transition
-                                transition.setToX(targetX);
-                                transition.setToY(targetY);
+                            transition.setOnFinished(event -> {chargerCartesTransportVisible();});
 
-                                transition.play();
-                                break;
-                            }
+                            transition.play();
                         }
                     }
+                    else{
+                        chargerCartesTransportVisible();
+                    }
                 }
-                chargerCartesTransportVisible();
             }
         });
 
@@ -244,6 +210,15 @@ public class VueDuJeu extends BorderPane {
         for(Node b : choixDestinationHBox.getChildren()){
             if(((VueDestination)b).getText().equals(destination.getVilles().toString())){
                 return ((VueDestination)b);
+            }
+        }
+        return null;
+    }
+
+    private VueCarteTransport trouveVueCarteTransportVisible(ICarteTransport carteTransport){
+        for(Node d : cartesTransportVisible.getChildren()){
+            if(((VueCarteTransport)d).getCarteTransport().equals(carteTransport)){
+                return ((VueCarteTransport)d);
             }
         }
         return null;

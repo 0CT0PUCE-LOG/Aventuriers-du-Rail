@@ -105,8 +105,8 @@ public class VueDuJeu extends BorderPane {
     }
 
     public void creerBindings() {
-        //plateau.prefWidthProperty().bind(getScene().widthProperty());
-        //plateau.prefHeightProperty().bind(getScene().heightProperty());
+        plateau.prefWidthProperty().bind(getScene().widthProperty());
+        plateau.prefHeightProperty().bind(getScene().heightProperty());
         plateau.creerBindings();
 
         passerBtn.setOnAction(actionEvent -> {passerClicked();});
@@ -173,8 +173,8 @@ public class VueDuJeu extends BorderPane {
                                 System.out.println(change.getRemoved().get(0).toString());
                                 TranslateTransition transition = new TranslateTransition(Duration.seconds(1), b);
                                 // Get the target element's layout coordinates
-                                double targetX = -200;
-                                double targetY = -750;
+                                //double targetX = -200;
+                                //double targetY = -750;
                                 //définir les coordonnées de la destination de la carte  vers la vueJoueurCourant
                                 /*
                                 for(Node c : vueJoueurCourant.getCartesTransport().getChildren()){
@@ -186,8 +186,8 @@ public class VueDuJeu extends BorderPane {
                                 }
 
                                  */
-                                targetX = vueJoueurCourant.getLayoutX();
-                                targetY = vueJoueurCourant.getLayoutY();
+                                double targetX = vueJoueurCourant.getLayoutX();
+                                double targetY = vueJoueurCourant.getLayoutY();
 
                                 System.out.println("targetX : " + targetX);
                                 System.out.println("targetY : " + targetY);

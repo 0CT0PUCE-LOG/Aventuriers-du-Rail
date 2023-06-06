@@ -19,7 +19,7 @@ import java.security.KeyStore;
  *
  * On y définit le listener à exécuter lorsque cette carte a été choisie par l'utilisateur
  */
-public class VueCarteTransport extends AnimatedButton {
+public class VueCarteTransport extends MovingButton {
 
     private final ICarteTransport carteTransport;
 
@@ -29,25 +29,6 @@ public class VueCarteTransport extends AnimatedButton {
         image.setFitHeight(50);
         image.setFitWidth(75);
         setGraphic(image);
-
-
-        /*
-        TranslateTransition transition = new TranslateTransition(Duration.seconds(1), this);
-
-        // Get the target element's layout coordinates
-        double targetX = -200;
-        double targetY = -750;
-
-        // Set the target coordinates for the transition
-        transition.setToX(targetX);
-        transition.setToY(targetY);
-
-        transition.setOnFinished(actionEvent -> {
-            ((VueDuJeu) getScene().getRoot()).getJeu().uneCarteTransportAEteChoisie(this.carteTransport);
-        });
-
-         */
-
         setOnAction(actionEvent -> {
             ((VueDuJeu) getScene().getRoot()).getJeu().uneCarteTransportAEteChoisie(this.carteTransport);
         });

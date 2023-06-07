@@ -46,6 +46,9 @@ public class VueJoueurCourant extends VBox {
     private ScrollPane hoverScroll;
 
     @FXML
+    private ScrollPane hoverScrollPose;
+
+    @FXML
     private HBox HBoxJoueurCourant;
 
     @FXML
@@ -89,18 +92,22 @@ public class VueJoueurCourant extends VBox {
             }
         });
 
-        double originalHeight = hoverScroll.getPrefHeight();
-        double expandedHeight = 200; // Adjust the desired expanded height
-        hoverScroll.setOnMouseEntered(event -> {
+        etendrePaneVerticallement(hoverScroll, 200);
+        etendrePaneVerticallement(hoverScrollPose, 200);
+    }
+
+    public void etendrePaneVerticallement(ScrollPane scrollPane, double expandedHeight){
+        double originalHeight = scrollPane.getPrefHeight();
+        scrollPane.setOnMouseEntered(event -> {
             Timeline timeline = new Timeline();
-            KeyValue heightValue = new KeyValue(hoverScroll.minViewportHeightProperty(), expandedHeight);
+            KeyValue heightValue = new KeyValue(scrollPane.minViewportHeightProperty(), expandedHeight);
             KeyFrame keyFrame = new KeyFrame(Duration.millis(500), heightValue);
             timeline.getKeyFrames().add(keyFrame);
             timeline.play();
         });
-        hoverScroll.setOnMouseExited(event -> {
+        scrollPane.setOnMouseExited(event -> {
             Timeline timeline = new Timeline();
-            KeyValue heightValue = new KeyValue(hoverScroll.minViewportHeightProperty(), originalHeight);
+            KeyValue heightValue = new KeyValue(scrollPane.minViewportHeightProperty(), originalHeight);
             KeyFrame keyFrame = new KeyFrame(Duration.millis(500), heightValue);
             timeline.getKeyFrames().add(keyFrame);
             timeline.play();

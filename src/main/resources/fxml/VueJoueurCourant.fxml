@@ -48,7 +48,7 @@
                 <Insets top="10.0" />
             </padding>
         </Label>
-        <ScrollPane hbarPolicy="NEVER" maxWidth="Infinity" maxHeight="50">
+        <ScrollPane fx:id="hoverScrollPose" hbarPolicy="NEVER" maxWidth="Infinity" maxHeight="50">
             <FlowPane fx:id="carteTransportPoseesJoueurFlowPane" prefWidth="300" />
         </ScrollPane>
     </children>

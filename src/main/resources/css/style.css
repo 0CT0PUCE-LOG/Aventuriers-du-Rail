@@ -21,7 +21,12 @@ Rectangle:hover {
 }
 
 #vueDuJeu{
+
     -fx-background-image: url("https://legendes-ozarm.com/wp-content/uploads/2020/01/Background-parchemin-accueil-1.jpg");
+
+    /*
+    -fx-background-color: #eddca8;
+     */
     -fx-background-size: cover;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
@@ -52,7 +57,10 @@ ButtonTemp{
     -fx-background-radius: 7px;
     -fx-padding: 5px;
     -fx-margin-left: 15px;
-    -fx-effect: dropshadow( one-pass-box , rgba(255,255,255,0.5) , 5,5,0,0 ); /* Add a subtle drop shadow */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+    /*
+    -fx-effect: dropshadow( one-pass-box , rgba(255,255,255,0.5) , 5,5,0,0 );
+    */
 }
 
 .button:hover{
@@ -93,6 +101,7 @@ Spinner{
 
 #plateau{
     -fx-background-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
 }
 
 #vuePlateauBis{
@@ -100,14 +109,15 @@ Spinner{
 }
 
 #VueJoueurCourant{
-    -fx-background-color: "beige";
-    -fx-background: "beige";
+    -fx-background-color: beige;
+    -fx-background: beige;
     -fx-border-color: "darkred";
     -fx-border-width: 4px;
     -fx-border-radius: 5px;
     -fx-background-radius: 5px;
     -fx-max-width: 350px;
     -fx-font-size: 1.3em;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
 }
 
 #instructionHBox{
@@ -118,6 +128,7 @@ Spinner{
     -fx-background-radius: 5px;
     -fx-max-width: 350px;
     -fx-font-size: 1.3em;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
 }
 
 #vboxJoueur{
@@ -183,6 +194,7 @@ VueJoueur {
     -fx-border-radius: 5px;
     -fx-background-color: "beige";
     -fx-background-radius: 5px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
 }
 /*
 HBox{

@@ -79,6 +79,7 @@
                 </HBox>
                 <AnimatedButton fx:id="pionsWagonBtn" text="Échanger pions Wagon" />
                 <AnimatedButton fx:id="pionsBateauBtn" text="Échanger pions Bateau" />
+                <AnimatedButton fx:id="piocheDestinationBtn" text="Piocher des cartes destination"/>
             </HBox>
             <HBox alignment="BASELINE_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="0">
                 <Button fx:id="passerBtn" mnemonicParsing="false" text="Passer">

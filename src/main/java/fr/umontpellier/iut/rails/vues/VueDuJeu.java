@@ -81,6 +81,9 @@ public class VueDuJeu extends BorderPane {
     @FXML
     private Button confirmerNombre;
 
+    @FXML
+    private Button piocheDestinationBtn;
+
     public VueDuJeu(IJeu jeu) {
         this.jeu = jeu;
         try {
@@ -179,32 +182,6 @@ public class VueDuJeu extends BorderPane {
             j.cartesTransportProperty().addListener(new ListChangeListener<ICarteTransport>() {
                 @Override
                 public void onChanged(Change<? extends ICarteTransport> change) {
-                    System.out.println("change"+j.getNom());
-                    /*
-                    for(VueJoueur vueJoueur : vueAutreJoueur.getVueJoueurs()){
-                        System.out.println("vueJoueur.getJoueur().getNom() : "+vueJoueur.getJoueur().getNom());
-                        if(vueJoueur.getJoueur().equals(j) || 2==2){
-                            System.out.println("Trouvé");
-                            IJoueur cj = vueJoueur.getJoueur();
-                            TranslateTransition translation = new TranslateTransition(Duration.seconds(1), vueJoueur);
-                            double destinationX = trouverScrollpaneVuejoueurCourant().localToScene(0, 0).getX() - vueJoueur.localToScene(0, 0).getX() + trouverScrollpaneVuejoueurCourant().prefWidth(-1)/3;
-                            double destinationY = trouverScrollpaneVuejoueurCourant().localToScene(0, 0).getY() - vueJoueur.localToScene(0, 0).getY() + trouverScrollpaneVuejoueurCourant().prefHeight(-1)/3;
-                            translation.setToX(destinationX);
-                            translation.setToY(destinationY);
-                            System.out.println("destinationX : "+destinationX);
-                            System.out.println("destinationY : "+destinationY);
-                            FadeTransition fade = new FadeTransition(Duration.seconds(1), vueJoueur);
-                            fade.setFromValue(1.0);
-                            fade.setToValue(0.2);
-                            ParallelTransition parallelTransition = new ParallelTransition(vueJoueur, translation, fade);
-                            parallelTransition.setOnFinished(event -> {
-                                vueJoueurCourant.chargerCarteJoueurCourant();
-                            });
-                            parallelTransition.play();
-                        }
-                    }
-
-                     */
                     vueJoueurCourant.chargerCarteJoueurCourant();
                 }
             });
@@ -230,6 +207,7 @@ public class VueDuJeu extends BorderPane {
 
         pionsWagonBtn.setOnAction(event -> {jeu.nouveauxPionsWagonsDemandes();});
         pionsBateauBtn.setOnAction(event -> {jeu.nouveauxPionsBateauxDemandes();});
+        piocheDestinationBtn.setOnAction(event -> {jeu.nouvelleDestinationDemandee();});
 
         vueJoueurCourant.prefHeightProperty().bind(plateau.prefHeightProperty());
         vueJoueurCourant.maxHeightProperty().bind(plateau.maxHeightProperty());

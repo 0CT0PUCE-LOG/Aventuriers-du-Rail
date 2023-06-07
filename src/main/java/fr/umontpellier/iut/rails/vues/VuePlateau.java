@@ -51,15 +51,17 @@ public class VuePlateau extends Pane {
     }
 
     EventHandler<MouseEvent> choixRoute = event -> {
-        System.out.println("On a cliqué sur une route");
+        System.out.println("On a cliqué sur " + event.getPickResult().getIntersectedNode().getId());
+        ((VueDuJeu) getScene().getRoot()).getJeu().uneRouteAEteChoisie(event.getPickResult().getIntersectedNode().getId());
     };
 
     EventHandler<MouseEvent> choixPort = event -> {
-        System.out.println("On a cliqué sur un port");
+        System.out.println("On a cliqué sur " + event.getPickResult().getIntersectedNode().getId());
+        ((VueDuJeu) getScene().getRoot()).getJeu().unPortAEteChoisi(event.getPickResult().getIntersectedNode().getId());
     };
 
     public void creerBindings() {
- ajouterVilles();
+        ajouterVilles();
         ajouterPorts();
         ajouterRoutes();
         //ajouterCercleScore();

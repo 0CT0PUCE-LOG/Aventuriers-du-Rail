@@ -148,6 +148,15 @@ Spinner{
     -fx-background-color: "darksand";
 }
 
+#destinationsJoueurCourant{
+    -fx-font-size: 1.1em;
+    -fx-text-fill: "black";
+}
+
+#destinationsJoueurCourant >*{
+    -fx-text-fill: "black";
+}
+
 ScrollPane{
     -fx-background-color: "transparent";
 }

@@ -49,6 +49,9 @@ public class VueJoueurCourant extends VBox {
     private ScrollPane hoverScrollPose;
 
     @FXML
+    private ScrollPane hoverScrollDestination;
+
+    @FXML
     private HBox HBoxJoueurCourant;
 
     @FXML
@@ -94,6 +97,7 @@ public class VueJoueurCourant extends VBox {
 
         etendrePaneVerticallement(hoverScroll, 200);
         etendrePaneVerticallement(hoverScrollPose, 200);
+        etendrePaneVerticallementDestination(hoverScrollDestination);
     }
 
     public void etendrePaneVerticallement(ScrollPane scrollPane, double expandedHeight){
@@ -101,14 +105,34 @@ public class VueJoueurCourant extends VBox {
         scrollPane.setOnMouseEntered(event -> {
             Timeline timeline = new Timeline();
             KeyValue heightValue = new KeyValue(scrollPane.minViewportHeightProperty(), expandedHeight);
-            KeyFrame keyFrame = new KeyFrame(Duration.millis(500), heightValue);
+            KeyFrame keyFrame = new KeyFrame(Duration.millis(expandedHeight + 100), heightValue);
             timeline.getKeyFrames().add(keyFrame);
             timeline.play();
         });
         scrollPane.setOnMouseExited(event -> {
             Timeline timeline = new Timeline();
             KeyValue heightValue = new KeyValue(scrollPane.minViewportHeightProperty(), originalHeight);
-            KeyFrame keyFrame = new KeyFrame(Duration.millis(500), heightValue);
+            KeyFrame keyFrame = new KeyFrame(Duration.millis(expandedHeight + 100), heightValue);
+            timeline.getKeyFrames().add(keyFrame);
+            timeline.play();
+        });
+    }
+
+    public void etendrePaneVerticallementDestination(ScrollPane scrollPane){
+        double originalHeight = scrollPane.getPrefHeight();
+        scrollPane.setOnMouseEntered(event -> {
+            double expandedHeight = destinationsJoueurCourant.getHeight();
+            Timeline timeline = new Timeline();
+            KeyValue heightValue = new KeyValue(scrollPane.minViewportHeightProperty(), expandedHeight);
+            KeyFrame keyFrame = new KeyFrame(Duration.millis(expandedHeight + 100), heightValue);
+            timeline.getKeyFrames().add(keyFrame);
+            timeline.play();
+        });
+        scrollPane.setOnMouseExited(event -> {
+            double expandedHeight = destinationsJoueurCourant.getHeight();
+            Timeline timeline = new Timeline();
+            KeyValue heightValue = new KeyValue(scrollPane.minViewportHeightProperty(), originalHeight);
+            KeyFrame keyFrame = new KeyFrame(Duration.millis(expandedHeight + 100), heightValue);
             timeline.getKeyFrames().add(keyFrame);
             timeline.play();
         });

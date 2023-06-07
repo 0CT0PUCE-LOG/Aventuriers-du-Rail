@@ -82,14 +82,14 @@
                 <AnimatedButton fx:id="piocheDestinationBtn" text="Piocher des cartes destination"/>
             </HBox>
             <HBox alignment="BASELINE_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="0">
-                <Button fx:id="passerBtn" mnemonicParsing="false" text="Passer">
+                <AnimatedButton fx:id="passerBtn" mnemonicParsing="false" text="Passer">
                     <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                     </padding>
                     <HBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                     </HBox.margin>
-                </Button>
+                </AnimatedButton>
             </HBox>
             <HBox fx:id="choixDestinationHBox" spacing="20" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="1">
                 <padding>

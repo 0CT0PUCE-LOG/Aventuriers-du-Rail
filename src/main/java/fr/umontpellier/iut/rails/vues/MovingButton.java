@@ -10,7 +10,7 @@ public class MovingButton extends Button {
 
     private static final double SCALE_FACTOR = 1.1;
     private static final Duration ANIMATION_DURATION = Duration.millis(200);
-    private static final double MOVE_DISTANCE = 50.0;
+    private static final double MOVE_DISTANCE = 75.0;
 
     private TranslateTransition translateTransition;
     private ScaleTransition scaleTransition;
@@ -35,9 +35,7 @@ public class MovingButton extends Button {
     }
 
     public void moveToLeftIfSpaceAvailable() {
-        if (isSpaceAvailable()) {
             moveToLeft();
-        }
     }
 
     private boolean isSpaceAvailable() {
@@ -45,13 +43,18 @@ public class MovingButton extends Button {
         return getBoundsInParent().getMinX() > parent.getLayoutX() + MOVE_DISTANCE;
     }
 
-    private void moveToLeft() {
+    public void moveToLeft() {
         if (translateTransition != null) {
             translateTransition.stop();
         }
 
         translateTransition = new TranslateTransition(ANIMATION_DURATION, this);
-        translateTransition.setByX(-MOVE_DISTANCE);
+        translateTransition.setByX(getLayoutX()-getTranslateX()-(getHeight()-10));
+        translateTransition.play();
+    }
+    public void moveToRight(){
+        translateTransition = new TranslateTransition(ANIMATION_DURATION, this);
+        translateTransition.setByX(getLayoutX()-getTranslateX());
         translateTransition.play();
     }
 

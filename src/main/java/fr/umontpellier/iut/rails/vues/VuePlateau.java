@@ -2,6 +2,7 @@ package fr.umontpellier.iut.rails.vues;
 
 import fr.umontpellier.iut.rails.IJoueur;
 import fr.umontpellier.iut.rails.IRoute;
+import fr.umontpellier.iut.rails.IVille;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.binding.DoubleBinding;
@@ -71,6 +72,7 @@ public class VuePlateau extends Pane {
         //ajouterCercleScore();
         bindRedimensionEtCentragePlateau();
         bindCaptureRoute();
+        bindConstruirePorts();
     }
 
     private void ajouterPorts() {
@@ -81,6 +83,29 @@ public class VuePlateau extends Pane {
             getChildren().add(cerclePort);
             bindCerclePortAuPlateau(positionPortSurPlateau, cerclePort);
             cerclePort.setOnMouseClicked(choixPort);
+        }
+    }
+
+    private void bindConstruirePorts() {
+        List<? extends IVille> listePorts = ((VueDuJeu) getScene().getRoot()).getJeu().getPorts();
+        for(IVille ville : listePorts){
+            List<Circle> ports = new ArrayList<>();
+            for(Node n : getChildren()){
+                if(n.getId().equals(ville.getNom())){
+                    ports.add((Circle) n);
+                }
+            }
+            ville.proprietaireProperty().addListener(new ChangeListener<IJoueur>() {
+                @Override
+                public void changed(ObservableValue<? extends IJoueur> observableValue, IJoueur iJoueur, IJoueur t1) {
+                    for(Circle c : ports){
+                        c.setStyle("-fx-fill :" + VueDuJeu.getCouleurValue(t1.getCouleur()) + ";" +
+                                "-fx-opacity: 1;" +
+                                "-fx-stroke: black;" +
+                                "-fx-stroke-width: 2px;");
+                    }
+                }
+            });
         }
     }
 

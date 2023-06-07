@@ -7,6 +7,7 @@ import javafx.event.EventType;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import javafx.fxml.FXMLLoader;
@@ -27,13 +28,19 @@ public class VueCarteTransport extends MovingButton {
         this.carteTransport = carteTransport;
         ImageView image = new ImageView(getFichierCarteTransport());
         image.setPreserveRatio(true);
-        image.setFitWidth(75);
         setGraphic(image);
         if(nbCartes == 0){
+            image.setFitHeight(80);
+            image.setRotate(90);
+            setStyle("-fx-background-color : transparent;" +
+                    "-fx-border-width: 0px;");
             setOnAction(actionEvent -> {
                 ((VueDuJeu) getScene().getRoot()).getJeu().uneCarteTransportAEteChoisie(this.carteTransport);
             });
+            setOnMouseEntered(event -> {moveToLeft();});
+            setOnMouseExited(event -> {moveToRight();});
         } else if (nbCartes == 1) {
+            image.setFitWidth(75);
             setOnAction(actionEvent -> {
                 ((VueDuJeu) getScene().getRoot()).getJeu().uneCarteDuJoueurEstJouee(this.carteTransport);
             });

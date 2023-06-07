@@ -161,7 +161,7 @@ Spinner{
     -fx-background-radius: 5px;
     -fx-max-width: 350px;
     -fx-font-size: 1.3em;
-    -fx-background-color: "darksand";
+    /*-fx-background-color: "darksand"; fais une erreur */
 }
 
 #destinationsJoueurCourant{

@@ -129,9 +129,10 @@ public class VuePlateau extends Pane {
                 @Override
                 public void changed(ObservableValue<? extends IJoueur> observableValue, IJoueur iJoueur, IJoueur t1) {
                     for(Rectangle p : portionsRoute){
-                        p.setStyle("-fx-fill :" + VueDuJeu.getCouleurValue(t1.getCouleur()) + ";");
-                        p.setFill(Color.valueOf(VueDuJeu.getCouleurValue(t1.getCouleur())));
-                        System.out.println("une portion de route a été capturer");
+                        p.setStyle("-fx-fill :" + VueDuJeu.getCouleurValue(t1.getCouleur()) + ";" +
+                                "-fx-opacity: 1;" +
+                                "-fx-stroke: black;" +
+                                "-fx-stroke-width: 2px;");
                     }
                 }
             });

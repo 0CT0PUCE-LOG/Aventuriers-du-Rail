@@ -91,6 +91,10 @@ Spinner{
     -fx-border-radius: 5px;
 }
 
+#plateau{
+    -fx-background-radius: 10px;
+}
+
 #vuePlateauBis{
     -fx-max-width: 300px;
 }

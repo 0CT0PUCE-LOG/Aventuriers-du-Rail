@@ -39,6 +39,11 @@
             <Insets bottom="10.0" />
          </VBox.margin>
         </HBox>
+        <Label fx:id="labelDestination" text="Destinations : ">
+            <padding>
+                <Insets top="10.0" />
+            </padding>
+        </Label>
         <ScrollPane fx:id="hoverScrollDestination" hbarPolicy="NEVER" maxHeight="50" maxWidth="Infinity">
             <VBox fx:id="destinationsJoueurCourant" />
         </ScrollPane>

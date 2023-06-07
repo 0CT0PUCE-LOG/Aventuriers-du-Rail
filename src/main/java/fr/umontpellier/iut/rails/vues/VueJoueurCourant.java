@@ -64,6 +64,9 @@ public class VueJoueurCourant extends VBox {
     private Label nbPionsWagonJoueur;
 
     @FXML
+    private Label labelDestination;
+
+    @FXML
     private VBox destinationsJoueurCourant;
 
     public VueJoueurCourant() {
@@ -147,6 +150,7 @@ public class VueJoueurCourant extends VBox {
     }
 
     public void chargerCartePoseesJoueurCourant() {
+        //if(joueurCourant.get)
         carteTransportPoseesJoueurFlowPane.getChildren().clear();
         for (ICarteTransport carte : joueurCourant.getCartesTransport()) {
             carteTransportPoseesJoueurFlowPane.getChildren().add(new VueCarteTransport(carte, 1));
@@ -171,9 +175,21 @@ public class VueJoueurCourant extends VBox {
     }
 
     public void chargerDestinationJoueur(){
-        destinationsJoueurCourant.getChildren().clear();
-        for(IDestination d : joueurCourant.getDestinations()){
-            destinationsJoueurCourant.getChildren().add(new Label(d.getVilles().toString()));
+        if(joueurCourant.getDestinations().isEmpty()){
+            hoverScrollDestination.setManaged(false);
+            hoverScrollDestination.setVisible(false);
+            labelDestination.setManaged(false);
+            labelDestination.setVisible(false);
+        }
+        else{
+            hoverScrollDestination.setVisible(true);
+            hoverScrollDestination.setManaged(true);
+            labelDestination.setVisible(true);
+            labelDestination.setManaged(true);
+            destinationsJoueurCourant.getChildren().clear();
+            for(IDestination d : joueurCourant.getDestinations()){
+                destinationsJoueurCourant.getChildren().add(new Label(d.getVilles().toString()));
+            }
         }
     }
 

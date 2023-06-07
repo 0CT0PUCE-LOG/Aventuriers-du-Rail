@@ -152,7 +152,7 @@ public class VueJoueurCourant extends VBox {
     public void chargerCartePoseesJoueurCourant() {
         //if(joueurCourant.get)
         carteTransportPoseesJoueurFlowPane.getChildren().clear();
-        for (ICarteTransport carte : joueurCourant.getCartesTransport()) {
+        for (ICarteTransport carte : joueurCourant.cartesTransportPoseesProperty()) {
             carteTransportPoseesJoueurFlowPane.getChildren().add(new VueCarteTransport(carte, 1));
         }
     }

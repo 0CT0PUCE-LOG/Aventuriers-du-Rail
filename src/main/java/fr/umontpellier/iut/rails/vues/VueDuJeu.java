@@ -246,7 +246,7 @@ public class VueDuJeu extends BorderPane {
     public void chargerCartesTransportVisible(){
         cartesTransportVisible.getChildren().clear();
         for(ICarteTransport carte : jeu.cartesTransportVisiblesProperty()){
-            cartesTransportVisible.getChildren().add(new VueCarteTransport(carte, 1));
+            cartesTransportVisible.getChildren().add(new VueCarteTransport(carte, 0));
         }
     }
 

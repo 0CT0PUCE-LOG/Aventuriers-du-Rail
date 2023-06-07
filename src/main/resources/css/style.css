@@ -12,6 +12,7 @@ Circle:hover {
 
 Rectangle {
     -fx-fill: "transparent";
+    -fx-opacity: 0.3;
 }
 
 Rectangle:hover {

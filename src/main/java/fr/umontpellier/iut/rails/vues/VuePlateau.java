@@ -1,12 +1,16 @@
 package fr.umontpellier.iut.rails.vues;
 
+import fr.umontpellier.iut.rails.IJoueur;
 import fr.umontpellier.iut.rails.IRoute;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.binding.DoubleBinding;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -66,6 +70,7 @@ public class VuePlateau extends Pane {
         ajouterRoutes();
         //ajouterCercleScore();
         bindRedimensionEtCentragePlateau();
+        bindCaptureRoute();
     }
 
     private void ajouterPorts() {
@@ -109,6 +114,27 @@ public class VuePlateau extends Pane {
             }
         }
         //glowRoutes();
+    }
+
+    private void bindCaptureRoute(){
+        List<? extends IRoute> listeRoutes = ((VueDuJeu) getScene().getRoot()).getJeu().getRoutes();
+        for(IRoute route : listeRoutes){
+            List<Rectangle> portionsRoute = new ArrayList<>();
+            for(Node n : getChildren()){
+                if(n.getId().equals(route.getNom())){
+                    portionsRoute.add((Rectangle) n);
+                }
+            }
+            route.proprietaireProperty().addListener(new ChangeListener<IJoueur>() {
+                @Override
+                public void changed(ObservableValue<? extends IJoueur> observableValue, IJoueur iJoueur, IJoueur t1) {
+                    for(Rectangle p : portionsRoute){
+                        p.setStyle("-fx-fill :" + VueDuJeu.getCouleurValue(t1.getCouleur()) + ";");
+                        System.out.println("une portion de route a été capturer");
+                    }
+                }
+            });
+        }
     }
 
     private void bindRedimensionEtCentragePlateau() {

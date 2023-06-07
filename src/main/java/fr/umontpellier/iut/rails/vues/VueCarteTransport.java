@@ -29,9 +29,16 @@ public class VueCarteTransport extends MovingButton {
         image.setPreserveRatio(true);
         image.setFitWidth(75);
         setGraphic(image);
-        setOnAction(actionEvent -> {
-            ((VueDuJeu) getScene().getRoot()).getJeu().uneCarteTransportAEteChoisie(this.carteTransport);
-        });
+        if(nbCartes == 0){
+            setOnAction(actionEvent -> {
+                ((VueDuJeu) getScene().getRoot()).getJeu().uneCarteTransportAEteChoisie(this.carteTransport);
+            });
+        } else if (nbCartes == 1) {
+            setOnAction(actionEvent -> {
+                ((VueDuJeu) getScene().getRoot()).getJeu().uneCarteDuJoueurEstJouee(this.carteTransport);
+            });
+        }
+
     }
 
     private String getFichierCarteTransport(){

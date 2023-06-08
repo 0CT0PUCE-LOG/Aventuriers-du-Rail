@@ -110,7 +110,7 @@ public class VueJoueurCourant extends VBox {
     public void etendrePaneVerticallement(ScrollPane scrollPane, FlowPane child){
         double originalHeight = scrollPane.getPrefHeight();
         scrollPane.setOnMouseEntered(event -> {
-            double expandedHeight = child.getHeight();
+            double expandedHeight = checkSize(child.getHeight(), 300);
             Timeline timeline = new Timeline();
             KeyValue heightValue = new KeyValue(scrollPane.minViewportHeightProperty(), expandedHeight);
             KeyFrame keyFrame = new KeyFrame(Duration.millis(expandedHeight + 100), heightValue);
@@ -118,7 +118,7 @@ public class VueJoueurCourant extends VBox {
             timeline.play();
         });
         scrollPane.setOnMouseExited(event -> {
-            double expandedHeight = child.getHeight();
+            double expandedHeight = checkSize(child.getHeight(), 300);
             Timeline timeline = new Timeline();
             KeyValue heightValue = new KeyValue(scrollPane.minViewportHeightProperty(), originalHeight);
             KeyFrame keyFrame = new KeyFrame(Duration.millis(expandedHeight + 100), heightValue);
@@ -148,7 +148,7 @@ public class VueJoueurCourant extends VBox {
     public void etendrePaneVerticallementDestination(ScrollPane scrollPane, VBox child){
         double originalHeight = scrollPane.getPrefHeight();
         scrollPane.setOnMouseEntered(event -> {
-            double expandedHeight = child.getHeight();
+            double expandedHeight = checkSize(child.getHeight(), 300);
             Timeline timeline = new Timeline();
             KeyValue heightValue = new KeyValue(scrollPane.minViewportHeightProperty(), expandedHeight);
             KeyFrame keyFrame = new KeyFrame(Duration.millis(expandedHeight + 100), heightValue);
@@ -156,13 +156,21 @@ public class VueJoueurCourant extends VBox {
             timeline.play();
         });
         scrollPane.setOnMouseExited(event -> {
-            double expandedHeight = child.getHeight();
+            double expandedHeight = checkSize(child.getHeight(), 300);
             Timeline timeline = new Timeline();
             KeyValue heightValue = new KeyValue(scrollPane.minViewportHeightProperty(), originalHeight);
             KeyFrame keyFrame = new KeyFrame(Duration.millis(expandedHeight + 100), heightValue);
             timeline.getKeyFrames().add(keyFrame);
             timeline.play();
         });
+    }
+
+    public double checkSize(double size, double limit){
+        if(size>=limit){
+            return limit;
+        }else{
+            return size;
+        }
     }
 
 

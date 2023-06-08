@@ -268,6 +268,21 @@ public class VueDuJeu extends BorderPane {
         image.setPreserveRatio(true);
         image.setFitHeight(100);
         spritePiocheBateau.setGraphic(image);
+
+        image = new ImageView("images/bouton-pions-wagon.png");
+        image.setPreserveRatio(true);
+        image.setFitHeight(18);
+        pionsWagonBtn.setGraphic(image);
+
+        image = new ImageView("images/bouton-pions-bateau.png");
+        image.setPreserveRatio(true);
+        image.setFitHeight(18);
+        pionsBateauBtn.setGraphic(image);
+
+        image = new ImageView("images/cartesWagons/destinations.png");
+        image.setPreserveRatio(true);
+        image.setFitHeight(75);
+        piocheDestinationBtn.setGraphic(image);
     }
 
     public static String getCouleurValue(IJoueur.CouleurJoueur couleur){

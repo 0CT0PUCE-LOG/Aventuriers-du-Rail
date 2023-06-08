@@ -224,6 +224,40 @@ FlowPane{
     -fx-background-color: "transparent";
 }
 
+#pionsBateauBtn{
+    -fx-background-color: "transparent";
+    -fx-background: "transparent";
+    -fx-border-color: "transparent";
+    -fx-border-width: 4px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-max-width: 350px;
+    -fx-font-size: 0;
+    -fx-text-fill: "transparent";
+}
+
+#pionsWagonBtn{
+    -fx-background-color: "transparent";
+    -fx-background: "transparent";
+    -fx-border-color: "transparent";
+    -fx-border-width: 4px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-max-width: 350px;
+    -fx-font-size: 1.3em;
+}
+
+#piocheDestinationBtn{
+    -fx-background-color: "transparent";
+    -fx-background: "transparent";
+    -fx-border-color: "transparent";
+    -fx-border-width: 4px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-max-width: 350px;
+    -fx-font-size: 1.3em;
+}
+
 VueJoueur {
     -fx-border-color: black;
     -fx-border-width: 4px;

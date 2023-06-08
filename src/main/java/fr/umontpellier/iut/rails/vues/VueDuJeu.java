@@ -271,12 +271,12 @@ public class VueDuJeu extends BorderPane {
 
         image = new ImageView("images/bouton-pions-wagon.png");
         image.setPreserveRatio(true);
-        image.setFitHeight(18);
+        image.setFitHeight(50);
         pionsWagonBtn.setGraphic(image);
 
         image = new ImageView("images/bouton-pions-bateau.png");
         image.setPreserveRatio(true);
-        image.setFitHeight(18);
+        image.setFitHeight(50);
         pionsBateauBtn.setGraphic(image);
 
         image = new ImageView("images/cartesWagons/destinations.png");
@@ -311,4 +311,7 @@ public class VueDuJeu extends BorderPane {
 
     EventHandler<? super MouseEvent> actionPasserParDefaut = (mouseEvent -> getJeu().passerAEteChoisi());
 
+    public Object getVuePlateau() {
+        return plateau;
+    }
 }

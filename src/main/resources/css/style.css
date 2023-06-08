@@ -224,7 +224,7 @@ FlowPane{
     -fx-background-color: "transparent";
 }
 
-#pionsBateauBtn{
+#carteTransport{
     -fx-background-color: "transparent";
     -fx-background: "transparent";
     -fx-border-color: "transparent";
@@ -233,6 +233,20 @@ FlowPane{
     -fx-background-radius: 5px;
     -fx-max-width: 350px;
     -fx-font-size: 0;
+    -fx-text-fill: "transparent";
+}
+
+#VueCarteTransport{
+    -fx-background-color: "transparent";
+    -fx-background: "transparent";
+    -fx-border-color: "transparent";
+    -fx-text-fill: "transparent";
+}
+
+#pionsBateauBtn{
+    -fx-background-color: "transparent";
+    -fx-background: "transparent";
+    -fx-border-color: "transparent";
     -fx-text-fill: "transparent";
 }
 

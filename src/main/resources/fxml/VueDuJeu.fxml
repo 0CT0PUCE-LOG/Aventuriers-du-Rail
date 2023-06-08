@@ -69,7 +69,7 @@
                         <Label fx:id="spritePiocheBateau" />
                     </StackPane>
                 </HBox>
-                <FlowPane fx:id="cartesTransportVisible" alignment="BASELINE_RIGHT" prefWidth="120" vgap="-50">
+                <FlowPane fx:id="cartesTransportVisible" alignment="CENTER_RIGHT" maxWidth="50" vgap="-50">
                     <padding>
                         <Insets top="30" />
                     </padding>

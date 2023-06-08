@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
-<?import fr.umontpellier.iut.rails.vues.VueJoueur?>
-<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<fx:root fx:id="VueAutresJoueur" alignment="TOP_LEFT" type="HBox" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" spacing="10">
+<fx:root fx:id="VueAutresJoueur" alignment="TOP_LEFT" spacing="10.0" type="HBox" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
     <children>
 
     </children>
+   <padding>
+      <Insets bottom="-10.0" left="-10.0" right="-10.0" top="-10.0" />
+   </padding>
 </fx:root>

@@ -199,6 +199,16 @@ FlowPane{
     -fx-background-color: "transparent";
 }
 
+#actionJeu{
+    -fx-background-color: "beige";
+    -fx-background: "beige";
+    -fx-border-color: "darkred";
+    -fx-border-width: 4px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+
 #cartesTransportVisibleFlowPane{
     -fx-background-color: "transparent";
 }

@@ -49,7 +49,7 @@ public class VueJoueur extends HBox {
     public void chargerSpriteJoueur(){
         ImageView image = new ImageView("images/cartesWagons/avatar-" + joueur.getCouleur() + ".png");
         image.setPreserveRatio(true);
-        image.setFitHeight(70);
+        image.setFitHeight(80);
         spriteJoueur.setGraphic(image);
     }
 

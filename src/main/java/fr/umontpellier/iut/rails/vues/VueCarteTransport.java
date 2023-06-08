@@ -34,7 +34,7 @@ public class VueCarteTransport extends MovingButton {
             image.setRotate(90);
             setStyle("-fx-background-color : transparent;" +
                     "-fx-border-width: 0px;");
-            setOnAction(actionEvent -> {
+            setOnMouseClicked(actionEvent -> {
                 ((VueDuJeu) getScene().getRoot()).getJeu().uneCarteTransportAEteChoisie(this.carteTransport);
             });
             setOnMouseEntered(event -> {moveToLeft();});

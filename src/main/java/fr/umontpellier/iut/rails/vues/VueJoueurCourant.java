@@ -38,7 +38,10 @@ public class VueJoueurCourant extends VBox {
     private Label spriteJoueur;
 
     @FXML
-    private ImageView spriteOrnament;
+    private ImageView ornTop;
+
+    @FXML
+    private ImageView ornBot;
 
     @FXML
     private ScrollPane hoverScroll;
@@ -201,12 +204,12 @@ public class VueJoueurCourant extends VBox {
         image.setPreserveRatio(true);
         image.setFitHeight(150);
         spriteJoueur.setGraphic(image);
-    }
+        ornTop.setPreserveRatio(true);
+        ornTop.setFitHeight(90);
+        ornBot.setPreserveRatio(true);
+        ornBot.setFitHeight(90);
 
-    public void chargerSpriteOrnament(){
-        spriteOrnament = new ImageView("images/ornament.png");
-        spriteOrnament.setPreserveRatio(true);
-        spriteOrnament.setFitHeight(10);
+
     }
 
     public void chargerBgJoueur(){

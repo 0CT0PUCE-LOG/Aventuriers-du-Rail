@@ -103,7 +103,7 @@ public class VueJoueurCourant extends VBox {
         });
 
         etendrePaneVerticallement(hoverScroll, carteTransportJoueurFlowPane);
-        etendrePaneVerticallement(hoverScrollPose, 200);
+        etendrePaneVerticallement(hoverScrollPose, 170);
         etendrePaneVerticallementDestination(hoverScrollDestination, destinationsJoueurCourant);
     }
 
@@ -166,7 +166,7 @@ public class VueJoueurCourant extends VBox {
     }
 
     public double checkSize(double size, double limit){
-        if(size>=limit){
+        if(size>=limit-10){
             return limit;
         }else{
             return size;

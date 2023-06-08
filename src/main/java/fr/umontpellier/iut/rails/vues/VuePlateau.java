@@ -154,10 +154,17 @@ public class VuePlateau extends Pane {
                 @Override
                 public void changed(ObservableValue<? extends IJoueur> observableValue, IJoueur iJoueur, IJoueur t1) {
                     for(Rectangle p : portionsRoute){
-                        p.setStyle("-fx-fill :" + VueDuJeu.getCouleurValue(t1.getCouleur()) + ";" +
+                        /*p.setStyle("-fx-fill :" + VueDuJeu.getCouleurValue(t1.getCouleur()) + ";" +
                                 "-fx-opacity: 1;" +
                                 "-fx-stroke: black;" +
-                                "-fx-stroke-width: 2px;");
+                                "-fx-stroke-width: 2px;");*/
+                        ImageView wagon = new ImageView("images/wagons/image-wagon-" + t1.getCouleur() + ".png");
+                        wagon.layoutXProperty().bind(p.layoutXProperty().subtract(8));
+                        wagon.layoutYProperty().bind(p.layoutYProperty().subtract(11));
+                        wagon.rotateProperty().bind(p.rotateProperty());
+                        wagon.fitWidthProperty().bind(p.widthProperty().add(11));
+                        wagon.fitHeightProperty().bind(p.heightProperty().add(23));
+                        getChildren().add(wagon);
                     }
                 }
             });

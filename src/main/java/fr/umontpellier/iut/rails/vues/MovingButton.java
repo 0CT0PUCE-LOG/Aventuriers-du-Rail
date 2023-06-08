@@ -44,10 +44,6 @@ public class MovingButton extends Button {
     }
 
     public void moveToLeft() {
-        if (translateTransition != null) {
-            translateTransition.stop();
-        }
-
         translateTransition = new TranslateTransition(ANIMATION_DURATION, this);
         translateTransition.setByX(getLayoutX()-getTranslateX()-(getHeight()-10));
         translateTransition.play();

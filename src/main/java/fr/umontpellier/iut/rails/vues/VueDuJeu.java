@@ -63,10 +63,10 @@ public class VueDuJeu extends BorderPane {
     private VueAutresJoueurs vueAutreJoueur;
 
     @FXML
-    private Label spritePiocheWagon;
+    private AnimatedButton spritePiocheWagon;
 
     @FXML
-    private Label spritePiocheBateau;
+    private AnimatedButton spritePiocheBateau;
 
     @FXML
     private Spinner<Integer> selecteurNombre;
@@ -281,7 +281,7 @@ public class VueDuJeu extends BorderPane {
 
         image = new ImageView("images/cartesWagons/destinations.png");
         image.setPreserveRatio(true);
-        image.setFitHeight(75);
+        image.setFitWidth(160);
         piocheDestinationBtn.setGraphic(image);
     }
 

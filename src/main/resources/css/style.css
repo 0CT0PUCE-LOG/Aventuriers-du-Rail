@@ -254,8 +254,41 @@ FlowPane{
     -fx-border-width: 4px;
     -fx-border-radius: 5px;
     -fx-background-radius: 5px;
-    -fx-max-width: 350px;
     -fx-font-size: 1.3em;
+    -fx-width: 100px;
+}
+
+#selecteurNombreJoueurs{
+    -fx-background-color: "transparent";
+    -fx-background: "transparent";
+    -fx-border-color: "transparent";
+    -fx-border-width: 4px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-font-size: 1.3em;
+    -fx-width: 30px;
+}
+
+#spritePiocheBateau{
+    -fx-background-color: "transparent";
+    -fx-background: "transparent";
+    -fx-border-color: "transparent";
+    -fx-border-width: 4px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-font-size: 1.3em;
+    -fx-width: 30px;
+}
+
+#spritePiocheWagon{
+    -fx-background-color: "transparent";
+    -fx-background: "transparent";
+    -fx-border-color: "transparent";
+    -fx-border-width: 4px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-font-size: 1.3em;
+    -fx-width: 30px;
 }
 
 VueJoueur {
@@ -266,7 +299,7 @@ VueJoueur {
     -fx-background-radius: 5px;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
 }
-
+/*
 HBox{
     -fx-border-color: green;
     -fx-border-width: 1px;
@@ -275,4 +308,6 @@ VBox{
     -fx-border-color: red;
     -fx-border-width: 1px;
 }
+
+ */
 

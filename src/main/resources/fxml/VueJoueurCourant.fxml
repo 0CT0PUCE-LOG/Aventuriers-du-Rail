@@ -55,7 +55,7 @@
         <ScrollPane fx:id="hoverScroll" hbarPolicy="NEVER" maxHeight="50" maxWidth="Infinity">
             <FlowPane fx:id="carteTransportJoueurFlowPane" prefWidth="300" />
         </ScrollPane>
-        <Label text="Cartes Transports Posees: ">
+        <Label fx:id="labelPose" text="Cartes Transports Posees: ">
             <padding>
                 <Insets top="10.0" />
             </padding>

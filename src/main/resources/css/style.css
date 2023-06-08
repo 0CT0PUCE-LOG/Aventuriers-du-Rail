@@ -66,7 +66,9 @@ ButtonTemp{
 
 .button:hover{
     -fx-background-color: "darkred";
-    -fx-effect: dropshadow( one-pass-box , rgba(255,255,255,0.8) , 10,10,0,0 ); /* Increase drop shadow on hover */
+    /*
+    -fx-effect: dropshadow( one-pass-box , rgba(255,255,255,0.8) , 10,10,0,0 );
+*/
 }
 
 Label{
@@ -171,6 +173,18 @@ Spinner{
 
 #destinationsJoueurCourant >*{
     -fx-text-fill: "black";
+}
+
+#cardRight{
+    -fx-background-color: "beige";
+    -fx-background: "beige";
+    -fx-border-color: "darkred";
+    -fx-border-width: 4px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-max-width: 350px;
+    -fx-font-size: 1.3em;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
 }
 
 ScrollPane{

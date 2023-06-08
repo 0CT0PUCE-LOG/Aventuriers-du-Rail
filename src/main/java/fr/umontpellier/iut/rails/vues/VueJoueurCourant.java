@@ -65,6 +65,9 @@ public class VueJoueurCourant extends VBox {
     private Label labelDestination;
 
     @FXML
+    private Label labelPose;
+
+    @FXML
     private VBox destinationsJoueurCourant;
 
     public VueJoueurCourant() {
@@ -148,10 +151,20 @@ public class VueJoueurCourant extends VBox {
     }
 
     public void chargerCartePoseesJoueurCourant() {
-        //if(joueurCourant.get)
-        carteTransportPoseesJoueurFlowPane.getChildren().clear();
-        for (ICarteTransport carte : joueurCourant.cartesTransportPoseesProperty()) {
-            carteTransportPoseesJoueurFlowPane.getChildren().add(new VueCarteTransport(carte, 1));
+        if(joueurCourant.cartesTransportPoseesProperty().size() == 0){
+            hoverScrollPose.setManaged(false);
+            hoverScrollPose.setVisible(false);
+            labelPose.setManaged(false);
+            labelPose.setVisible(false);
+        }else{
+            hoverScrollPose.setVisible(true);
+            hoverScrollPose.setManaged(true);
+            labelPose.setVisible(true);
+            labelPose.setManaged(true);
+            carteTransportPoseesJoueurFlowPane.getChildren().clear();
+            for (ICarteTransport carte : joueurCourant.cartesTransportPoseesProperty()) {
+                carteTransportPoseesJoueurFlowPane.getChildren().add(new VueCarteTransport(carte, 1));
+            }
         }
     }
 

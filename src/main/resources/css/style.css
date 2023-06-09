@@ -23,7 +23,7 @@ Rectangle:hover {
 
 #vueDuJeu{
 
-    -fx-background-image: url("https://legendes-ozarm.com/wp-content/uploads/2020/01/Background-parchemin-accueil-1.jpg");
+    -fx-background-image: url("/images/bg.jpg");
 
     /*
     -fx-background-color: #eddca8;
@@ -293,7 +293,6 @@ FlowPane{
     -fx-font-size: 1.3em;
     -fx-width: 30px;
 }
-
 #spritePiocheWagon{
     -fx-background-color: "transparent";
     -fx-background: "transparent";

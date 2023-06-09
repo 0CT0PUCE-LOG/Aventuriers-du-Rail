@@ -340,32 +340,44 @@ public class VuePlateau extends Pane {
     public void setFlash(List<String> villes, boolean state){
         for(Node n : getChildren()){
             if(villes.contains(n.getId())){
-                if(state){
-                    n.setStyle("-fx-fill: white; -fx-effect: dropshadow(three-pass-box, white, 10, 0, 0, 0);");
-                    //add a whit shadow all around the element
+                if (state) {
+                    // Code for when the state is true
+                    n.setStyle("-fx-fill: white; -fx-effect: dropshadow(three-pass-box, white, 5, 0, 0, 0);");
+
                     FadeTransition ft = new FadeTransition(Duration.millis(500), n);
                     ft.setFromValue(0.0);
                     ft.setToValue(1.0);
                     ft.setCycleCount(Animation.INDEFINITE);
                     ft.setAutoReverse(true);
+
                     ScaleTransition st = new ScaleTransition(Duration.millis(500), n);
-                    st.setByX(0.5f);
-                    st.setByY(0.5f);
+                    //st.setByX(0.5f);
+                    //st.setByY(0.5f);
+                    st.fromXProperty().bind(n.scaleXProperty());
+                    st.fromYProperty().bind(n.scaleYProperty());
+                    st.toXProperty().bind(n.scaleXProperty().multiply(1.5f));
+                    st.toYProperty().bind(n.scaleYProperty().multiply(1.5f));
+
                     st.setCycleCount(Animation.INDEFINITE);
                     st.setAutoReverse(true);
-                    st.setOnFinished(event -> {
-                        n.setScaleX(1.0);
-                        n.setScaleY(1.0);
-                    });
+
                     ParallelTransition pt = new ParallelTransition();
                     pt.getChildren().addAll(ft, st);
                     pt.play();
-                }else{
+                } else {
+                    // Code for when the state is false
                     n.setStyle("-fx-fill: transparent;");
                     n.setEffect(null);
-                    n.setScaleX(0.5);
-                    n.setScaleY(0.5);
+                    ScaleTransition st = new ScaleTransition(Duration.millis(500), n);
+                    st.setToX(1.0);
+                    st.setToY(1.0);
+                    FadeTransition ft = new FadeTransition(Duration.millis(500), n);
+                    ft.setToValue(1.0);
+                    ParallelTransition pt = new ParallelTransition();
+                    pt.getChildren().addAll(ft, st);
+                    pt.play();
                 }
+
             }
         }
     }

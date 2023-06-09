@@ -230,7 +230,18 @@ public class VueJoueurCourant extends VBox {
             labelDestination.setManaged(true);
             destinationsJoueurCourant.getChildren().clear();
             for(IDestination d : joueurCourant.getDestinations()){
-                destinationsJoueurCourant.getChildren().add(new Label(d.getVilles().toString()));
+                Label element = new Label(d.getVilles().toString());
+                destinationsJoueurCourant.getChildren().add(element);
+                element.setOnMouseEntered(event -> {
+                    System.out.println("montrer les villes de la destination");
+                    ((VueDuJeu) getScene().getRoot()).getVuePlateau().setFlash(d.getVilles(), true);
+                    ((VueDuJeu) getScene().getRoot()).getVuePlateau().setRouteSurbrillance(d.getVilles(), true);
+                });
+                element.setOnMouseExited(event -> {
+                    System.out.println("cacher les villes de la destination");
+                    ((VueDuJeu) getScene().getRoot()).getVuePlateau().setFlash(d.getVilles(), false);
+                    ((VueDuJeu) getScene().getRoot()).getVuePlateau().setRouteSurbrillance(d.getVilles(), false);
+                });
             }
         }
     }

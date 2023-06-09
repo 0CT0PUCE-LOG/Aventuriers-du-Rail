@@ -311,7 +311,7 @@ public class VueDuJeu extends BorderPane {
 
     EventHandler<? super MouseEvent> actionPasserParDefaut = (mouseEvent -> getJeu().passerAEteChoisi());
 
-    public Object getVuePlateau() {
+    public VuePlateau getVuePlateau() {
         return plateau;
     }
 }

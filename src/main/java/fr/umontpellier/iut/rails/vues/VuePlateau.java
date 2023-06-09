@@ -3,8 +3,7 @@ package fr.umontpellier.iut.rails.vues;
 import fr.umontpellier.iut.rails.IJoueur;
 import fr.umontpellier.iut.rails.IRoute;
 import fr.umontpellier.iut.rails.IVille;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
+import javafx.animation.*;
 import javafx.beans.binding.DoubleBinding;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -12,6 +11,8 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.Glow;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -26,7 +27,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -42,6 +42,11 @@ public class VuePlateau extends Pane {
 
     @FXML
     private ImageView mapMonde;
+
+    private static final Color GLOW_COLOR = Color.web("#ffaa00");
+    private static final double GLOW_RADIUS = 40.0;
+    private static final Duration GLOW_DURATION = Duration.seconds(1.5);
+    private static final int GLOW_CYCLE_COUNT = Animation.INDEFINITE;
 
     public VuePlateau() {
         try {
@@ -331,6 +336,71 @@ public class VuePlateau extends Pane {
         // Play the timeline to start the glow effect
         timeline.play();
     }
+
+    public void setFlash(List<String> villes, boolean state){
+        for(Node n : getChildren()){
+            if(villes.contains(n.getId())){
+                if(state){
+                    n.setStyle("-fx-fill: white; -fx-effect: dropshadow(three-pass-box, white, 10, 0, 0, 0);");
+                    //add a whit shadow all around the element
+                    FadeTransition ft = new FadeTransition(Duration.millis(500), n);
+                    ft.setFromValue(0.0);
+                    ft.setToValue(1.0);
+                    ft.setCycleCount(Animation.INDEFINITE);
+                    ft.setAutoReverse(true);
+                    ScaleTransition st = new ScaleTransition(Duration.millis(500), n);
+                    st.setByX(0.5f);
+                    st.setByY(0.5f);
+                    st.setCycleCount(Animation.INDEFINITE);
+                    st.setAutoReverse(true);
+                    st.setOnFinished(event -> {
+                        n.setScaleX(1.0);
+                        n.setScaleY(1.0);
+                    });
+                    ParallelTransition pt = new ParallelTransition();
+                    pt.getChildren().addAll(ft, st);
+                    pt.play();
+                }else{
+                    n.setStyle("-fx-fill: transparent;");
+                    n.setEffect(null);
+                    n.setScaleX(0.5);
+                    n.setScaleY(0.5);
+                }
+            }
+        }
+    }
+
+    public void setRouteSurbrillance(List<String> villes, boolean state){
+
+    }
+
+    private void playGlowAnimation(DropShadow glowEffect) {
+        // Create a timeline for the glow animation
+        Timeline timeline = new Timeline();
+
+        // Define the keyframes for the glow animation
+        KeyFrame startFrame = new KeyFrame(Duration.ZERO,
+                new KeyValue(glowEffect.radiusProperty(), 0),
+                new KeyValue(glowEffect.colorProperty(), GLOW_COLOR.deriveColor(1, 1, 1, 0))
+        );
+        KeyFrame endFrame = new KeyFrame(GLOW_DURATION,
+                new KeyValue(glowEffect.radiusProperty(), GLOW_RADIUS, Interpolator.EASE_BOTH),
+                new KeyValue(glowEffect.colorProperty(), GLOW_COLOR)
+        );
+
+        // Add the keyframes to the timeline
+        timeline.getKeyFrames().addAll(startFrame, endFrame);
+
+        // Set the animation to repeat indefinitely
+        timeline.setCycleCount(GLOW_CYCLE_COUNT);
+
+        // Play the timeline
+        timeline.play();
+    }
+
+
+
+
 
 
 

@@ -26,10 +26,13 @@ public class VueDestination extends AnimatedButton {
         setOnAction(actionEvent -> {((VueDuJeu) getScene().getRoot()).getJeu().uneDestinationAEteChoisie(destination);});
         setOnMouseEntered(event -> {
             System.out.println("montrer les villes de la destination");
-            //mettre en surbrillance les villes de la destination
-            for (int i = 0; i < destination.getVilles().size(); i++) {
-                //((VueDuJeu) getScene().getRoot()).getVuePlateau().getVueVille(destination.getVilles().get(i)).setStyle("-fx-background-color: #ff0000;");
-            }
+            ((VueDuJeu) getScene().getRoot()).getVuePlateau().setFlash(destination.getVilles(), true);
+            ((VueDuJeu) getScene().getRoot()).getVuePlateau().setRouteSurbrillance(destination.getVilles(), true);
+        });
+        setOnMouseExited(event -> {
+            System.out.println("cacher les villes de la destination");
+            ((VueDuJeu) getScene().getRoot()).getVuePlateau().setFlash(destination.getVilles(), false);
+            ((VueDuJeu) getScene().getRoot()).getVuePlateau().setRouteSurbrillance(destination.getVilles(), false);
         });
     }
 /*
@@ -46,6 +49,7 @@ public class VueDestination extends AnimatedButton {
 
     }
     */
+
 
     public IDestination getDestination() {
         return destination;

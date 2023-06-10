@@ -22,6 +22,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Screen;
 import javafx.util.Duration;
+import javafx.scene.control.Label;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -342,69 +343,28 @@ public class VuePlateau extends Pane {
         for(Node n : getChildren()){
             if(villes.contains(n.getId())){
                 if (state) {
-                    // Code for when the state is true
+                    n.setScaleX(1.5);
+                    n.setScaleY(1.5);
                     n.setStyle("-fx-fill: white; -fx-effect: dropshadow(three-pass-box, white, 5, 0, 0, 0);");
-                    ScaleTransition st = new ScaleTransition(Duration.millis(500), n);
-                    st.fromXProperty().bind(n.scaleXProperty());
-                    st.fromYProperty().bind(n.scaleYProperty());
-                    st.toXProperty().bind(n.scaleXProperty().multiply(1.5f));
-                    st.toYProperty().bind(n.scaleYProperty().multiply(1.5f));
-                    st.setAutoReverse(true);
-                    st.setCycleCount(Animation.INDEFINITE);
-                    st.setOnFinished(new EventHandler<ActionEvent>() {
-                        @Override
-                        public void handle(ActionEvent event) {
-                            n.setStyle("-fx-fill: white;");
-                        }
-                    });
-
-                    st.play();
-
-                    /*
-                    double originalScaleX = n.getScaleX();
-                    double originalScaleY = n.getScaleY();
-
                     FadeTransition ft = new FadeTransition(Duration.millis(500), n);
-                    ft.setFromValue(0.0);
-                    ft.setToValue(1.0);
+                    ft.setFromValue(1.0);
+                    ft.setToValue(0.0);
                     ft.setCycleCount(Animation.INDEFINITE);
                     ft.setAutoReverse(true);
-
-                    ScaleTransition st = new ScaleTransition(Duration.millis(500), n);
-                    st.fromXProperty().bind(n.scaleXProperty());
-                    st.fromYProperty().bind(n.scaleYProperty());
-                    st.toXProperty().bind(n.scaleXProperty().multiply(1.5f));
-                    st.toYProperty().bind(n.scaleYProperty().multiply(1.5f));
-                    st.setCycleCount(Animation.INDEFINITE);
-                    st.setAutoReverse(true);
-
-                    ParallelTransition pt = new ParallelTransition();
-                    pt.getChildren().addAll(ft, st);
+                    FadeTransition ft2 = new FadeTransition(Duration.millis(500), mapMonde);
+                    ft2.setFromValue(mapMonde.getOpacity());
+                    ft2.setToValue(0.6);
+                    ParallelTransition pt = new ParallelTransition(ft, ft2);
                     pt.play();
-
-                    // Set an event handler for when the animation ends
-                    pt.setOnFinished(event -> {
-                        // Restore the original scale values
-                        n.setScaleX(originalScaleX);
-                        n.setScaleY(originalScaleY);
-                    });
-
-                     */
                 } else {
-                    // Code for when the state is false
+                    n.setScaleX(1.0);
+                    n.setScaleY(1.0);
                     n.setStyle("-fx-fill: transparent;");
                     n.setEffect(null);
-                    /*
-                    ScaleTransition st = new ScaleTransition(Duration.millis(500), n);
-                    st.setToX(1.0);
-                    st.setToY(1.0);
-                    FadeTransition ft = new FadeTransition(Duration.millis(500), n);
-                    ft.setToValue(1.0);
-                    ParallelTransition pt = new ParallelTransition();
-                    pt.getChildren().addAll(ft, st);
-                    pt.play();
-
-                     */
+                    FadeTransition ft2 = new FadeTransition(Duration.millis(500), mapMonde);
+                    ft2.setToValue(1.0);
+                    ft2.setAutoReverse(true);
+                    ft2.play();
                 }
 
 

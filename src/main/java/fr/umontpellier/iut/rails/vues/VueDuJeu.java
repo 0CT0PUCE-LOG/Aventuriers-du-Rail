@@ -25,8 +25,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.*;
 import javafx.util.Duration;
 
+import java.io.File;
 import java.io.IOException;
 
 
@@ -105,6 +107,17 @@ public class VueDuJeu extends BorderPane {
             e.printStackTrace();
         }
         chargerTextures();
+
+        Media media = new Media(new File("src/main/resources/sound/soundtrack.wav").toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.setAutoPlay(true);
+        mediaPlayer.setVolume(0.5);
+        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        mediaPlayer.play();
+
+
+
+
         selecteurNombre.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 25, 0));
     }
 

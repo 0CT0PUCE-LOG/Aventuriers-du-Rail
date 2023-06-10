@@ -7,6 +7,7 @@ import javafx.animation.*;
 import javafx.beans.binding.DoubleBinding;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -343,6 +344,25 @@ public class VuePlateau extends Pane {
                 if (state) {
                     // Code for when the state is true
                     n.setStyle("-fx-fill: white; -fx-effect: dropshadow(three-pass-box, white, 5, 0, 0, 0);");
+                    ScaleTransition st = new ScaleTransition(Duration.millis(500), n);
+                    st.fromXProperty().bind(n.scaleXProperty());
+                    st.fromYProperty().bind(n.scaleYProperty());
+                    st.toXProperty().bind(n.scaleXProperty().multiply(1.5f));
+                    st.toYProperty().bind(n.scaleYProperty().multiply(1.5f));
+                    st.setAutoReverse(true);
+                    st.setCycleCount(Animation.INDEFINITE);
+                    st.setOnFinished(new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent event) {
+                            n.setStyle("-fx-fill: white;");
+                        }
+                    });
+
+                    st.play();
+
+                    /*
+                    double originalScaleX = n.getScaleX();
+                    double originalScaleY = n.getScaleY();
 
                     FadeTransition ft = new FadeTransition(Duration.millis(500), n);
                     ft.setFromValue(0.0);
@@ -351,23 +371,30 @@ public class VuePlateau extends Pane {
                     ft.setAutoReverse(true);
 
                     ScaleTransition st = new ScaleTransition(Duration.millis(500), n);
-                    //st.setByX(0.5f);
-                    //st.setByY(0.5f);
                     st.fromXProperty().bind(n.scaleXProperty());
                     st.fromYProperty().bind(n.scaleYProperty());
                     st.toXProperty().bind(n.scaleXProperty().multiply(1.5f));
                     st.toYProperty().bind(n.scaleYProperty().multiply(1.5f));
-
                     st.setCycleCount(Animation.INDEFINITE);
                     st.setAutoReverse(true);
 
                     ParallelTransition pt = new ParallelTransition();
                     pt.getChildren().addAll(ft, st);
                     pt.play();
+
+                    // Set an event handler for when the animation ends
+                    pt.setOnFinished(event -> {
+                        // Restore the original scale values
+                        n.setScaleX(originalScaleX);
+                        n.setScaleY(originalScaleY);
+                    });
+
+                     */
                 } else {
                     // Code for when the state is false
                     n.setStyle("-fx-fill: transparent;");
                     n.setEffect(null);
+                    /*
                     ScaleTransition st = new ScaleTransition(Duration.millis(500), n);
                     st.setToX(1.0);
                     st.setToY(1.0);
@@ -376,7 +403,10 @@ public class VuePlateau extends Pane {
                     ParallelTransition pt = new ParallelTransition();
                     pt.getChildren().addAll(ft, st);
                     pt.play();
+
+                     */
                 }
+
 
             }
         }

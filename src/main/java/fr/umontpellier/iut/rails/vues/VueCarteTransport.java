@@ -35,10 +35,12 @@ public class VueCarteTransport extends MovingButton {
             setStyle("-fx-background-color : transparent;" +
                     "-fx-border-width: 0px;");
             setOnMouseClicked(actionEvent -> {
+                //put element on top of the z axis
+                toFront();
                 ((VueDuJeu) getScene().getRoot()).getJeu().uneCarteTransportAEteChoisie(this.carteTransport);
             });
-            setOnMouseEntered(event -> {moveToLeft();});
-            setOnMouseExited(event -> {moveToRight();});
+            //setOnMouseEntered(event -> {moveToLeft();});
+            //setOnMouseExited(event -> {moveToRight();});
         } else if (nbCartes == 1) {
             image.setFitWidth(75);
             setOnAction(actionEvent -> {

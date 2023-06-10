@@ -80,6 +80,7 @@ public class VuePlateau extends Pane {
         bindRedimensionEtCentragePlateau();
         bindCaptureRoute();
         bindConstruirePorts();
+        toBack();
     }
 
     private void ajouterPorts() {
@@ -398,6 +399,10 @@ public class VuePlateau extends Pane {
 
         // Play the timeline
         timeline.play();
+    }
+
+    public void toBack(){
+        mapMonde.toBack();
     }
 
 

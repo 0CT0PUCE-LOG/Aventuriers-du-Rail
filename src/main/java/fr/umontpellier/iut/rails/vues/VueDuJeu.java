@@ -111,6 +111,7 @@ public class VueDuJeu extends BorderPane {
         Media media = new Media(new File("src/main/resources/sound/soundtrack.wav").toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.setAutoPlay(true);
+        //reactivate the music when it's finished
         mediaPlayer.setVolume(0.5);
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         mediaPlayer.play();
@@ -166,7 +167,9 @@ public class VueDuJeu extends BorderPane {
                     System.out.println("change");
                     if(change.wasRemoved()){
                         for(ICarteTransport carte : change.getRemoved()){
-                            trouveVueCarteTransportVisible(carte).toFront();
+                            trouveVueCarteTransportVisible(carte).setTranslateZ(1);
+                            //put plateau to Z -1
+                            plateau.setTranslateZ(0);
                             TranslateTransition translation = new TranslateTransition(Duration.seconds(1), trouveVueCarteTransportVisible(carte));
                             double destinationX = trouverScrollpaneVuejoueurCourant().localToScene(0, 0).getX() - trouveVueCarteTransportVisible(carte).localToScene(0, 0).getX() + trouverScrollpaneVuejoueurCourant().prefWidth(-1)/3;
                             double destinationY = trouverScrollpaneVuejoueurCourant().localToScene(0, 0).getY() - trouveVueCarteTransportVisible(carte).localToScene(0, 0).getY() + trouverScrollpaneVuejoueurCourant().prefHeight(-1)/3;

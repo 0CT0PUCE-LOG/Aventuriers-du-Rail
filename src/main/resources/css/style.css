@@ -87,6 +87,7 @@ ScrollPane{
     -fx-border-color: darkred;
     -fx-border-width: 4px;
     -fx-border-radius: 5px;
+    -fx-background-radius: 7px;
 }
 
 TextField{
@@ -100,6 +101,7 @@ Spinner{
     -fx-border-color: "darkred";
     -fx-border-width: 4px;
     -fx-border-radius: 5px;
+    -fx-background-radius: 7px;
 }
 
 #plateau{
@@ -117,7 +119,7 @@ Spinner{
     -fx-border-color: "darkred";
     -fx-border-width: 4px;
     -fx-border-radius: 5px;
-    -fx-background-radius: 5px;
+    -fx-background-radius: 7px;
     -fx-max-width: 350px;
     -fx-font-size: 1.3em;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
@@ -128,7 +130,7 @@ Spinner{
     -fx-border-color: "darkred";
     -fx-border-width: 4px;
     -fx-border-radius: 5px;
-    -fx-background-radius: 5px;
+    -fx-background-radius: 7px;
     -fx-max-width: 350px;
     -fx-font-size: 1.3em;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
@@ -140,7 +142,7 @@ Spinner{
     -fx-border-color: "darkred";
     -fx-border-width: 4px;
     -fx-border-radius: 5px;
-    -fx-background-radius: 5px;
+    -fx-background-radius: 7px;
     -fx-max-width: 350px;
     -fx-font-size: 1.3em;
 }
@@ -151,7 +153,7 @@ Spinner{
     -fx-border-color: "darkred";
     -fx-border-width: 4px;
     -fx-border-radius: 5px;
-    -fx-background-radius: 5px;
+    -fx-background-radius: 7px;
     -fx-max-width: 350px;
     -fx-font-size: 1.3em;
 }
@@ -160,7 +162,7 @@ Spinner{
     -fx-border-color: "darkred";
     -fx-border-width: 6px;
     -fx-border-radius: 5px;
-    -fx-background-radius: 5px;
+    -fx-background-radius: 7px;
     -fx-max-width: 350px;
     -fx-font-size: 1.3em;
     /*-fx-background-color: "darksand"; fais une erreur */
@@ -181,7 +183,7 @@ Spinner{
     -fx-border-color: "darkred";
     -fx-border-width: 4px;
     -fx-border-radius: 5px;
-    -fx-background-radius: 5px;
+    -fx-background-radius: 7px;
     -fx-max-width: 350px;
     -fx-font-size: 1.3em;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
@@ -193,7 +195,7 @@ Spinner{
     -fx-border-color: "darkred";
     -fx-border-width: 4px;
     -fx-border-radius: 5px;
-    -fx-background-radius: 5px;
+    -fx-background-radius: 7px;
     -fx-max-width: 350px;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
 }
@@ -216,7 +218,7 @@ FlowPane{
     -fx-border-color: "darkred";
     -fx-border-width: 4px;
     -fx-border-radius: 5px;
-    -fx-background-radius: 4px;
+    -fx-background-radius: 7px;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
 }
 
@@ -230,7 +232,7 @@ FlowPane{
     -fx-border-color: "transparent";
     -fx-border-width: 4px;
     -fx-border-radius: 5px;
-    -fx-background-radius: 5px;
+    -fx-background-radius: 7px;
     -fx-max-width: 350px;
     -fx-font-size: 0;
     -fx-text-fill: "transparent";
@@ -256,7 +258,7 @@ FlowPane{
     -fx-border-color: "transparent";
     -fx-border-width: 4px;
     -fx-border-radius: 5px;
-    -fx-background-radius: 5px;
+    -fx-background-radius: 7px;
     -fx-max-width: 350px;
     -fx-font-size: 1.3em;
 }
@@ -267,7 +269,7 @@ FlowPane{
     -fx-border-color: "transparent";
     -fx-border-width: 4px;
     -fx-border-radius: 5px;
-    -fx-background-radius: 5px;
+    -fx-background-radius: 7px;
     -fx-font-size: 1.3em;
     -fx-width: 100px;
 }
@@ -278,7 +280,7 @@ FlowPane{
     -fx-border-color: "transparent";
     -fx-border-width: 4px;
     -fx-border-radius: 5px;
-    -fx-background-radius: 5px;
+    -fx-background-radius: 7px;
     -fx-font-size: 1.3em;
     -fx-width: 30px;
 }
@@ -289,7 +291,7 @@ FlowPane{
     -fx-border-color: "transparent";
     -fx-border-width: 4px;
     -fx-border-radius: 5px;
-    -fx-background-radius: 5px;
+    -fx-background-radius: 7px;
     -fx-font-size: 1.3em;
     -fx-width: 30px;
 }
@@ -299,7 +301,7 @@ FlowPane{
     -fx-border-color: "transparent";
     -fx-border-width: 4px;
     -fx-border-radius: 5px;
-    -fx-background-radius: 5px;
+    -fx-background-radius: 7px;
     -fx-font-size: 1.3em;
     -fx-width: 30px;
 }
@@ -309,7 +311,7 @@ VueJoueur {
     -fx-border-width: 4px;
     -fx-border-radius: 5px;
     -fx-background-color: "beige";
-    -fx-background-radius: 5px;
+    -fx-background-radius: 7px;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
 }
 /*

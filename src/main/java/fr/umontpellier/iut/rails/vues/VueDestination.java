@@ -25,30 +25,19 @@ public class VueDestination extends AnimatedButton {
         setText(destination.getVilles().toString());
         setOnAction(actionEvent -> {((VueDuJeu) getScene().getRoot()).getJeu().uneDestinationAEteChoisie(destination);});
         setOnMouseEntered(event -> {
+            scaleUp();
             System.out.println("montrer les villes de la destination");
             ((VueDuJeu) getScene().getRoot()).getVuePlateau().setFlash(destination.getVilles(), true);
             ((VueDuJeu) getScene().getRoot()).getVuePlateau().setRouteSurbrillance(destination.getVilles(), true);
         });
         setOnMouseExited(event -> {
+            scaleDown();
             System.out.println("cacher les villes de la destination");
             ((VueDuJeu) getScene().getRoot()).getVuePlateau().setFlash(destination.getVilles(), false);
             ((VueDuJeu) getScene().getRoot()).getVuePlateau().setRouteSurbrillance(destination.getVilles(), false);
         });
     }
-/*
-    public String trouverVilleDestination(Destination destination){
-        String ville = "";
-        for (int i = 0; i < destination.getVilles().size(); i++) {
-            ville += destination.getVilles().get(i).getNom();
-            if (i != destination.getVilles().size() - 1) {
-                ville += " - ";
-            }
-        }
-        return ville;
 
-
-    }
-    */
 
 
     public IDestination getDestination() {

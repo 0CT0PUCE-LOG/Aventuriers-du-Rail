@@ -22,7 +22,7 @@ public class AnimatedButton extends Button {
         setOnMouseReleased(event -> showRealeased());
     }
 
-    private void scaleUp() {
+    protected void scaleUp() {
         ScaleTransition scaleTransition = new ScaleTransition(ANIMATION_DURATION, this);
         scaleTransition.setToX(SCALE_FACTOR);
         scaleTransition.setToY(SCALE_FACTOR);
@@ -30,7 +30,7 @@ public class AnimatedButton extends Button {
         scaleTransition.play();
     }
 
-    private void scaleDown() {
+    protected void scaleDown() {
         ScaleTransition scaleTransition = new ScaleTransition(ANIMATION_DURATION, this);
         scaleTransition.setToX(1.0);
         scaleTransition.setToY(1.0);

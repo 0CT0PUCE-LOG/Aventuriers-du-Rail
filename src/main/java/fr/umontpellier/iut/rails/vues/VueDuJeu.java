@@ -124,7 +124,7 @@ public class VueDuJeu extends BorderPane {
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.setAutoPlay(true);
         //reactivate the music when it's finished
-        mediaPlayer.setVolume(0.0);
+        mediaPlayer.setVolume(0.5);
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         mediaPlayer.play();
         passerBtn.setWrapText(true);

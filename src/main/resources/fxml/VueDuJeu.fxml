@@ -82,8 +82,8 @@
             </VBox>
             <VBox fx:id="bwRight" minHeight="-Infinity" prefHeight="150.0">
                 <VBox alignment="BASELINE_LEFT" spacing="20" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                    <HBox alignment="BASELINE_CENTER" maxWidth="70.0">
-                        <Spinner fx:id="selecteurNombre" maxHeight="70.0" />
+                    <HBox alignment="BASELINE_CENTER" maxWidth="200.0">
+                        <Spinner fx:id="selecteurNombre" maxHeight="100.0" />
                         <AnimatedButton fx:id="confirmerNombre" text="Confirmer" />
                     </HBox>
                     <HBox>

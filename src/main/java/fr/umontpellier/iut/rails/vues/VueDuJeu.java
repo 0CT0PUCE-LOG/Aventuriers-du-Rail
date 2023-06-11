@@ -9,6 +9,7 @@ import fr.umontpellier.iut.rails.mecanique.data.Destination;
 import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
 import javafx.animation.TranslateTransition;
+import javafx.animation.RotateTransition;
 import javafx.collections.ListChangeListener;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -25,6 +26,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Polygon;
 import javafx.scene.media.*;
 import javafx.util.Duration;
 
@@ -112,7 +116,7 @@ public class VueDuJeu extends BorderPane {
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.setAutoPlay(true);
         //reactivate the music when it's finished
-        mediaPlayer.setVolume(0.5);
+        mediaPlayer.setVolume(0);
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         mediaPlayer.play();
 
@@ -169,7 +173,43 @@ public class VueDuJeu extends BorderPane {
                         for(ICarteTransport carte : change.getRemoved()){
                             trouveVueCarteTransportVisible(carte).setTranslateZ(1);
                             //put plateau to Z -1
-                            plateau.setTranslateZ(0);
+                            //plateau.setTranslateZ(0);
+                            //create another card with the same image as the one that is removed
+                            ImageView image = new ImageView(carte.getImage());
+                            image.setFitWidth(plateau.getPrefWidth()/10);
+                            image.setFitHeight(plateau.getPrefHeight()/10);
+                            image.setTranslateX(trouveVueCarteTransportVisible(carte).getTranslateX());
+                            image.setTranslateY(trouveVueCarteTransportVisible(carte).getTranslateY());
+                            plateau.getChildren().add(image);
+                            /*
+                            //image.setTranslateZ(0);
+                            //rotate the card
+                            RotateTransition rotateTransition = new RotateTransition(Duration.seconds(1), image);
+                            rotateTransition.setFromAngle(0);
+                            rotateTransition.setToAngle(90);
+                            //add the new card to the pane
+
+                            //set the image visible
+                            image.setVisible(true);
+                            //create a transition to move the new card to the pioche
+                            TranslateTransition translation = new TranslateTransition(Duration.seconds(1), image);
+                            double destinationX = spritePiocheWagon.localToScene(0, 0).getX() - image.localToScene(0, 0).getX() + spritePiocheWagon.getPrefWidth()/2;
+                            double destinationY = spritePiocheWagon.localToScene(0, 0).getY() - image.localToScene(0, 0).getY() + spritePiocheWagon.getPrefHeight()/2;
+                            translation.setToX(destinationX);
+                            translation.setToY(destinationY);
+                            FadeTransition fade = new FadeTransition(Duration.seconds(1), image);
+                            fade.setFromValue(1.0);
+                            fade.setToValue(0.5);
+                            ParallelTransition parallelTransition = new ParallelTransition();
+                            parallelTransition.getChildren().addAll(translation, fade, rotateTransition);
+                            parallelTransition.play();
+                            System.out.println("parallel transition");
+                            parallelTransition.setOnFinished(actionEvent -> {
+                                plateau.getChildren().remove(image);
+                                chargerCartesTransportVisible();
+                                System.out.println("remove image");
+                            });
+                            /*
                             TranslateTransition translation = new TranslateTransition(Duration.seconds(1), trouveVueCarteTransportVisible(carte));
                             double destinationX = trouverScrollpaneVuejoueurCourant().localToScene(0, 0).getX() - trouveVueCarteTransportVisible(carte).localToScene(0, 0).getX() + trouverScrollpaneVuejoueurCourant().prefWidth(-1)/3;
                             double destinationY = trouverScrollpaneVuejoueurCourant().localToScene(0, 0).getY() - trouveVueCarteTransportVisible(carte).localToScene(0, 0).getY() + trouverScrollpaneVuejoueurCourant().prefHeight(-1)/3;
@@ -183,6 +223,8 @@ public class VueDuJeu extends BorderPane {
                                 chargerCartesTransportVisible();
                             });
                             parallelTransition.play();
+
+                             */
                         }
                     }
                     else{

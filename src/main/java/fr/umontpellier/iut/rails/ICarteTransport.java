@@ -1,6 +1,7 @@
 package fr.umontpellier.iut.rails;
 
 import fr.umontpellier.iut.rails.mecanique.data.Couleur;
+import javafx.scene.image.Image;
 
 import java.util.List;
 import java.util.Objects;
@@ -18,4 +19,5 @@ public interface ICarteTransport {
         return Stream.of(Couleur.values()).filter(c -> c != Couleur.GRIS).map(Objects::toString).toList();
     }
 
+    Image getImage();
 }

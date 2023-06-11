@@ -179,6 +179,7 @@ public class VueJoueurCourant extends VBox {
         for(ICarteTransport carte : joueurCourant.getCartesTransport()){
             carteTransportJoueurFlowPane.getChildren().add(new VueCarteTransport(carte, 1));
         }
+        chargerBgJoueur();
     }
 
     public void chargerCartePoseesJoueurCourant() {
@@ -196,6 +197,7 @@ public class VueJoueurCourant extends VBox {
             for (ICarteTransport carte : joueurCourant.cartesTransportPoseesProperty()) {
                 carteTransportPoseesJoueurFlowPane.getChildren().add(new VueCarteTransport(carte, 1));
             }
+            chargerBgJoueur();
         }
     }
 
@@ -208,12 +210,13 @@ public class VueJoueurCourant extends VBox {
         ornTop.setFitHeight(90);
         ornBot.setPreserveRatio(true);
         ornBot.setFitHeight(90);
-
-
     }
 
     public void chargerBgJoueur(){
         HBoxJoueurCourant.setStyle("-fx-border-color: " + VueDuJeu.getCouleurValue(joueurCourant.getCouleur()) + ";");
+        hoverScrollDestination.setStyle("-fx-border-color: " + VueDuJeu.getCouleurValue(joueurCourant.getCouleur()) + ";");
+        hoverScrollPose.setStyle("-fx-border-color: " + VueDuJeu.getCouleurValue(joueurCourant.getCouleur()) + ";");
+        hoverScroll.setStyle("-fx-border-color: " + VueDuJeu.getCouleurValue(joueurCourant.getCouleur()) + ";");
     }
 
     public void chargerDestinationJoueur(){
@@ -233,16 +236,15 @@ public class VueJoueurCourant extends VBox {
                 Label element = new Label(d.getVilles().toString());
                 destinationsJoueurCourant.getChildren().add(element);
                 element.setOnMouseEntered(event -> {
-                    System.out.println("montrer les villes de la destination");
                     ((VueDuJeu) getScene().getRoot()).getVuePlateau().setFlash(d.getVilles(), true);
                     ((VueDuJeu) getScene().getRoot()).getVuePlateau().setRouteSurbrillance(d.getVilles(), true);
                 });
                 element.setOnMouseExited(event -> {
-                    System.out.println("cacher les villes de la destination");
                     ((VueDuJeu) getScene().getRoot()).getVuePlateau().setFlash(d.getVilles(), false);
                     ((VueDuJeu) getScene().getRoot()).getVuePlateau().setRouteSurbrillance(d.getVilles(), false);
                 });
             }
+            chargerBgJoueur();
         }
     }
 

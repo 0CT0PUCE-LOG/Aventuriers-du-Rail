@@ -1,6 +1,7 @@
 package fr.umontpellier.iut.rails.mecanique.data;
 
 import fr.umontpellier.iut.rails.ICarteTransport;
+import javafx.scene.image.Image;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -56,6 +57,11 @@ public final class CarteTransport implements Comparable<CarteTransport>, ICarteT
 
     public String getStringCouleur() {
         return couleur.toString();
+    }
+
+    @Override
+    public Image getImage() {
+        return new Image("file:src/main/resources/images/cartes/" + getNom() + ".png");
     }
 
     public boolean estDouble() {
@@ -219,5 +225,11 @@ public final class CarteTransport implements Comparable<CarteTransport>, ICarteT
             }
             return Couleur.GRIS;
         }
+/*
+        public Image getImage(TypeCarteTransport type, Couleur couleur) {
+            return get(type, couleur).get(0).getImage();
+        }
+
+ */
     }
 }

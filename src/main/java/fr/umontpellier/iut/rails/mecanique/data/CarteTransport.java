@@ -225,11 +225,10 @@ public final class CarteTransport implements Comparable<CarteTransport>, ICarteT
             }
             return Couleur.GRIS;
         }
-/*
+
         public Image getImage(TypeCarteTransport type, Couleur couleur) {
             return get(type, couleur).get(0).getImage();
         }
 
- */
     }
 }

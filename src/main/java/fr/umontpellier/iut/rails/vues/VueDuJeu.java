@@ -6,10 +6,7 @@ import fr.umontpellier.iut.rails.IJeu;
 import fr.umontpellier.iut.rails.IJoueur;
 import fr.umontpellier.iut.rails.mecanique.data.Couleur;
 import fr.umontpellier.iut.rails.mecanique.data.Destination;
-import javafx.animation.FadeTransition;
-import javafx.animation.ParallelTransition;
-import javafx.animation.TranslateTransition;
-import javafx.animation.RotateTransition;
+import javafx.animation.*;
 import javafx.collections.ListChangeListener;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -248,16 +245,22 @@ public class VueDuJeu extends BorderPane {
                             });
                             FadeTransition fadeTransition = new FadeTransition(Duration.millis(2000), image);
                             fadeTransition.setFromValue(1.0);
-                            fadeTransition.setToValue(0.3);
+                            fadeTransition.setToValue(0.4);
                             RotateTransition rotateTransition = new RotateTransition(Duration.millis(2000), image);
                             rotateTransition.setAxis(Rotate.Z_AXIS);
                             rotateTransition.setFromAngle(0);
                             rotateTransition.setToAngle(90);
+                            ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(2000), image);
+                            scaleTransition.setFromX(1);
+                            scaleTransition.setFromY(1);
+                            scaleTransition.setToX(0.7);
+                            scaleTransition.setToY(0.7);
                             ParallelTransition parallelTransition = new ParallelTransition();
                             parallelTransition.getChildren().addAll(
                                     translateTransition,
                                     fadeTransition,
-                                    rotateTransition
+                                    rotateTransition,
+                                    scaleTransition
                             );
 
                             rotateTransitionC.setOnFinished(actionEvent -> {
@@ -286,55 +289,6 @@ public class VueDuJeu extends BorderPane {
                                 rotateTransitionI.play();
                             });
                             rotateTransitionC.play();
-
-
-
-
-
-
-
-
-                            /*
-                            TranslateTransition translation2 = new TranslateTransition(Duration.seconds(1), trouveVueCarteTransportVisible(carte));
-                            double destinationX2 = vueAutreJoueur.localToScene(0, 0).getX() - trouveVueCarteTransportVisible(carte).localToScene(0, 0).getX() + vueAutreJoueur.getPrefWidth()/2;
-                            double destinationY2 = vueAutreJoueur.localToScene(0, 0).getY() - trouveVueCarteTransportVisible(carte).localToScene(0, 0).getY() + vueAutreJoueur.getPrefHeight()/2;
-                            translation2.setToX(destinationX2);
-                            translation2.setToY(destinationY2);
-                            translation2.setOnFinished(event1 -> {
-                                TranslateTransition translationB = new TranslateTransition(Duration.seconds(1), trouveVueCarteTransportVisible(carte));
-                                double destinationXB = instructionLabel.localToScene(0, 0).getX() - trouveVueCarteTransportVisible(carte).localToScene(0, 0).getX() + instructionLabel.getPrefWidth()/2;
-                                double destinationYB = instructionLabel.localToScene(0, 0).getY() - trouveVueCarteTransportVisible(carte).localToScene(0, 0).getY() + instructionLabel.getPrefHeight()/2;
-                                translationB.setToX(destinationXB);
-                                translationB.setToY(destinationYB);
-                                translationB.setOnFinished(event2 -> {
-                                    TranslateTransition translationC = new TranslateTransition(Duration.seconds(1), trouveVueCarteTransportVisible(carte));
-                                    double destinationXC = spritePiocheWagon.localToScene(0, 0).getX() - trouveVueCarteTransportVisible(carte).localToScene(0, 0).getX() + spritePiocheWagon.getPrefWidth()/2;
-                                    double destinationYC = spritePiocheWagon.localToScene(0, 0).getY() - trouveVueCarteTransportVisible(carte).localToScene(0, 0).getY() + spritePiocheWagon.getPrefHeight()/2;
-                                    translationC.setToX(destinationXC);
-                                    translationC.setToY(destinationYC);
-                                    translationC.setOnFinished(event3 -> {
-                                        plateau.getChildren().remove(trouveVueCarteTransportVisible(carte));
-                                        chargerCartesTransportVisible();
-                                    });
-                                    translationC.play();
-                                });
-                            });
-                            translation2.play();
-
-
-                            TranslateTransition translation = new TranslateTransition(Duration.seconds(1), trouveVueCarteTransportVisible(carte));
-                            double destinationX = trouverScrollpaneVuejoueurCourant().localToScene(0, 0).getX() - trouveVueCarteTransportVisible(carte).localToScene(0, 0).getX() + trouverScrollpaneVuejoueurCourant().prefWidth(-1)/3;
-                            double destinationY = trouverScrollpaneVuejoueurCourant().localToScene(0, 0).getY() - trouveVueCarteTransportVisible(carte).localToScene(0, 0).getY() + trouverScrollpaneVuejoueurCourant().prefHeight(-1)/3;
-                            translation.setToX(destinationX);
-                            translation.setToY(destinationY);
-                            translation.setOnFinished(event2 -> {
-
-                                chargerCartesTransportVisible();
-                            });
-                            translation.play();
-
-                             */
-                            //chargerCartesTransportVisible();
                         }
                     }
                     else{

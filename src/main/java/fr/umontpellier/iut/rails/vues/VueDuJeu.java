@@ -21,6 +21,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
@@ -235,8 +236,10 @@ public class VueDuJeu extends BorderPane {
                             //set the origin of the translation to the coordinates of the card
                             translateTransition.setFromX(trouveVueCarteTransportVisible(carte).localToScene(0, 0).getX());
                             translateTransition.setFromY(trouveVueCarteTransportVisible(carte).localToScene(0, 0).getY());
-                            double destinationX = trouverScrollpaneVuejoueurCourant().localToScene(0, 0).getX() - trouveVueCarteTransportVisible(carte).localToScene(0, 0).getX() + trouverScrollpaneVuejoueurCourant().prefWidth(-1)/3;
-                            double destinationY = trouverScrollpaneVuejoueurCourant().localToScene(0, 0).getY() - trouveVueCarteTransportVisible(carte).localToScene(0, 0).getY() + trouverScrollpaneVuejoueurCourant().prefHeight(-1)/3;
+                            //double destinationX = trouverScrollpaneVuejoueurCourant().localToScene(0, 0).getX() - trouveVueCarteTransportVisible(carte).localToScene(0, 0).getX() + trouverScrollpaneVuejoueurCourant().prefWidth(-1)/3;
+                            //double destinationY = trouverScrollpaneVuejoueurCourant().localToScene(0, 0).getY() - trouveVueCarteTransportVisible(carte).localToScene(0, 0).getY() + trouverScrollpaneVuejoueurCourant().prefHeight(-1)/3;
+                            double destinationX = trouverScrollpaneVuejoueurCourant().localToScene(0, 0).getX() + trouverScrollpaneVuejoueurCourant().prefWidth(-1)/2;
+                            double destinationY = trouverScrollpaneVuejoueurCourant().localToScene(0, 0).getY() + trouverScrollpaneVuejoueurCourant().prefHeight(-1)/2;
                             translateTransition.setToX(destinationX);
                             translateTransition.setToY(destinationY);
                             translateTransition.setOnFinished(actionEvent -> {
@@ -247,6 +250,7 @@ public class VueDuJeu extends BorderPane {
                             fadeTransition.setFromValue(1.0);
                             fadeTransition.setToValue(0.3);
                             RotateTransition rotateTransition = new RotateTransition(Duration.millis(2000), image);
+                            rotateTransition.setAxis(Rotate.Z_AXIS);
                             rotateTransition.setFromAngle(0);
                             rotateTransition.setToAngle(90);
                             ParallelTransition parallelTransition = new ParallelTransition();
@@ -272,7 +276,12 @@ public class VueDuJeu extends BorderPane {
                                 image.setTranslateX(trouveVueCarteTransportVisible(carte).localToScene(0, 0).getX() - carte.getImage().getWidth()/2 - 45);
                                 image.setTranslateY(trouveVueCarteTransportVisible(carte).localToScene(0, 0).getY() - carte.getImage().getHeight()/2 - 30);
                                 rotateTransitionI.setOnFinished(actionEvent1 -> {
+                                    trouverScrollpaneVuejoueurCourant().fireEvent(new MouseEvent(MouseEvent.MOUSE_ENTERED, 0, 0, 0, 0, MouseButton.PRIMARY, 0, false, false, false, false, true, false, false, false, false, false, null));
+                                    parallelTransition.setOnFinished(actionEvent2 -> {
+                                        trouverScrollpaneVuejoueurCourant().fireEvent(new MouseEvent(MouseEvent.MOUSE_EXITED, 0, 0, 0, 0, MouseButton.PRIMARY, 0, false, false, false, false, false, false, false, false, false, false, null));
+                                    });
                                     parallelTransition.play();
+
                                 });
                                 rotateTransitionI.play();
                             });
@@ -411,7 +420,10 @@ public class VueDuJeu extends BorderPane {
     public Node trouverScrollpaneVuejoueurCourant(){
         for(Node n : vueJoueurCourant.getChildren()){
             if(n instanceof ScrollPane){
-                return (ScrollPane)n;
+                //check the fx:id of the ScrollPane
+                if(((ScrollPane)n).getId().equals("hoverScroll")){
+                    return n;
+                }
             }
         }
         return null;

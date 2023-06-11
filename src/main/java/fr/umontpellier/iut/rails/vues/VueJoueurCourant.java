@@ -236,8 +236,6 @@ public class VueJoueurCourant extends VBox {
         scoreLabel.setStyle("-fx-font-size: 1em;");
         nbBateau.setStyle("-fx-font-size: 1em;");
         nbWagon.setStyle("-fx-font-size: 1em;");
-
-
     }
 
     public void chargerDestinationJoueur() {

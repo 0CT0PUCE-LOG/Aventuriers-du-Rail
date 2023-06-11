@@ -120,9 +120,6 @@ public class VueDuJeu extends BorderPane {
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         mediaPlayer.play();
 
-
-
-
         selecteurNombre.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 25, 0));
     }
 

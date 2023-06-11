@@ -177,7 +177,10 @@ public class VueJoueurCourant extends VBox {
     public void chargerCarteJoueurCourant(){
         carteTransportJoueurFlowPane.getChildren().clear();
         for(ICarteTransport carte : joueurCourant.getCartesTransport()){
-            carteTransportJoueurFlowPane.getChildren().add(new VueCarteTransport(carte, 1));
+            VueCarteTransport vueCarteTransport = new VueCarteTransport(carte, 1);
+            //set style de la carte avec une bordure et un arrièreplan transparent
+            vueCarteTransport.setStyle("-fx-border-color: transparent; -fx-background-color: transparent;");
+            carteTransportJoueurFlowPane.getChildren().add(vueCarteTransport);
         }
         chargerBgJoueur();
     }

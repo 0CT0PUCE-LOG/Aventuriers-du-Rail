@@ -240,12 +240,19 @@ public class VueDuJeu extends BorderPane {
                             translateTransition.setToX(destinationX);
                             translateTransition.setToY(destinationY);
                             translateTransition.setOnFinished(actionEvent -> {
-                                vueDuJeu.getChildren().remove(image);
                                 chargerCartesTransportVisible();
+                                System.out.println("finished");
+                                FadeTransition fadeTransition2 = new FadeTransition(Duration.millis(150), image);
+                                fadeTransition2.setFromValue(0.8);
+                                fadeTransition2.setToValue(0);
+                                fadeTransition2.setOnFinished(actionEvent1 -> {
+                                    vueDuJeu.getChildren().remove(image);
+                                });
+                                fadeTransition2.play();
                             });
                             FadeTransition fadeTransition = new FadeTransition(Duration.millis(2000), image);
                             fadeTransition.setFromValue(1.0);
-                            fadeTransition.setToValue(0.4);
+                            fadeTransition.setToValue(0.8);
                             RotateTransition rotateTransition = new RotateTransition(Duration.millis(2000), image);
                             rotateTransition.setAxis(Rotate.Z_AXIS);
                             rotateTransition.setFromAngle(0);

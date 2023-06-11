@@ -198,7 +198,6 @@ public class VueDuJeu extends BorderPane {
             @Override
             public void onChanged(Change<? extends ICarteTransport> change) {
                 while(change.next()){
-                    System.out.println("change");
                     if(change.wasRemoved()){
                         for(ICarteTransport carte : change.getRemoved()){
                             //trouveVueCarteTransportVisible(carte).setTranslateZ(1);
@@ -241,7 +240,6 @@ public class VueDuJeu extends BorderPane {
                             translateTransition.setToY(destinationY);
                             translateTransition.setOnFinished(actionEvent -> {
                                 chargerCartesTransportVisible();
-                                System.out.println("finished");
                                 FadeTransition fadeTransition2 = new FadeTransition(Duration.millis(150), image);
                                 fadeTransition2.setFromValue(0.8);
                                 fadeTransition2.setToValue(0);

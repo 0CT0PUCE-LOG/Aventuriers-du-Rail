@@ -65,7 +65,7 @@
                     <AnimatedButton fx:id="spritePiocheWagon" />
                     <AnimatedButton fx:id="spritePiocheBateau" />
                 </HBox>
-                <FlowPane fx:id="cartesTransportVisible" alignment="CENTER_RIGHT" maxWidth="50" vgap="-50">
+                <FlowPane fx:id="cartesTransportVisible" alignment="CENTER_RIGHT" columnHalignment="CENTER" maxWidth="50" vgap="-50.0">
                     <padding>
                         <Insets top="30" />
                     </padding>

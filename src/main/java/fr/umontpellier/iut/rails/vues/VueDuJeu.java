@@ -119,6 +119,7 @@ public class VueDuJeu extends BorderPane {
         mediaPlayer.setVolume(0);
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         mediaPlayer.play();
+        passerBtn.setWrapText(true);
 
         selecteurNombre.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 25, 0));
     }
@@ -172,12 +173,15 @@ public class VueDuJeu extends BorderPane {
                             //put plateau to Z -1
                             //plateau.setTranslateZ(0);
                             //create another card with the same image as the one that is removed
+                            /*
                             ImageView image = new ImageView(carte.getImage());
                             image.setFitWidth(plateau.getPrefWidth()/10);
                             image.setFitHeight(plateau.getPrefHeight()/10);
                             image.setTranslateX(trouveVueCarteTransportVisible(carte).getTranslateX());
                             image.setTranslateY(trouveVueCarteTransportVisible(carte).getTranslateY());
                             plateau.getChildren().add(image);
+
+                             */
                             /*
                             //image.setTranslateZ(0);
                             //rotate the card
@@ -206,22 +210,45 @@ public class VueDuJeu extends BorderPane {
                                 chargerCartesTransportVisible();
                                 System.out.println("remove image");
                             });
-                            /*
+
+                             */
+                            TranslateTransition translation2 = new TranslateTransition(Duration.seconds(1), trouveVueCarteTransportVisible(carte));
+                            double destinationX2 = vueAutreJoueur.localToScene(0, 0).getX() - trouveVueCarteTransportVisible(carte).localToScene(0, 0).getX() + vueAutreJoueur.getPrefWidth()/2;
+                            double destinationY2 = vueAutreJoueur.localToScene(0, 0).getY() - trouveVueCarteTransportVisible(carte).localToScene(0, 0).getY() + vueAutreJoueur.getPrefHeight()/2;
+                            translation2.setToX(destinationX2);
+                            translation2.setToY(destinationY2);
+                            translation2.setOnFinished(event1 -> {
+                                TranslateTransition translationB = new TranslateTransition(Duration.seconds(1), trouveVueCarteTransportVisible(carte));
+                                double destinationXB = instructionLabel.localToScene(0, 0).getX() - trouveVueCarteTransportVisible(carte).localToScene(0, 0).getX() + instructionLabel.getPrefWidth()/2;
+                                double destinationYB = instructionLabel.localToScene(0, 0).getY() - trouveVueCarteTransportVisible(carte).localToScene(0, 0).getY() + instructionLabel.getPrefHeight()/2;
+                                translationB.setToX(destinationXB);
+                                translationB.setToY(destinationYB);
+                                translationB.setOnFinished(event2 -> {
+                                    TranslateTransition translationC = new TranslateTransition(Duration.seconds(1), trouveVueCarteTransportVisible(carte));
+                                    double destinationXC = spritePiocheWagon.localToScene(0, 0).getX() - trouveVueCarteTransportVisible(carte).localToScene(0, 0).getX() + spritePiocheWagon.getPrefWidth()/2;
+                                    double destinationYC = spritePiocheWagon.localToScene(0, 0).getY() - trouveVueCarteTransportVisible(carte).localToScene(0, 0).getY() + spritePiocheWagon.getPrefHeight()/2;
+                                    translationC.setToX(destinationXC);
+                                    translationC.setToY(destinationYC);
+                                    translationC.setOnFinished(event3 -> {
+                                        plateau.getChildren().remove(trouveVueCarteTransportVisible(carte));
+                                        chargerCartesTransportVisible();
+                                    });
+                                    translationC.play();
+                                });
+                            });
+                            translation2.play();
+
+
                             TranslateTransition translation = new TranslateTransition(Duration.seconds(1), trouveVueCarteTransportVisible(carte));
                             double destinationX = trouverScrollpaneVuejoueurCourant().localToScene(0, 0).getX() - trouveVueCarteTransportVisible(carte).localToScene(0, 0).getX() + trouverScrollpaneVuejoueurCourant().prefWidth(-1)/3;
                             double destinationY = trouverScrollpaneVuejoueurCourant().localToScene(0, 0).getY() - trouveVueCarteTransportVisible(carte).localToScene(0, 0).getY() + trouverScrollpaneVuejoueurCourant().prefHeight(-1)/3;
                             translation.setToX(destinationX);
                             translation.setToY(destinationY);
-                            FadeTransition fade = new FadeTransition(Duration.seconds(1), trouveVueCarteTransportVisible(carte));
-                            fade.setFromValue(1.0);
-                            fade.setToValue(0.2);
-                            ParallelTransition parallelTransition = new ParallelTransition(trouveVueCarteTransportVisible(carte), translation, fade);
-                            parallelTransition.setOnFinished(event -> {
+                            translation.setOnFinished(event2 -> {
+
                                 chargerCartesTransportVisible();
                             });
-                            parallelTransition.play();
-
-                             */
+                            translation.play();
                         }
                     }
                     else{

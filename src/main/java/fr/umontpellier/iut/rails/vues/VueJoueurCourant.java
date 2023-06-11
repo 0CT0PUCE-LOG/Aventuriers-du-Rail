@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
@@ -72,6 +73,15 @@ public class VueJoueurCourant extends VBox {
 
     @FXML
     private VBox destinationsJoueurCourant;
+
+    @FXML
+    private Label scoreLabel;
+
+    @FXML
+    private Label nbBateau;
+
+    @FXML
+    private Label nbWagon;
 
     public VueJoueurCourant() {
         try {
@@ -178,7 +188,6 @@ public class VueJoueurCourant extends VBox {
         carteTransportJoueurFlowPane.getChildren().clear();
         for(ICarteTransport carte : joueurCourant.getCartesTransport()){
             VueCarteTransport vueCarteTransport = new VueCarteTransport(carte, 1);
-            //set style de la carte avec une bordure et un arrièreplan transparent
             vueCarteTransport.setStyle("-fx-border-color: transparent; -fx-background-color: transparent;");
             carteTransportJoueurFlowPane.getChildren().add(vueCarteTransport);
         }
@@ -207,12 +216,12 @@ public class VueJoueurCourant extends VBox {
     public void chargerSpriteJoueur(){
         ImageView image = new ImageView("images/cartesWagons/avatar-" + joueurCourant.getCouleur() + ".png");
         image.setPreserveRatio(true);
-        image.setFitHeight(150);
+        image.setFitHeight(120);
         spriteJoueur.setGraphic(image);
         ornTop.setPreserveRatio(true);
-        ornTop.setFitHeight(90);
+        ornTop.setFitHeight(70);
         ornBot.setPreserveRatio(true);
-        ornBot.setFitHeight(90);
+        ornBot.setFitHeight(70);
     }
 
     public void chargerBgJoueur(){
@@ -220,23 +229,35 @@ public class VueJoueurCourant extends VBox {
         hoverScrollDestination.setStyle("-fx-border-color: " + VueDuJeu.getCouleurValue(joueurCourant.getCouleur()) + ";");
         hoverScrollPose.setStyle("-fx-border-color: " + VueDuJeu.getCouleurValue(joueurCourant.getCouleur()) + ";");
         hoverScroll.setStyle("-fx-border-color: " + VueDuJeu.getCouleurValue(joueurCourant.getCouleur()) + ";");
+        nomJoueur.setStyle("-fx-font-size: 1em;");
+        scoreJoueur.setStyle("-fx-font-size: 1em;");
+        nbPionsBateauJoueur.setStyle("-fx-font-size: 1em;");
+        nbPionsWagonJoueur.setStyle("-fx-font-size: 1em;");
+        scoreLabel.setStyle("-fx-font-size: 1em;");
+        nbBateau.setStyle("-fx-font-size: 1em;");
+        nbWagon.setStyle("-fx-font-size: 1em;");
+
+
     }
 
-    public void chargerDestinationJoueur(){
-        if(joueurCourant.getDestinations().isEmpty()){
+    public void chargerDestinationJoueur() {
+        if (joueurCourant.getDestinations().isEmpty()) {
             hoverScrollDestination.setManaged(false);
             hoverScrollDestination.setVisible(false);
             labelDestination.setManaged(false);
             labelDestination.setVisible(false);
-        }
-        else{
+        } else {
             hoverScrollDestination.setVisible(true);
             hoverScrollDestination.setManaged(true);
             labelDestination.setVisible(true);
             labelDestination.setManaged(true);
             destinationsJoueurCourant.getChildren().clear();
-            for(IDestination d : joueurCourant.getDestinations()){
+            for (IDestination d : joueurCourant.getDestinations()) {
                 Label element = new Label(d.getVilles().toString());
+
+                Tooltip tooltip = new Tooltip(d.getVilles().toString());
+                element.setTooltip(tooltip);
+
                 destinationsJoueurCourant.getChildren().add(element);
                 element.setOnMouseEntered(event -> {
                     ((VueDuJeu) getScene().getRoot()).getVuePlateau().setFlash(d.getVilles(), true);

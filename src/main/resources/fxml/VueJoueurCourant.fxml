@@ -4,28 +4,32 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<fx:root fx:id="VueJoueurCourant" alignment="TOP_CENTER" prefWidth="400" type="VBox" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="VueJoueurCourant" alignment="TOP_CENTER" prefWidth="700.0" type="VBox" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <HBox fx:id="HBoxJoueurCourant" alignment="CENTER" spacing="40">
             <VBox alignment="CENTER">
-                <Label fx:id="nomJoueur" text="nomJoueur" />
+                <Label fx:id="nomJoueur" text="nomJoueur">
+               <font>
+                  <Font size="0.5" />
+               </font></Label>
                 <HBox>
-                    <Label text="Score : " />
+                    <Label fx:id="scoreLabel" text="Score : " />
                     <Label fx:id="scoreJoueur" />
                 </HBox>
                 <HBox>
-                    <Label text="Pions Bateau : " />
+                    <Label fx:id="nbBateau" text="Pions Bateau : " />
                     <Label fx:id="nbPionsBateauJoueur" />
                 </HBox>
                 <HBox>
-                    <Label text="Pions Wagon : " />
+                    <Label fx:id="nbWagon" text="Pions Wagon : " />
                     <Label fx:id="nbPionsWagonJoueur" />
                 </HBox>
             </VBox>
             <VBox alignment="TOP_CENTER">
                 <StackPane>
-                    <VBox maxHeight="-Infinity" prefHeight="180.0">
+                    <VBox maxHeight="-Infinity" prefHeight="140.0">
                         <ImageView fx:id="ornTop">
                      <image>
                         <Image url="@../images/ornament/ornTop.png" />
@@ -33,7 +37,7 @@
                   </ImageView>
                     </VBox>
                     <Label fx:id="spriteJoueur" maxHeight="0.0" maxWidth="0.0" />
-               <VBox alignment="BOTTOM_CENTER" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" prefHeight="180.0">
+               <VBox alignment="BOTTOM_CENTER" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" prefHeight="140.0">
                   <children>
                      <ImageView fx:id="ornBot">
                         <image>

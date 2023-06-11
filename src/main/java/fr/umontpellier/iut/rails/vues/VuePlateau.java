@@ -343,29 +343,30 @@ public class VuePlateau extends Pane {
     public void setFlash(List<String> villes, boolean state){
         for(Node n : getChildren()){
             if(villes.contains(n.getId())){
+                FadeTransition ft = new FadeTransition(Duration.millis(500), n);
+                ft.setFromValue(1.0);
+                ft.setToValue(0.0);
+                ft.setCycleCount(Animation.INDEFINITE);
+                ft.setAutoReverse(true);
+                FadeTransition ft2 = new FadeTransition(Duration.millis(500), mapMonde);
+                ft2.setFromValue(mapMonde.getOpacity());
+                ft2.setToValue(0.6);
+                ParallelTransition pt = new ParallelTransition(ft, ft2);
                 if (state) {
                     n.setScaleX(1.5);
                     n.setScaleY(1.5);
                     n.setStyle("-fx-fill: white; -fx-effect: dropshadow(three-pass-box, white, 5, 0, 0, 0);");
-                    FadeTransition ft = new FadeTransition(Duration.millis(500), n);
-                    ft.setFromValue(1.0);
-                    ft.setToValue(0.0);
-                    ft.setCycleCount(Animation.INDEFINITE);
-                    ft.setAutoReverse(true);
-                    FadeTransition ft2 = new FadeTransition(Duration.millis(500), mapMonde);
-                    ft2.setFromValue(mapMonde.getOpacity());
-                    ft2.setToValue(0.6);
-                    ParallelTransition pt = new ParallelTransition(ft, ft2);
                     pt.play();
                 } else {
+                    pt.stop();
                     n.setScaleX(1.0);
                     n.setScaleY(1.0);
                     n.setStyle("-fx-fill: transparent;");
                     n.setEffect(null);
-                    FadeTransition ft2 = new FadeTransition(Duration.millis(500), mapMonde);
-                    ft2.setToValue(1.0);
-                    ft2.setAutoReverse(true);
-                    ft2.play();
+                    FadeTransition ft3 = new FadeTransition(Duration.millis(500), mapMonde);
+                    ft3.setToValue(1.0);
+                    ft3.setAutoReverse(true);
+                    ft3.play();
                 }
 
 

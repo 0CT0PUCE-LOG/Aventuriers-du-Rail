@@ -2,10 +2,12 @@ package fr.umontpellier.iut.rails.vues;
 
 import fr.umontpellier.iut.rails.IDestination;
 import fr.umontpellier.iut.rails.mecanique.data.Destination;
+import fr.umontpellier.iut.rails.vues.AnimatedButton;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
@@ -23,13 +25,21 @@ public class VueDestination extends AnimatedButton {
     public VueDestination(IDestination destination) {
         this.destination = destination;
         setText(destination.getVilles().toString());
-        setOnAction(actionEvent -> {((VueDuJeu) getScene().getRoot()).getJeu().uneDestinationAEteChoisie(destination);});
+
+        Tooltip tooltip = new Tooltip(destination.getVilles().toString());
+        setTooltip(tooltip);
+
+        setOnAction(actionEvent -> {
+            ((VueDuJeu) getScene().getRoot()).getJeu().uneDestinationAEteChoisie(destination);
+        });
+
         setOnMouseEntered(event -> {
             scaleUp();
             System.out.println("montrer les villes de la destination");
             ((VueDuJeu) getScene().getRoot()).getVuePlateau().setFlash(destination.getVilles(), true);
             ((VueDuJeu) getScene().getRoot()).getVuePlateau().setRouteSurbrillance(destination.getVilles(), true);
         });
+
         setOnMouseExited(event -> {
             scaleDown();
             System.out.println("cacher les villes de la destination");
@@ -38,10 +48,7 @@ public class VueDestination extends AnimatedButton {
         });
     }
 
-
-
     public IDestination getDestination() {
         return destination;
     }
-
 }

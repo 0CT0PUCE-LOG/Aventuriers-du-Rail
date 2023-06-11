@@ -229,7 +229,7 @@ public class VueJoueurCourant extends VBox {
         hoverScrollDestination.setStyle("-fx-border-color: " + VueDuJeu.getCouleurValue(joueurCourant.getCouleur()) + ";");
         hoverScrollPose.setStyle("-fx-border-color: " + VueDuJeu.getCouleurValue(joueurCourant.getCouleur()) + ";");
         hoverScroll.setStyle("-fx-border-color: " + VueDuJeu.getCouleurValue(joueurCourant.getCouleur()) + ";");
-        nomJoueur.setStyle("-fx-font-size: 1em;");
+        nomJoueur.setStyle("-fx-font-size: 1.1em;");
         scoreJoueur.setStyle("-fx-font-size: 1em;");
         nbPionsBateauJoueur.setStyle("-fx-font-size: 1em;");
         nbPionsWagonJoueur.setStyle("-fx-font-size: 1em;");

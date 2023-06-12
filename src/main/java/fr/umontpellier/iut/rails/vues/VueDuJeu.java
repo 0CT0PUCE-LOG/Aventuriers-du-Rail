@@ -137,9 +137,11 @@ public class VueDuJeu extends BorderPane {
         plateau.prefHeightProperty().bind(getScene().heightProperty());
         plateau.creerBindings();
 
-        Media wind = new Media(new File("src/main/resources/sound/wind.wav").toURI().toString());
+        Media wind = new Media(new File("src/main/resources/sound/wind_long.wav").toURI().toString());
         MediaPlayer windPlayer = new MediaPlayer(wind);
-        windPlayer.setVolume(0.8);
+        windPlayer.setVolume(0.55);
+        //start at 0.5 seconds
+        windPlayer.setStartTime(Duration.seconds(0.3));
         //windPlayer.setOnEndOfMedia(() -> windPlayer.seek(Duration.ZERO));
 
         passerBtn.setOnAction(actionEvent -> {passerClicked();});
@@ -176,7 +178,7 @@ public class VueDuJeu extends BorderPane {
                         vueDuJeu.getChildren().remove(image);
                         jeu.uneCarteWagonAEtePiochee();
                         windPlayer.stop();
-                        windPlayer.seek(Duration.ZERO);
+                        //windPlayer.seek(Duration.ZERO);
                     });
                     fadeTransition2.play();
                 });
@@ -241,7 +243,7 @@ public class VueDuJeu extends BorderPane {
                         vueDuJeu.getChildren().remove(image);
                         jeu.uneCarteBateauAEtePiochee();
                         windPlayer.stop();
-                        windPlayer.seek(Duration.ZERO);
+                        //windPlayer.seek(Duration.ZERO);
                     });
                     fadeTransition2.play();
                 });
@@ -297,6 +299,10 @@ public class VueDuJeu extends BorderPane {
                 while(change.next()){
                     if(change.wasRemoved()){
                         for(ICarteTransport carte : change.getRemoved()){
+                            //wait 1s before playing the sound
+                            Timeline timeline = new Timeline(new KeyFrame(
+                                    Duration.millis(1000),
+                                    ae -> windPlayer.play()));
                             ImageView image = new ImageView();
                             if(carte.estBateau()){
                                 image.setImage(new Image("images/cartesWagons/dos-BATEAU.png"));
@@ -318,6 +324,7 @@ public class VueDuJeu extends BorderPane {
                             rotateTransitionI.setToAngle(0);
                             rotateTransitionI.setOnFinished(actionEvent -> {
                                 //remove the original card
+                                windPlayer.play();
                                 vueDuJeu.getChildren().remove(trouveVueCarteTransportVisible(carte));
                             });
 
@@ -336,6 +343,7 @@ public class VueDuJeu extends BorderPane {
                                 fadeTransition2.setToValue(0);
                                 fadeTransition2.setOnFinished(actionEvent1 -> {
                                     vueDuJeu.getChildren().remove(image);
+                                    //windPlayer.stop();
                                 });
                                 fadeTransition2.play();
                             });
@@ -369,8 +377,10 @@ public class VueDuJeu extends BorderPane {
                                 image.setTranslateX(trouveVueCarteTransportVisible(carte).localToScene(0, 0).getX() - carte.getImage().getWidth()/2 - 45);
                                 image.setTranslateY(trouveVueCarteTransportVisible(carte).localToScene(0, 0).getY() - carte.getImage().getHeight()/2 - 30);
                                 rotateTransitionI.setOnFinished(actionEvent1 -> {
+                                    windPlayer.play();
                                     trouverScrollpaneVuejoueurCourant().fireEvent(new MouseEvent(MouseEvent.MOUSE_ENTERED, 0, 0, 0, 0, MouseButton.PRIMARY, 0, false, false, false, false, true, false, false, false, false, false, null));
                                     parallelTransition.setOnFinished(actionEvent2 -> {
+                                        windPlayer.stop();
                                         trouverScrollpaneVuejoueurCourant().fireEvent(new MouseEvent(MouseEvent.MOUSE_EXITED, 0, 0, 0, 0, MouseButton.PRIMARY, 0, false, false, false, false, false, false, false, false, false, false, null));
                                     });
                                     parallelTransition.play();

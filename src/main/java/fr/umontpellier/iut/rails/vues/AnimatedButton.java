@@ -5,8 +5,12 @@ import javafx.animation.FillTransition;
 import javafx.animation.ParallelTransition;
 import javafx.animation.ScaleTransition;
 import javafx.scene.control.Button;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
+
+import java.io.File;
 
 public class AnimatedButton extends Button {
 
@@ -38,6 +42,12 @@ public class AnimatedButton extends Button {
     }
 
     private void showPressed(){
+        Media media = new Media(new File("src/main/resources/sound/click.wav").toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.setAutoPlay(true);
+        //reactivate the music when it's finished
+        mediaPlayer.setVolume(0.55);
+        mediaPlayer.play();
         ScaleTransition scaleTransition = new ScaleTransition(Duration.seconds(0.05), this);
         scaleTransition.setToX(SCALE_DOWN_FACTOR);
         scaleTransition.setToY(SCALE_DOWN_FACTOR);
@@ -49,6 +59,7 @@ public class AnimatedButton extends Button {
     }
 
     private void showRealeased(){
+
         ScaleTransition scaleTransition = new ScaleTransition(Duration.seconds(0.05), this);
         scaleTransition.setToX(SCALE_FACTOR);
         scaleTransition.setToY(SCALE_FACTOR);

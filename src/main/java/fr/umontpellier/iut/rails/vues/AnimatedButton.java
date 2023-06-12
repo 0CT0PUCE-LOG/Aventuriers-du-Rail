@@ -31,14 +31,23 @@ public class AnimatedButton extends Button {
         scaleTransition.setToX(SCALE_FACTOR);
         scaleTransition.setToY(SCALE_FACTOR);
         scaleTransition.setAutoReverse(true);
-        scaleTransition.play();
+        FadeTransition fadeTransition = new FadeTransition(ANIMATION_DURATION, this);
+        fadeTransition.setToValue(0.75);
+        fadeTransition.setAutoReverse(true);
+        ParallelTransition parallelTransition = new ParallelTransition(scaleTransition, fadeTransition);
+        parallelTransition.play();
     }
 
     protected void scaleDown() {
         ScaleTransition scaleTransition = new ScaleTransition(ANIMATION_DURATION, this);
         scaleTransition.setToX(1.0);
         scaleTransition.setToY(1.0);
-        scaleTransition.play();
+        scaleTransition.setAutoReverse(true);
+        FadeTransition fadeTransition = new FadeTransition(ANIMATION_DURATION, this);
+        fadeTransition.setToValue(1.0);
+        fadeTransition.setAutoReverse(true);
+        ParallelTransition parallelTransition = new ParallelTransition(scaleTransition, fadeTransition);
+        parallelTransition.play();
     }
 
     private void showPressed(){

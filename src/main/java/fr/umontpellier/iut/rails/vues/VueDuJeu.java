@@ -299,10 +299,6 @@ public class VueDuJeu extends BorderPane {
                 while(change.next()){
                     if(change.wasRemoved()){
                         for(ICarteTransport carte : change.getRemoved()){
-                            //wait 1s before playing the sound
-                            Timeline timeline = new Timeline(new KeyFrame(
-                                    Duration.millis(1000),
-                                    ae -> windPlayer.play()));
                             ImageView image = new ImageView();
                             if(carte.estBateau()){
                                 image.setImage(new Image("images/cartesWagons/dos-BATEAU.png"));

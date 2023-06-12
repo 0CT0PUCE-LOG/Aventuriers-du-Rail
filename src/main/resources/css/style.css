@@ -65,7 +65,7 @@ ButtonTemp{
 }
 
 .button:hover{
-    -fx-background-color: "darkred";
+    /*-fx-background-color: "darkred"; */
     /*
     -fx-effect: dropshadow( one-pass-box , rgba(255,255,255,0.8) , 10,10,0,0 );
 */

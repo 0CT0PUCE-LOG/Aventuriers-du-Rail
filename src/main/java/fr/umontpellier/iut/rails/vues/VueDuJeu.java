@@ -6,6 +6,11 @@ import fr.umontpellier.iut.rails.IJeu;
 import fr.umontpellier.iut.rails.IJoueur;
 import fr.umontpellier.iut.rails.mecanique.data.Couleur;
 import fr.umontpellier.iut.rails.mecanique.data.Destination;
+import fr.umontpellier.iut.rails.mecanique.etatsJoueur.DebutTour;
+import fr.umontpellier.iut.rails.mecanique.etatsJoueur.pioches.CartePiocheDemandee;
+import fr.umontpellier.iut.rails.mecanique.etatsJoueur.pioches.ReveleCartesVisiblesQuandPiochesVides;
+import fr.umontpellier.iut.rails.mecanique.etatsJoueur.prisecartevisible.DeuxiemeChoixCarte;
+import fr.umontpellier.iut.rails.mecanique.etatsJoueur.prisecartevisible.PremiereCarteTransportChoisie;
 import javafx.animation.*;
 import javafx.collections.ListChangeListener;
 import javafx.event.EventHandler;
@@ -140,138 +145,144 @@ public class VueDuJeu extends BorderPane {
         Media wind = new Media(new File("src/main/resources/sound/wind_long.wav").toURI().toString());
         MediaPlayer windPlayer = new MediaPlayer(wind);
         windPlayer.setVolume(0.55);
-        //start at 0.5 seconds
         windPlayer.setStartTime(Duration.seconds(0.3));
-        //windPlayer.setOnEndOfMedia(() -> windPlayer.seek(Duration.ZERO));
 
         passerBtn.setOnAction(actionEvent -> {passerClicked();});
         spritePiocheWagon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                windPlayer.play();
-                ImageView image = new ImageView();
-                image.setImage(new Image("images/cartesWagons/dos-WAGON.png"));
-                AnimatedButton carte = spritePiocheWagon;
-                image.setFitWidth(70);
-                image.setPreserveRatio(true);
-                image.setSmooth(true);
-                image.setCache(true);
-                image.setRotate(0);
-                vueDuJeu.getChildren().add(image);
-                image.setTranslateX(carte.localToScene(0, 0).getX());
-                image.setTranslateY(carte.localToScene(0, 0).getY());
+                if((jeu.joueurCourantProperty().getValue().getEtatCourant() instanceof DebutTour || jeu.joueurCourantProperty().getValue().getEtatCourant() instanceof DeuxiemeChoixCarte) && jeu.uneCarteWagonAEtePiochee()){
+                    windPlayer.play();
+                    ImageView image = new ImageView();
+                    image.setImage(new Image("images/cartesWagons/dos-WAGON.png"));
+                    AnimatedButton carte = spritePiocheWagon;
+                    image.setFitWidth(70);
+                    image.setPreserveRatio(true);
+                    image.setSmooth(true);
+                    image.setCache(true);
+                    image.setRotate(0);
+                    vueDuJeu.getChildren().add(image);
+                    image.setTranslateX(carte.localToScene(0, 0).getX());
+                    image.setTranslateY(carte.localToScene(0, 0).getY());
 
-                TranslateTransition translateTransition = new TranslateTransition(Duration.millis(1000), image);
-                //set the origin of the translation to the coordinates of the card
-                translateTransition.setFromX(carte.localToScene(0, 0).getX());
-                translateTransition.setFromY(carte.localToScene(0, 0).getY());
-                double destinationX = trouverScrollpaneVuejoueurCourant().localToScene(0, 0).getX() + trouverScrollpaneVuejoueurCourant().prefWidth(-1)/2;
-                double destinationY = trouverScrollpaneVuejoueurCourant().localToScene(0, 0).getY() + trouverScrollpaneVuejoueurCourant().prefHeight(-1)/2;
-                translateTransition.setToX(destinationX);
-                translateTransition.setToY(destinationY);
-                translateTransition.setOnFinished(actionEvent -> {
-                    chargerCartesTransportVisible();
-                    FadeTransition fadeTransition2 = new FadeTransition(Duration.millis(150), image);
-                    fadeTransition2.setFromValue(0.8);
-                    fadeTransition2.setToValue(0);
-                    fadeTransition2.setOnFinished(actionEvent1 -> {
-                        vueDuJeu.getChildren().remove(image);
-                        jeu.uneCarteWagonAEtePiochee();
-                        windPlayer.stop();
-                        //windPlayer.seek(Duration.ZERO);
+                    TranslateTransition translateTransition = new TranslateTransition(Duration.millis(1000), image);
+                    //set the origin of the translation to the coordinates of the card
+                    translateTransition.setFromX(carte.localToScene(0, 0).getX());
+                    translateTransition.setFromY(carte.localToScene(0, 0).getY());
+                    double destinationX = trouverScrollpaneVuejoueurCourant().localToScene(0, 0).getX() + trouverScrollpaneVuejoueurCourant().prefWidth(-1)/2;
+                    double destinationY = trouverScrollpaneVuejoueurCourant().localToScene(0, 0).getY() + trouverScrollpaneVuejoueurCourant().prefHeight(-1)/2;
+                    translateTransition.setToX(destinationX);
+                    translateTransition.setToY(destinationY);
+                    translateTransition.setOnFinished(actionEvent -> {
+                        chargerCartesTransportVisible();
+                        FadeTransition fadeTransition2 = new FadeTransition(Duration.millis(150), image);
+                        fadeTransition2.setFromValue(0.8);
+                        fadeTransition2.setToValue(0);
+                        fadeTransition2.setOnFinished(actionEvent1 -> {
+                            vueDuJeu.getChildren().remove(image);
+                            windPlayer.stop();
+                            //windPlayer.seek(Duration.ZERO);
+                        });
+                        fadeTransition2.play();
                     });
-                    fadeTransition2.play();
-                });
-                FadeTransition fadeTransition = new FadeTransition(Duration.millis(1000), image);
-                fadeTransition.setFromValue(1.0);
-                fadeTransition.setToValue(0.8);
-                RotateTransition rotateTransition = new RotateTransition(Duration.millis(1000), image);
-                rotateTransition.setAxis(Rotate.Z_AXIS);
-                rotateTransition.setFromAngle(0);
-                rotateTransition.setToAngle(90);
-                ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(1000), image);
-                scaleTransition.setFromX(1);
-                scaleTransition.setFromY(1);
-                scaleTransition.setToX(0.7);
-                scaleTransition.setToY(0.7);
-                ParallelTransition parallelTransition = new ParallelTransition();
-                parallelTransition.getChildren().addAll(
-                        translateTransition,
-                        fadeTransition,
-                        rotateTransition,
-                        scaleTransition
-                );
+                    FadeTransition fadeTransition = new FadeTransition(Duration.millis(1000), image);
+                    fadeTransition.setFromValue(1.0);
+                    fadeTransition.setToValue(0.8);
+                    RotateTransition rotateTransition = new RotateTransition(Duration.millis(1000), image);
+                    rotateTransition.setAxis(Rotate.Z_AXIS);
+                    rotateTransition.setFromAngle(0);
+                    rotateTransition.setToAngle(90);
+                    ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(1000), image);
+                    scaleTransition.setFromX(1);
+                    scaleTransition.setFromY(1);
+                    scaleTransition.setToX(0.7);
+                    scaleTransition.setToY(0.7);
+                    ParallelTransition parallelTransition = new ParallelTransition();
+                    parallelTransition.getChildren().addAll(
+                            translateTransition,
+                            fadeTransition,
+                            rotateTransition,
+                            scaleTransition
+                    );
 
-                trouverScrollpaneVuejoueurCourant().fireEvent(new MouseEvent(MouseEvent.MOUSE_ENTERED, 0, 0, 0, 0, MouseButton.PRIMARY, 0, false, false, false, false, true, false, false, false, false, false, null));
-                parallelTransition.setOnFinished(actionEvent2 -> {
-                    trouverScrollpaneVuejoueurCourant().fireEvent(new MouseEvent(MouseEvent.MOUSE_EXITED, 0, 0, 0, 0, MouseButton.PRIMARY, 0, false, false, false, false, false, false, false, false, false, false, null));
-                });
-                parallelTransition.play();
+                    trouverScrollpaneVuejoueurCourant().fireEvent(new MouseEvent(MouseEvent.MOUSE_ENTERED, 0, 0, 0, 0, MouseButton.PRIMARY, 0, false, false, false, false, true, false, false, false, false, false, null));
+                    parallelTransition.setOnFinished(actionEvent2 -> {
+                        trouverScrollpaneVuejoueurCourant().fireEvent(new MouseEvent(MouseEvent.MOUSE_EXITED, 0, 0, 0, 0, MouseButton.PRIMARY, 0, false, false, false, false, false, false, false, false, false, false, null));
+                    });
+                    parallelTransition.play();
+                }
+                else{
+                    jeu.uneCarteWagonAEtePiochee();
+                }
             }
         });
 
         spritePiocheBateau.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                windPlayer.play();
-                ImageView image = new ImageView();
-                image.setImage(new Image("images/cartesWagons/dos-BATEAU.png"));
-                AnimatedButton carte = spritePiocheBateau;
-                image.setFitWidth(70);
-                image.setPreserveRatio(true);
-                image.setSmooth(true);
-                image.setCache(true);
-                image.setRotate(0);
-                vueDuJeu.getChildren().add(image);
-                image.setTranslateX(carte.localToScene(0, 0).getX());
-                image.setTranslateY(carte.localToScene(0, 0).getY());
+                if((jeu.joueurCourantProperty().getValue().getEtatCourant() instanceof DebutTour || jeu.joueurCourantProperty().getValue().getEtatCourant() instanceof DeuxiemeChoixCarte) && jeu.uneCarteBateauAEtePiochee()){
+                    windPlayer.play();
+                    ImageView image = new ImageView();
+                    image.setImage(new Image("images/cartesWagons/dos-BATEAU.png"));
+                    AnimatedButton carte = spritePiocheBateau;
+                    image.setFitWidth(70);
+                    image.setPreserveRatio(true);
+                    image.setSmooth(true);
+                    image.setCache(true);
+                    image.setRotate(0);
+                    vueDuJeu.getChildren().add(image);
+                    image.setTranslateX(carte.localToScene(0, 0).getX());
+                    image.setTranslateY(carte.localToScene(0, 0).getY());
 
-                TranslateTransition translateTransition = new TranslateTransition(Duration.millis(1000), image);
-                //set the origin of the translation to the coordinates of the card
-                translateTransition.setFromX(carte.localToScene(0, 0).getX());
-                translateTransition.setFromY(carte.localToScene(0, 0).getY());
-                double destinationX = trouverScrollpaneVuejoueurCourant().localToScene(0, 0).getX() + trouverScrollpaneVuejoueurCourant().prefWidth(-1)/2;
-                double destinationY = trouverScrollpaneVuejoueurCourant().localToScene(0, 0).getY() + trouverScrollpaneVuejoueurCourant().prefHeight(-1)/2;
-                translateTransition.setToX(destinationX);
-                translateTransition.setToY(destinationY);
-                translateTransition.setOnFinished(actionEvent -> {
-                    chargerCartesTransportVisible();
-                    FadeTransition fadeTransition2 = new FadeTransition(Duration.millis(150), image);
-                    fadeTransition2.setFromValue(0.8);
-                    fadeTransition2.setToValue(0);
-                    fadeTransition2.setOnFinished(actionEvent1 -> {
-                        vueDuJeu.getChildren().remove(image);
-                        jeu.uneCarteBateauAEtePiochee();
-                        windPlayer.stop();
-                        //windPlayer.seek(Duration.ZERO);
+                    TranslateTransition translateTransition = new TranslateTransition(Duration.millis(1000), image);
+                    //set the origin of the translation to the coordinates of the card
+                    translateTransition.setFromX(carte.localToScene(0, 0).getX());
+                    translateTransition.setFromY(carte.localToScene(0, 0).getY());
+                    double destinationX = trouverScrollpaneVuejoueurCourant().localToScene(0, 0).getX() + trouverScrollpaneVuejoueurCourant().prefWidth(-1)/2;
+                    double destinationY = trouverScrollpaneVuejoueurCourant().localToScene(0, 0).getY() + trouverScrollpaneVuejoueurCourant().prefHeight(-1)/2;
+                    translateTransition.setToX(destinationX);
+                    translateTransition.setToY(destinationY);
+                    translateTransition.setOnFinished(actionEvent -> {
+                        chargerCartesTransportVisible();
+                        FadeTransition fadeTransition2 = new FadeTransition(Duration.millis(150), image);
+                        fadeTransition2.setFromValue(0.8);
+                        fadeTransition2.setToValue(0);
+                        fadeTransition2.setOnFinished(actionEvent1 -> {
+                            vueDuJeu.getChildren().remove(image);
+                            windPlayer.stop();
+                            //windPlayer.seek(Duration.ZERO);
+                        });
+                        fadeTransition2.play();
                     });
-                    fadeTransition2.play();
-                });
-                FadeTransition fadeTransition = new FadeTransition(Duration.millis(1000), image);
-                fadeTransition.setFromValue(1.0);
-                fadeTransition.setToValue(0.8);
-                RotateTransition rotateTransition = new RotateTransition(Duration.millis(1000), image);
-                rotateTransition.setAxis(Rotate.Z_AXIS);
-                rotateTransition.setFromAngle(0);
-                rotateTransition.setToAngle(90);
-                ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(1000), image);
-                scaleTransition.setFromX(1);
-                scaleTransition.setFromY(1);
-                scaleTransition.setToX(0.7);
-                scaleTransition.setToY(0.7);
-                ParallelTransition parallelTransition = new ParallelTransition();
-                parallelTransition.getChildren().addAll(
-                        translateTransition,
-                        fadeTransition,
-                        rotateTransition,
-                        scaleTransition
-                );
+                    FadeTransition fadeTransition = new FadeTransition(Duration.millis(1000), image);
+                    fadeTransition.setFromValue(1.0);
+                    fadeTransition.setToValue(0.8);
+                    RotateTransition rotateTransition = new RotateTransition(Duration.millis(1000), image);
+                    rotateTransition.setAxis(Rotate.Z_AXIS);
+                    rotateTransition.setFromAngle(0);
+                    rotateTransition.setToAngle(90);
+                    ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(1000), image);
+                    scaleTransition.setFromX(1);
+                    scaleTransition.setFromY(1);
+                    scaleTransition.setToX(0.7);
+                    scaleTransition.setToY(0.7);
+                    ParallelTransition parallelTransition = new ParallelTransition();
+                    parallelTransition.getChildren().addAll(
+                            translateTransition,
+                            fadeTransition,
+                            rotateTransition,
+                            scaleTransition
+                    );
 
-                trouverScrollpaneVuejoueurCourant().fireEvent(new MouseEvent(MouseEvent.MOUSE_ENTERED, 0, 0, 0, 0, MouseButton.PRIMARY, 0, false, false, false, false, true, false, false, false, false, false, null));
-                parallelTransition.setOnFinished(actionEvent2 -> {
-                    trouverScrollpaneVuejoueurCourant().fireEvent(new MouseEvent(MouseEvent.MOUSE_EXITED, 0, 0, 0, 0, MouseButton.PRIMARY, 0, false, false, false, false, false, false, false, false, false, false, null));
-                });
-                parallelTransition.play();
+                    trouverScrollpaneVuejoueurCourant().fireEvent(new MouseEvent(MouseEvent.MOUSE_ENTERED, 0, 0, 0, 0, MouseButton.PRIMARY, 0, false, false, false, false, true, false, false, false, false, false, null));
+                    parallelTransition.setOnFinished(actionEvent2 -> {
+                        trouverScrollpaneVuejoueurCourant().fireEvent(new MouseEvent(MouseEvent.MOUSE_EXITED, 0, 0, 0, 0, MouseButton.PRIMARY, 0, false, false, false, false, false, false, false, false, false, false, null));
+                    });
+                    parallelTransition.play();
+                }
+                else{
+                    jeu.uneCarteBateauAEtePiochee();
+                }
             }
         });
 
@@ -339,7 +350,6 @@ public class VueDuJeu extends BorderPane {
                                 fadeTransition2.setToValue(0);
                                 fadeTransition2.setOnFinished(actionEvent1 -> {
                                     vueDuJeu.getChildren().remove(image);
-                                    //windPlayer.stop();
                                 });
                                 fadeTransition2.play();
                             });

@@ -9,27 +9,31 @@ public class ReveleNouvelleCarteTransportVisible2 extends EtatJoueur {
         getJeu().instructionProperty().setValue("Choisissez une pioche pour révéler une carte");
     }
 
-    public void piocherWagon() {
+    public boolean piocherWagon() {
         if (!getJeu().piocheWagonEstVide()) {
             joueurCourant.revelerCarteTransport("WAGON");
             finDuTour();
+            return true;
         } else {
             if (!getJeu().piocheBateauEstVide())
                 getJeu().instructionProperty().setValue("Cette pioche est vide - Choisissez l'autre pioche");
             else
                 finDuTour();
+            return false;
         }
     }
 
-    public void piocherBateau() {
+    public boolean piocherBateau() {
         if (!getJeu().piocheBateauEstVide()) {
             joueurCourant.revelerCarteTransport("BATEAU");
             finDuTour();
+            return true;
         } else{
             if (!getJeu().piocheWagonEstVide())
                 getJeu().instructionProperty().setValue("Cette pioche est vide - Choisissez l'autre pioche");
             else
                 finDuTour();
+            return false;
         }
     }
 }

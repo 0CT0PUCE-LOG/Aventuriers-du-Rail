@@ -20,8 +20,8 @@ public abstract class EtatJoueur {
     public void prendrePionsWagon() {}
     public void prendrePionsBateau() {}
     public void mettreAJourPions(String nbPionsChoisis) {}
-    public void piocherWagon() {}
-    public void piocherBateau() {}
+    public boolean piocherWagon() {return false;}
+    public boolean piocherBateau() {return false;}
     public void prendreCarte(CarteTransport carte) {}
     public void prendreRoute(String route) {}
     public void construirePort(String port) {}

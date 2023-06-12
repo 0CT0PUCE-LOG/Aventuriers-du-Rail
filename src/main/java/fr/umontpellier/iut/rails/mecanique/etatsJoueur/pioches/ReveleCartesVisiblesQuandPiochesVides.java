@@ -12,7 +12,8 @@ public class ReveleCartesVisiblesQuandPiochesVides extends EtatJoueur {
         this.nbCartesAReveler = nbCartesAReveler;
     }
 
-    public void piocherWagon() {
+    public boolean piocherWagon() {
+        boolean aPioche;
         if (!getJeu().piocheWagonEstVide()) {
             joueurCourant.revelerCarteTransport("WAGON");
             nbCartesAReveler--;
@@ -20,21 +21,26 @@ public class ReveleCartesVisiblesQuandPiochesVides extends EtatJoueur {
             getJeu().instructionProperty().setValue("Vous devez d'abord réveler " + nbCartesAReveler + " carte" + pluriel);
             if (nbCartesAReveler == 0)
                 joueurCourant.jouerTour();
+            aPioche = true;
         } else {
             if (!getJeu().piocheBateauEstVide())
                 getJeu().instructionProperty().setValue("Cette pioche est vide - Choisissez l'autre pioche");
+            aPioche = false;
         }
+        return aPioche;
     }
 
-    public void piocherBateau() {
+    public boolean piocherBateau() {
         if (!getJeu().piocheBateauEstVide()) {
             joueurCourant.revelerCarteTransport("BATEAU");
             nbCartesAReveler--;
             if (nbCartesAReveler == 0)
                 joueurCourant.jouerTour();
+            return true;
         } else {
             if (!getJeu().piocheWagonEstVide())
                 getJeu().instructionProperty().setValue("Cette pioche est vide - Choisissez l'autre pioche");
+            return false;
         }
     }
 }

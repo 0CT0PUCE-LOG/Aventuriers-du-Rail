@@ -25,8 +25,8 @@ public interface IJeu {
     List<? extends IRoute> getRoutes();
 
     void passerAEteChoisi();
-    void uneCarteWagonAEtePiochee();
-    void uneCarteBateauAEtePiochee();
+    boolean uneCarteWagonAEtePiochee();
+    boolean uneCarteBateauAEtePiochee();
     void nouvelleDestinationDemandee();
     void nouveauxPionsWagonsDemandes();
     void nouveauxPionsBateauxDemandes();

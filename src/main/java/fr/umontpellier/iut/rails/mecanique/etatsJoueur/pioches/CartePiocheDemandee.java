@@ -13,7 +13,8 @@ public class CartePiocheDemandee extends EtatJoueur {
         getJeu().instructionProperty().setValue("Vous pouvez prendre une deuxième carte");
     }
 
-    public void piocherWagon() {
+    public boolean piocherWagon() {
+        boolean aPioche;
         if (!getJeu().piocheWagonEstVide()) {
             CarteTransport cartePiochee = getJeu().piocherCarteWagon();
             joueurCourant.getCartesTransport().add(cartePiochee);
@@ -21,14 +22,18 @@ public class CartePiocheDemandee extends EtatJoueur {
                 finDuTour();
             else
                 prochainEtat = new DeuxiemeChoixCarte(joueurCourant);
+            aPioche = true;
         } else {
             getJeu().instructionProperty().setValue("Cette pioche est vide - Choisissez une autre action");
             prochainEtat = new DebutTour(joueurCourant);
+            aPioche = false;
         }
         joueurCourant.setEtatCourant(prochainEtat);
+        return aPioche;
     }
 
-    public void piocherBateau() {
+    public boolean piocherBateau() {
+        boolean aPioche;
         if (!getJeu().piocheBateauEstVide()) {
             CarteTransport cartePiochee = getJeu().piocherCarteBateau();
             joueurCourant.getCartesTransport() .add(cartePiochee);
@@ -36,11 +41,14 @@ public class CartePiocheDemandee extends EtatJoueur {
                 finDuTour();
             else
                 prochainEtat = new DeuxiemeChoixCarte(joueurCourant);
+            aPioche = true;
         } else {
             getJeu().instructionProperty().setValue("Cette pioche est vide - Choisissez une autre action");
             prochainEtat = new DebutTour(joueurCourant);
+            aPioche = false;
         }
         joueurCourant.setEtatCourant(prochainEtat);
+        return aPioche;
     }
 
 }

@@ -585,15 +585,15 @@ public class Jeu implements IJeu {
     }
 
     @Override
-    public void uneCarteWagonAEtePiochee() {
+    public boolean uneCarteWagonAEtePiochee() {
         Joueur leJoueur = ((Joueur) joueurCourant.getValue());
-        leJoueur.getEtatCourant().piocherWagon();
+        return leJoueur.getEtatCourant().piocherWagon();
     }
 
     @Override
-    public void uneCarteBateauAEtePiochee() {
+    public boolean uneCarteBateauAEtePiochee() {
         Joueur leJoueur = ((Joueur) joueurCourant.getValue());
-        leJoueur.getEtatCourant().piocherBateau();
+        return leJoueur.getEtatCourant().piocherBateau();
     }
 
     @Override

@@ -9,11 +9,12 @@ public class ReveleNouvelleCarteTransportVisible1 extends EtatJoueur {
         getJeu().instructionProperty().setValue("Choisissez une pioche pour révéler une carte");
     }
 
-    public void piocherWagon() {
+    public boolean piocherWagon() {
         if (!getJeu().piocheWagonEstVide()) {
             joueurCourant.revelerCarteTransport("WAGON");
             prochainEtat = new DeuxiemeChoixCarte(joueurCourant);
             joueurCourant.setEtatCourant(prochainEtat);
+            return true;
         } else {
             if (!getJeu().piocheBateauEstVide())
                 getJeu().instructionProperty().setValue("Cette pioche est vide - Choisissez l'autre pioche");
@@ -22,14 +23,16 @@ public class ReveleNouvelleCarteTransportVisible1 extends EtatJoueur {
                 prochainEtat = new DeuxiemeChoixCarte(joueurCourant);
                 joueurCourant.setEtatCourant(prochainEtat);
             }
+            return false;
         }
     }
 
-    public void piocherBateau() {
+    public boolean piocherBateau() {
         if (!getJeu().piocheBateauEstVide()) {
             joueurCourant.revelerCarteTransport("BATEAU");
             prochainEtat = new DeuxiemeChoixCarte(joueurCourant);
             joueurCourant.setEtatCourant(prochainEtat);
+            return true;
         } else {
             if (!getJeu().piocheWagonEstVide())
                 getJeu().instructionProperty().setValue("Cette pioche est vide - Choisissez l'autre pioche");
@@ -38,6 +41,7 @@ public class ReveleNouvelleCarteTransportVisible1 extends EtatJoueur {
                 prochainEtat = new DeuxiemeChoixCarte(joueurCourant);
                 joueurCourant.setEtatCourant(prochainEtat);
             }
+            return false;
         }
     }
 }

@@ -32,13 +32,13 @@ public class DebutTour extends EtatJoueur {
         prochainEtat = new PionsBateauDemandes(joueurCourant);
         prochainEtat.prendrePionsBateau();
     }
-    public void piocherWagon() {
+    public boolean piocherWagon() {
         prochainEtat = new CartePiocheDemandee(joueurCourant);
-        prochainEtat.piocherWagon();
+        return prochainEtat.piocherWagon();
     }
-    public void piocherBateau() {
+    public boolean piocherBateau() {
         prochainEtat = new CartePiocheDemandee(joueurCourant);
-        prochainEtat.piocherBateau();
+        return prochainEtat.piocherBateau();
     }
     public void prendreRoute(String route) {
         prochainEtat = new PriseDeRoute(joueurCourant);

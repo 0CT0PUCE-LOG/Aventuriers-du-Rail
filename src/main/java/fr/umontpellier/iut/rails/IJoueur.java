@@ -1,6 +1,7 @@
 package fr.umontpellier.iut.rails;
 
 import fr.umontpellier.iut.rails.mecanique.data.CarteTransport;
+import fr.umontpellier.iut.rails.mecanique.etatsJoueur.EtatJoueur;
 import javafx.beans.property.IntegerProperty;
 import javafx.collections.ObservableList;
 
@@ -21,6 +22,7 @@ public interface IJoueur {
     String getNom();
     CouleurJoueur getCouleur();
     int getScore();
+    public EtatJoueur getEtatCourant();
 
     enum CouleurJoueur {
         JAUNE, ROUGE, BLEU, VERT, ROSE

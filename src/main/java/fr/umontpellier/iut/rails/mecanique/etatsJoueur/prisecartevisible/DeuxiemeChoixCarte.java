@@ -24,23 +24,27 @@ public class DeuxiemeChoixCarte extends EtatJoueur {
         }
     }
 
-    public void piocherWagon() {
+    public boolean piocherWagon() {
         if (!getJeu().piocheWagonEstVide()) {
             CarteTransport cartePiochee = getJeu().piocherCarteWagon();
             joueurCourant.getCartesTransport().add(cartePiochee);
             finDuTour();
+            return true;
         } else {
             getJeu().instructionProperty().setValue("Cette pioche est vide - Choisissez une autre action");
+            return false;
         }
     }
 
-    public void piocherBateau() {
+    public boolean piocherBateau() {
         if (!getJeu().piocheBateauEstVide()) {
             CarteTransport cartePiochee = getJeu().piocherCarteBateau();
             joueurCourant.getCartesTransport().add(cartePiochee);
             finDuTour();
+            return true;
         } else {
             getJeu().instructionProperty().setValue("Cette pioche est vide - Choisissez une autre action");
+            return false;
         }
     }
 

@@ -64,9 +64,9 @@ public class RailsIHM extends Application {
         primaryStage.setTitle("Les aventuriers du BUT");
         primaryStage.centerOnScreen();
         primaryStage.setWidth(1600);
-        primaryStage.setHeight(1050);
+        primaryStage.setHeight(1000);
         primaryStage.setMinWidth(1600);
-        primaryStage.setMinHeight(1050);
+        primaryStage.setMinHeight(1000);
         primaryStage.setMaxWidth(Screen.getPrimary().getBounds().getWidth());
         primaryStage.setMaxHeight(Screen.getPrimary().getBounds().getHeight());
         primaryStage.setOnCloseRequest(event -> {

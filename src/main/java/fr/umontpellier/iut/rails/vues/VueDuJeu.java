@@ -142,10 +142,8 @@ public class VueDuJeu extends BorderPane {
         plateau.prefHeightProperty().bind(getScene().heightProperty());
         plateau.creerBindings();
 
-        Media wind = new Media(new File("src/main/resources/sound/wind_long.wav").toURI().toString());
-        MediaPlayer windPlayer = new MediaPlayer(wind);
+        AudioClip windPlayer = new AudioClip(new File("src/main/resources/sound/wind_long.wav").toURI().toString());
         windPlayer.setVolume(0.55);
-        windPlayer.setStartTime(Duration.seconds(0.3));
 
         passerBtn.setOnAction(actionEvent -> {passerClicked();});
         spritePiocheWagon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {

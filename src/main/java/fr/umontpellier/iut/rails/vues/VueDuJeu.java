@@ -314,7 +314,7 @@ public class VueDuJeu extends BorderPane {
                             }else if(carte.estWagon()){
                                 image.setImage(new Image("images/cartesWagons/dos-WAGON.png"));
                             }else{
-                                image.setImage(new Image("images/cartesWagons/carte-JOKER-GRIS.png"));
+                                image.setImage(new Image("images/cartesWagons/dos-WAGON.png"));
                             }
 
                             //rotate the orignal card in 3D to make it look like it's being flipped

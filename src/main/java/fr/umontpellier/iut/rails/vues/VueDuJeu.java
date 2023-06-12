@@ -137,42 +137,139 @@ public class VueDuJeu extends BorderPane {
         plateau.prefHeightProperty().bind(getScene().heightProperty());
         plateau.creerBindings();
 
+        Media wind = new Media(new File("src/main/resources/sound/wind.wav").toURI().toString());
+        MediaPlayer windPlayer = new MediaPlayer(wind);
+        windPlayer.setVolume(0.8);
+        //windPlayer.setOnEndOfMedia(() -> windPlayer.seek(Duration.ZERO));
+
         passerBtn.setOnAction(actionEvent -> {passerClicked();});
         spritePiocheWagon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                //create a new card and translate it with an animation to the destination
-                /*
-                ImageView image = new ImageView("file:src/main/resources/images/bg.jpg");
-                image.setFitHeight(100);
-                image.setFitWidth(100);
+                windPlayer.play();
+                ImageView image = new ImageView();
+                image.setImage(new Image("images/cartesWagons/dos-WAGON.png"));
+                AnimatedButton carte = spritePiocheWagon;
+                image.setFitWidth(70);
                 image.setPreserveRatio(true);
                 image.setSmooth(true);
                 image.setCache(true);
-                image.setTranslateX(0);
-                image.setTranslateY(0);
                 image.setRotate(0);
-                cardRight.getChildren().add(image);
-                TranslateTransition translateTransition = new TranslateTransition(Duration.millis(2000), image);
-                translateTransition.setFromX(0);
-                translateTransition.setFromY(0);
-                translateTransition.setToX(400);
-                translateTransition.setToY(400);
-                translateTransition.setOnFinished(actionEvent -> {
-                    jeu.uneCarteWagonAEtePiochee();
-                    cardRight.getChildren().remove(image);
-                });
-                translateTransition.play();
+                vueDuJeu.getChildren().add(image);
+                image.setTranslateX(carte.localToScene(0, 0).getX());
+                image.setTranslateY(carte.localToScene(0, 0).getY());
 
-                 */
-                jeu.uneCarteWagonAEtePiochee();
+                TranslateTransition translateTransition = new TranslateTransition(Duration.millis(1000), image);
+                //set the origin of the translation to the coordinates of the card
+                translateTransition.setFromX(carte.localToScene(0, 0).getX());
+                translateTransition.setFromY(carte.localToScene(0, 0).getY());
+                double destinationX = trouverScrollpaneVuejoueurCourant().localToScene(0, 0).getX() + trouverScrollpaneVuejoueurCourant().prefWidth(-1)/2;
+                double destinationY = trouverScrollpaneVuejoueurCourant().localToScene(0, 0).getY() + trouverScrollpaneVuejoueurCourant().prefHeight(-1)/2;
+                translateTransition.setToX(destinationX);
+                translateTransition.setToY(destinationY);
+                translateTransition.setOnFinished(actionEvent -> {
+                    chargerCartesTransportVisible();
+                    FadeTransition fadeTransition2 = new FadeTransition(Duration.millis(150), image);
+                    fadeTransition2.setFromValue(0.8);
+                    fadeTransition2.setToValue(0);
+                    fadeTransition2.setOnFinished(actionEvent1 -> {
+                        vueDuJeu.getChildren().remove(image);
+                        jeu.uneCarteWagonAEtePiochee();
+                        windPlayer.stop();
+                        windPlayer.seek(Duration.ZERO);
+                    });
+                    fadeTransition2.play();
+                });
+                FadeTransition fadeTransition = new FadeTransition(Duration.millis(1000), image);
+                fadeTransition.setFromValue(1.0);
+                fadeTransition.setToValue(0.8);
+                RotateTransition rotateTransition = new RotateTransition(Duration.millis(1000), image);
+                rotateTransition.setAxis(Rotate.Z_AXIS);
+                rotateTransition.setFromAngle(0);
+                rotateTransition.setToAngle(90);
+                ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(1000), image);
+                scaleTransition.setFromX(1);
+                scaleTransition.setFromY(1);
+                scaleTransition.setToX(0.7);
+                scaleTransition.setToY(0.7);
+                ParallelTransition parallelTransition = new ParallelTransition();
+                parallelTransition.getChildren().addAll(
+                        translateTransition,
+                        fadeTransition,
+                        rotateTransition,
+                        scaleTransition
+                );
+
+                trouverScrollpaneVuejoueurCourant().fireEvent(new MouseEvent(MouseEvent.MOUSE_ENTERED, 0, 0, 0, 0, MouseButton.PRIMARY, 0, false, false, false, false, true, false, false, false, false, false, null));
+                parallelTransition.setOnFinished(actionEvent2 -> {
+                    trouverScrollpaneVuejoueurCourant().fireEvent(new MouseEvent(MouseEvent.MOUSE_EXITED, 0, 0, 0, 0, MouseButton.PRIMARY, 0, false, false, false, false, false, false, false, false, false, false, null));
+                });
+                parallelTransition.play();
             }
         });
 
         spritePiocheBateau.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                jeu.uneCarteBateauAEtePiochee();
+                windPlayer.play();
+                ImageView image = new ImageView();
+                image.setImage(new Image("images/cartesWagons/dos-BATEAU.png"));
+                AnimatedButton carte = spritePiocheBateau;
+                image.setFitWidth(70);
+                image.setPreserveRatio(true);
+                image.setSmooth(true);
+                image.setCache(true);
+                image.setRotate(0);
+                vueDuJeu.getChildren().add(image);
+                image.setTranslateX(carte.localToScene(0, 0).getX());
+                image.setTranslateY(carte.localToScene(0, 0).getY());
+
+                TranslateTransition translateTransition = new TranslateTransition(Duration.millis(1000), image);
+                //set the origin of the translation to the coordinates of the card
+                translateTransition.setFromX(carte.localToScene(0, 0).getX());
+                translateTransition.setFromY(carte.localToScene(0, 0).getY());
+                double destinationX = trouverScrollpaneVuejoueurCourant().localToScene(0, 0).getX() + trouverScrollpaneVuejoueurCourant().prefWidth(-1)/2;
+                double destinationY = trouverScrollpaneVuejoueurCourant().localToScene(0, 0).getY() + trouverScrollpaneVuejoueurCourant().prefHeight(-1)/2;
+                translateTransition.setToX(destinationX);
+                translateTransition.setToY(destinationY);
+                translateTransition.setOnFinished(actionEvent -> {
+                    chargerCartesTransportVisible();
+                    FadeTransition fadeTransition2 = new FadeTransition(Duration.millis(150), image);
+                    fadeTransition2.setFromValue(0.8);
+                    fadeTransition2.setToValue(0);
+                    fadeTransition2.setOnFinished(actionEvent1 -> {
+                        vueDuJeu.getChildren().remove(image);
+                        jeu.uneCarteBateauAEtePiochee();
+                        windPlayer.stop();
+                        windPlayer.seek(Duration.ZERO);
+                    });
+                    fadeTransition2.play();
+                });
+                FadeTransition fadeTransition = new FadeTransition(Duration.millis(1000), image);
+                fadeTransition.setFromValue(1.0);
+                fadeTransition.setToValue(0.8);
+                RotateTransition rotateTransition = new RotateTransition(Duration.millis(1000), image);
+                rotateTransition.setAxis(Rotate.Z_AXIS);
+                rotateTransition.setFromAngle(0);
+                rotateTransition.setToAngle(90);
+                ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(1000), image);
+                scaleTransition.setFromX(1);
+                scaleTransition.setFromY(1);
+                scaleTransition.setToX(0.7);
+                scaleTransition.setToY(0.7);
+                ParallelTransition parallelTransition = new ParallelTransition();
+                parallelTransition.getChildren().addAll(
+                        translateTransition,
+                        fadeTransition,
+                        rotateTransition,
+                        scaleTransition
+                );
+
+                trouverScrollpaneVuejoueurCourant().fireEvent(new MouseEvent(MouseEvent.MOUSE_ENTERED, 0, 0, 0, 0, MouseButton.PRIMARY, 0, false, false, false, false, true, false, false, false, false, false, null));
+                parallelTransition.setOnFinished(actionEvent2 -> {
+                    trouverScrollpaneVuejoueurCourant().fireEvent(new MouseEvent(MouseEvent.MOUSE_EXITED, 0, 0, 0, 0, MouseButton.PRIMARY, 0, false, false, false, false, false, false, false, false, false, false, null));
+                });
+                parallelTransition.play();
             }
         });
 
@@ -200,10 +297,6 @@ public class VueDuJeu extends BorderPane {
                 while(change.next()){
                     if(change.wasRemoved()){
                         for(ICarteTransport carte : change.getRemoved()){
-                            //trouveVueCarteTransportVisible(carte).setTranslateZ(1);
-                            //create imageview with same image as the card
-                            //ImageView image = new ImageView(carte.getImage());
-                            //if card is beateau, set the image to the boat and get the corresponding image to the color
                             ImageView image = new ImageView();
                             if(carte.estBateau()){
                                 image.setImage(new Image("images/cartesWagons/dos-BATEAU.png"));
@@ -228,12 +321,10 @@ public class VueDuJeu extends BorderPane {
                                 vueDuJeu.getChildren().remove(trouveVueCarteTransportVisible(carte));
                             });
 
-                            TranslateTransition translateTransition = new TranslateTransition(Duration.millis(2000), image);
+                            TranslateTransition translateTransition = new TranslateTransition(Duration.millis(1000), image);
                             //set the origin of the translation to the coordinates of the card
                             translateTransition.setFromX(trouveVueCarteTransportVisible(carte).localToScene(0, 0).getX());
                             translateTransition.setFromY(trouveVueCarteTransportVisible(carte).localToScene(0, 0).getY());
-                            //double destinationX = trouverScrollpaneVuejoueurCourant().localToScene(0, 0).getX() - trouveVueCarteTransportVisible(carte).localToScene(0, 0).getX() + trouverScrollpaneVuejoueurCourant().prefWidth(-1)/3;
-                            //double destinationY = trouverScrollpaneVuejoueurCourant().localToScene(0, 0).getY() - trouveVueCarteTransportVisible(carte).localToScene(0, 0).getY() + trouverScrollpaneVuejoueurCourant().prefHeight(-1)/3;
                             double destinationX = trouverScrollpaneVuejoueurCourant().localToScene(0, 0).getX() + trouverScrollpaneVuejoueurCourant().prefWidth(-1)/2;
                             double destinationY = trouverScrollpaneVuejoueurCourant().localToScene(0, 0).getY() + trouverScrollpaneVuejoueurCourant().prefHeight(-1)/2;
                             translateTransition.setToX(destinationX);
@@ -248,14 +339,14 @@ public class VueDuJeu extends BorderPane {
                                 });
                                 fadeTransition2.play();
                             });
-                            FadeTransition fadeTransition = new FadeTransition(Duration.millis(2000), image);
+                            FadeTransition fadeTransition = new FadeTransition(Duration.millis(1000), image);
                             fadeTransition.setFromValue(1.0);
                             fadeTransition.setToValue(0.8);
-                            RotateTransition rotateTransition = new RotateTransition(Duration.millis(2000), image);
+                            RotateTransition rotateTransition = new RotateTransition(Duration.millis(1000), image);
                             rotateTransition.setAxis(Rotate.Z_AXIS);
                             rotateTransition.setFromAngle(0);
                             rotateTransition.setToAngle(90);
-                            ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(2000), image);
+                            ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(1000), image);
                             scaleTransition.setFromX(1);
                             scaleTransition.setFromY(1);
                             scaleTransition.setToX(0.7);
@@ -269,18 +360,12 @@ public class VueDuJeu extends BorderPane {
                             );
 
                             rotateTransitionC.setOnFinished(actionEvent -> {
-                                //when the rotation is finished, remove the card from the view
-                                //set the exact same dimensions as the original card
                                 image.setFitWidth(90);
-                                //image.setFitWidth(carte.getImage().getWidth());
                                 image.setPreserveRatio(true);
                                 image.setSmooth(true);
                                 image.setCache(true);
                                 image.setRotate(0);
                                 vueDuJeu.getChildren().add(image);
-                                //set the coordinates of the card to the coordinates of the original card
-                                //image.setTranslateX(trouveVueCarteTransportVisible(carte).getTranslateX());
-                                //image.setTranslateY(trouveVueCarteTransportVisible(carte).getTranslateY());
                                 image.setTranslateX(trouveVueCarteTransportVisible(carte).localToScene(0, 0).getX() - carte.getImage().getWidth()/2 - 45);
                                 image.setTranslateY(trouveVueCarteTransportVisible(carte).localToScene(0, 0).getY() - carte.getImage().getHeight()/2 - 30);
                                 rotateTransitionI.setOnFinished(actionEvent1 -> {

@@ -23,7 +23,7 @@ public class RailsIHM extends Application {
     private Stage primaryStage;
     private Jeu jeu;
 
-    private final boolean avecVueChoixJoueurs = false;
+    private final boolean avecVueChoixJoueurs = true;
 
     @Override
     public void start(Stage primaryStage) {
@@ -63,8 +63,10 @@ public class RailsIHM extends Application {
         primaryStage.setScene(scene);
         primaryStage.setTitle("Les aventuriers du BUT");
         primaryStage.centerOnScreen();
-        primaryStage.setMinWidth(600);
-        primaryStage.setMinHeight(400);
+        primaryStage.setWidth(1600);
+        primaryStage.setHeight(1050);
+        primaryStage.setMinWidth(1600);
+        primaryStage.setMinHeight(1050);
         primaryStage.setMaxWidth(Screen.getPrimary().getBounds().getWidth());
         primaryStage.setMaxHeight(Screen.getPrimary().getBounds().getHeight());
         primaryStage.setOnCloseRequest(event -> {
